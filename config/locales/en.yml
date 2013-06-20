@@ -15,6 +15,7 @@ en:
         born_at: Date of Birth
         died_at: Date of Death
         age: Age
+        is_male: Male
       soldier_translation:
         name: Name
         first_name: First Name

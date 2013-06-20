@@ -6,7 +6,8 @@ class Soldier < ActiveRecord::Base
   attr_accessible :soldier_translations_attributes,
       :born_at,
       :died_at,
-      :age
+      :age, 
+      :is_male
 
   validates :died_at, :presence => true
 

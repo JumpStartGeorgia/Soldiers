@@ -15,6 +15,7 @@ ka:
         born_at: დაბადების თარიღი
         died_at: გარდაცვალების თარიღი
         age: ასაკი
+        is_male: Male
       soldier_translation:
         name: სახელი
         first_name: სახელი

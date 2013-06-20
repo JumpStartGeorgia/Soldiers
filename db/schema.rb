@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130620074250) do
+ActiveRecord::Schema.define(:version => 20130620141107) do
 
   create_table "soldier_translations", :force => true do |t|
     t.integer  "soldier_id"
@@ -39,7 +39,10 @@ ActiveRecord::Schema.define(:version => 20130620074250) do
     t.integer  "age"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_male",    :default => true
   end
+
+  add_index "soldiers", ["is_male"], :name => "index_soldiers_on_is_male"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
