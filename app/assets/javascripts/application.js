@@ -12,7 +12,6 @@
 //= require twitter/bootstrap
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
-//= require jquery.ui.datepicker
 //= require vendor
 //= require_tree .
 

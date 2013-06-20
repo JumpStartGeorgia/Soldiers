@@ -37,6 +37,8 @@ class Admin::SoldiersController < ApplicationController
 			@soldier.soldier_translations.build(:locale => locale.to_s)
 		end
 
+    gon.edit_soldier = true
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @soldier }
@@ -46,6 +48,9 @@ class Admin::SoldiersController < ApplicationController
   # GET /soldiers/1/edit
   def edit
     @soldier = Soldier.find(params[:id])
+    gon.edit_soldier = true
+		gon.born_at = @soldier.born_at.strftime('%m/%d/%Y') if @soldier.born_at.present?
+		gon.died_at = @soldier.died_at.strftime('%m/%d/%Y') if @soldier.died_at.present?
   end
 
   # POST /soldiers
@@ -58,6 +63,9 @@ class Admin::SoldiersController < ApplicationController
         format.html { redirect_to admin_soldier_path(@soldier), notice: t('app.msgs.success_created', :obj => t('activerecord.models.soldier')) }
         format.json { render json: @soldier, status: :created, location: @soldier }
       else
+        gon.edit_soldier = true
+		    gon.born_at = @soldier.born_at.strftime('%m/%d/%Y') if @soldier.born_at.present?
+		    gon.died_at = @soldier.died_at.strftime('%m/%d/%Y') if @soldier.died_at.present?
         format.html { render action: "new" }
         format.json { render json: @soldier.errors, status: :unprocessable_entity }
       end
@@ -74,6 +82,9 @@ class Admin::SoldiersController < ApplicationController
         format.html { redirect_to admin_soldier_path(@soldier), notice: t('app.msgs.success_created', :obj => t('activerecord.models.soldier')) }
         format.json { head :ok }
       else
+        gon.edit_soldier = true
+		    gon.born_at = @soldier.born_at.strftime('%m/%d/%Y') if @soldier.born_at.present?
+		    gon.died_at = @soldier.died_at.strftime('%m/%d/%Y') if @soldier.died_at.present?
         format.html { render action: "edit" }
         format.json { render json: @soldier.errors, status: :unprocessable_entity }
       end
