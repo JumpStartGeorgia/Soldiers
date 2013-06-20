@@ -1,0 +1,58 @@
+<%- model_class = Soldier -%>
+<%- model_class_tr = SoldierTranslation -%>
+<% title t '.title', :default => model_class.model_name.human.pluralize %>
+
+<div class="form-actions">
+  <%= link_to t('helpers.links.new'),
+              new_admin_soldier_path,
+              :class => 'btn btn-primary' %>
+  <%= link_to t('helpers.links.admin'), admin_path,
+  :class => 'btn' %>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th><%= model_class_tr.human_attribute_name(:first_name) %></th>
+      <th><%= model_class_tr.human_attribute_name(:last_name) %></th>
+      <th><%= model_class_tr.human_attribute_name(:from) %></th>
+      <th><%= model_class_tr.human_attribute_name(:rank) %></th>
+      <th><%= model_class_tr.human_attribute_name(:served_with) %></th>
+      <th><%= model_class_tr.human_attribute_name(:country_died) %></th>
+      <th><%= model_class_tr.human_attribute_name(:place_died) %></th>
+      <th><%= model_class_tr.human_attribute_name(:incident_type) %></th>
+      <th><%= model_class_tr.human_attribute_name(:incident_description) %></th>
+      <th><%= model_class.human_attribute_name(:died_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @soldiers.each do |soldier| %>
+      <tr>
+        <td><%= link_to t('helpers.links.view'), admin_soldier_path(soldier), :class => 'btn btn-mini' %></td>
+        <td><%= soldier.first_name %></td>
+        <td><%= soldier.last_name %></td>
+        <td><%= soldier.from %></td>
+        <td><%= soldier.rank %></td>
+        <td><%= soldier.served_with %></td>
+        <td><%= soldier.country_died %></td>
+        <td><%= soldier.place_died %></td>
+        <td><%= soldier.incident_type %></td>
+        <td><%= soldier.incident_description %></td>
+        <td><%= soldier.died_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_admin_soldier_path(soldier), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      admin_soldier_path(soldier),
+                      :method => :delete,
+											:data => { :confirm => t('.confirm', :default => t("helpers.links.confirm")) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

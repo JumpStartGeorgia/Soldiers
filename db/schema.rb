@@ -11,7 +11,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120917111146) do
+ActiveRecord::Schema.define(:version => 20130620074250) do
+
+  create_table "soldier_translations", :force => true do |t|
+    t.integer  "soldier_id"
+    t.string   "locale"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "from"
+    t.string   "rank"
+    t.string   "served_with"
+    t.string   "country_died"
+    t.string   "place_died"
+    t.string   "incident_type"
+    t.string   "incident_description"
+    t.string   "permalink"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "soldier_translations", ["locale"], :name => "index_soldier_translations_on_locale"
+  add_index "soldier_translations", ["soldier_id"], :name => "index_soldier_translations_on_soldier_id"
+
+  create_table "soldiers", :force => true do |t|
+    t.string   "born_at"
+    t.date     "died_at"
+    t.integer  "age"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

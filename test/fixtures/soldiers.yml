@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  dob: MyString
+  dod: 2013-06-20
+  age: 1
+  from: MyString
+  rank: MyString
+  served_with: MyString
+  country_died: MyString
+  place_died: MyString
+  indcident_type: MyString
+  indcident_description: MyString
+
+two:
+  first_name: MyString
+  last_name: MyString
+  dob: MyString
+  dod: 2013-06-20
+  age: 1
+  from: MyString
+  rank: MyString
+  served_with: MyString
+  country_died: MyString
+  place_died: MyString
+  indcident_type: MyString
+  indcident_description: MyString

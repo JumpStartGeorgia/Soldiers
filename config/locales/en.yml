@@ -3,6 +3,7 @@ en:
   activerecord:
     models:
       user: User
+      soldier: Soldier
     attributes:
       user:
         email: Email Address
@@ -10,6 +11,20 @@ en:
         password_confirmation: Password Confirmation
         role: Role
         remember_me: Remeber Me
+      soldier:
+        born_at: Date of Birth
+        died_at: Date of Death
+        age: Age
+      soldier_translation:
+        first_name: First Name
+        last_name: Last Name
+        from: Place From
+        rank: Military Rank
+        served_with: Served With
+        country_died: Country Where Died
+        place_died: Place Where Died
+        incident_type: Incident Type
+        incident_description: Incident Description
     errors:
       messages:
         required_field: "is a required field."
@@ -23,8 +38,10 @@ en:
       destroy: Delete
       new: New
       list: View All
+      back: View All
       cancel: Cancel
       reset: Reset
+      view: View
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
@@ -33,7 +50,7 @@ en:
       en: English
       ka: ქართული
     buttons:
-      back: Back
+      back: View All
       list: View All
       admin: Admin Section
       delete: Delete
@@ -48,7 +65,7 @@ en:
       confirm: Are you sure?
       new: New
     common:
-      app_name: Bootstrap Starter Project
+      app_name: Georgian Soldiers
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.
@@ -57,6 +74,8 @@ en:
   layouts:
     application:
       admin: Admin
+      soldiers: Soldiers
+      users: Users
       sign_out: Sign Out
       js_link_title: "Visit JumpStart Georgia's website"
       js_link_text: Built by
@@ -76,9 +95,7 @@ en:
   admin:
     index:
       title: Administration Section
-      users_header: Users
-      new_users: Add User
-      view_users: View Users
+      users: Users
     users:
       edit:
         title: Editing User

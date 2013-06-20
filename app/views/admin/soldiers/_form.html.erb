@@ -1,0 +1,37 @@
+<%= semantic_form_for([:admin,@soldier], :html => { :class => 'form-horizontal' }) do |f| %>
+	<%= f.error_messages %>
+
+  <% @soldier.soldier_translations.sort{|x,y| x.locale <=> y.locale}.each do |trans| %>
+	  <%= f.fields_for :soldier_translations, trans do |translation| %>
+
+		  <div id="form-<%= trans.locale %>" class="multilanguage">
+			  <h3><%= t("app.language.#{trans.locale}") %></h3>
+			  <%= translation.input :first_name %>
+			  <%= translation.input :last_name %>
+			  <%= translation.input :from %>
+			  <%= translation.input :rank %>
+			  <%= translation.input :served_with %>
+			  <%= translation.input :country_died %>
+			  <%= translation.input :place_died %>
+			  <%= translation.input :incident_type %>
+			  <%= translation.input :incident_description %>
+			  <%= translation.hidden_field :locale , :value => trans.locale %>
+		  </div>
+
+	  <% end %>
+  <% end %>
+
+	<%= f.input :born_at, :as => :string, :input_html => {:size => 35} %>
+	<%= f.input :died_at, :as => :string, :input_html => {:size => 35} %>
+	<%= f.input :age, :as => :string, :input_html => {:size => 3} %>
+
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+	  <%= f.submit nil, :class => 'btn btn-warning', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                admin_soldiers_path, :class => 'btn btn-mini btn-warning' %>
+  </div>
+
+<% end %>
+

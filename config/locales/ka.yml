@@ -3,6 +3,7 @@ ka:
   activerecord:
     models:
       user: მომხმარებელი
+      soldier: Soldier
     attributes:
       user:
         email: ელ.ფოსტა
@@ -10,6 +11,20 @@ ka:
         password_confirmation: გაიმეორეთ პაროლი
         role: როლი
         remember_me: დამიმახსოვრე
+      soldier:
+        born_at: Date of Birth
+        died_at: Date of Death
+        age: Age
+      soldier_translation:
+        first_name: First Name
+        last_name: Last Name
+        from: Place From
+        rank: Military Rank
+        served_with: Served With
+        country_died: Country Where Died
+        place_died: Place Where Died
+        incident_type: Incident Type
+        incident_description: Incident Description
     errors:
       messages:
         required_field: "სავალდებულოა"
@@ -23,8 +38,10 @@ ka:
       destroy: წაშლა
       new: ახალი
       list: იხილეთ სრულად
+      back: იხილეთ სრულად
       cancel: გაუქმება
       reset: საწყის კონფიგურაციაზე დაბრუნება
+      view: ნახვა
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
@@ -33,7 +50,7 @@ ka:
       en: English
       ka: ქართული
     buttons:
-      back: უკან
+      back: იხილეთ სრულად
       list: იხილეთ სრულად
       admin: ადმინისტრატორის განყოფილება
       delete: წაშლა
@@ -48,7 +65,7 @@ ka:
       confirm: დარწმუნებული ხართ?
       new: ახალი
     common:
-      app_name: Bootstrap Starter Project
+      app_name: Georgian Soldiers
     msgs:
       does_not_exist: თქვენ ცდილობთ იხილოთ გვერდი, რომელიც არ არსებობს.
       not_authorized: თქვენ არ გაქვთ უფლება იხილოთ ეს გვერდი.
@@ -77,9 +94,7 @@ ka:
   admin:
     index:
       title: ადმინისტრატორის განყოფილება
-      users_header: მომხმარებლები
-      new_users: მომხმარებლის დამატება
-      view_users: მომხმარებლების ნახვა
+      users: მომხმარებლები
     users:
       edit:
         title: ცვლილებების შეტანა მომხმარებლის გვერდზე
