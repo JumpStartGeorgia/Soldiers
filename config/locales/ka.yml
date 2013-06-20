@@ -16,6 +16,7 @@ ka:
         died_at: გარდაცვალების თარიღი
         age: ასაკი
       soldier_translation:
+        name: სახელი
         first_name: სახელი
         last_name: გვარი
         from: წარმოშობა
@@ -66,6 +67,7 @@ ka:
       new: ახალი
     common:
       app_name: Georgian Soldiers
+      added_on: "დამატებულია: %{date}" 
     msgs:
       does_not_exist: თქვენ ცდილობთ იხილოთ გვერდი, რომელიც არ არსებობს.
       not_authorized: თქვენ არ გაქვთ უფლება იხილოთ ეს გვერდი.

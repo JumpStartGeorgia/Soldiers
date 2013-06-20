@@ -7,11 +7,9 @@ class Admin::SoldiersController < ApplicationController
   # GET /soldiers
   # GET /soldiers.json
   def index
-    @soldiers = Soldier.all
-
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @soldiers }
+      format.json { render json: SoldiersDatatable.new(view_context) }
     end
   end
 

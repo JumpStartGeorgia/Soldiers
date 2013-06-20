@@ -16,6 +16,7 @@ en:
         died_at: Date of Death
         age: Age
       soldier_translation:
+        name: Name
         first_name: First Name
         last_name: Last Name
         from: Place From
@@ -66,6 +67,7 @@ en:
       new: New
     common:
       app_name: Georgian Soldiers
+      added_on: "Added on: %{date}" 
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.
