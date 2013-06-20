@@ -12,19 +12,19 @@ ka:
         role: როლი
         remember_me: დამიმახსოვრე
       soldier:
-        born_at: Date of Birth
-        died_at: Date of Death
-        age: Age
+        born_at: დაბადების თარიღი
+        died_at: გარდაცვალების თარიღი
+        age: ასაკი
       soldier_translation:
-        first_name: First Name
-        last_name: Last Name
-        from: Place From
-        rank: Military Rank
-        served_with: Served With
-        country_died: Country Where Died
-        place_died: Place Where Died
-        incident_type: Incident Type
-        incident_description: Incident Description
+        first_name: სახელი
+        last_name: გვარი
+        from: წარმოშობა
+        rank: წოდება
+        served_with: მსახურობდა
+        country_died: ქვეყანა
+        place_died: გარდაცვალების ადგილი
+        incident_type: შემთხვევის ტიპი
+        incident_description: შემთხვევის აღწერა
     errors:
       messages:
         required_field: "სავალდებულოა"
