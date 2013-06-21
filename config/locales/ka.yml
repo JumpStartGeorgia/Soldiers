@@ -31,6 +31,10 @@ ka:
       messages:
         required_field: "სავალდებულოა"
         already_exists: 'უკვე არსებობს მონაცემთა ბაზაში'
+  summary:
+    male: Male
+    female: Female
+    unknown: Unknown
   helpers:
     actions: აირჩიეთ
     links:

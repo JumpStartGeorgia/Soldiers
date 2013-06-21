@@ -54,7 +54,7 @@ protected
         h["died_at"] = j["gsx$dateofdeath"]["$t"].present? ? Date.strptime(j["gsx$dateofdeath"]["$t"], '%m/%d/%Y') : nil
         h["born_at"] = j["gsx$dateofbirth"]["$t"].present? ? j["gsx$dateofbirth"]["$t"] : nil
         h["age"] = j["gsx$age"]["$t"].present? ? j["gsx$age"]["$t"] : nil
-        h["from"] = j["gsx$from"]["$t"].present? ? j["gsx$from"]["$t"] : nil
+        h["place_from"] = j["gsx$from"]["$t"].present? ? j["gsx$from"]["$t"] : nil
         h["served_with"] = j["gsx$servedwith"]["$t"].present? ? j["gsx$servedwith"]["$t"] : nil
       end
     end  

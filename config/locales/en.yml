@@ -31,6 +31,10 @@ en:
       messages:
         required_field: "is a required field."
         already_exists: 'already exists in the database.'
+  summary:
+    male: Male
+    female: Female
+    unknown: Unknown
   helpers:
     actions: Actions
     links:

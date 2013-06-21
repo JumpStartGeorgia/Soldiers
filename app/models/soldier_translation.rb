@@ -7,7 +7,7 @@ class SoldierTranslation < ActiveRecord::Base
   attr_accessible :soldier_id, :locale, 
     :first_name, 
     :last_name, 
-    :from,
+    :place_from,
     :rank,
     :served_with,
     :country_died,

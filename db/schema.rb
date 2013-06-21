@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130620141107) do
+ActiveRecord::Schema.define(:version => 20130621130137) do
 
   create_table "soldier_translations", :force => true do |t|
     t.integer  "soldier_id"
     t.string   "locale"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "from"
+    t.string   "place_from"
     t.string   "rank"
     t.string   "served_with"
     t.string   "country_died"
@@ -30,7 +30,14 @@ ActiveRecord::Schema.define(:version => 20130620141107) do
     t.datetime "updated_at"
   end
 
+  add_index "soldier_translations", ["country_died"], :name => "index_soldier_translations_on_country_died"
+  add_index "soldier_translations", ["incident_description"], :name => "index_soldier_translations_on_incident_description"
+  add_index "soldier_translations", ["incident_type"], :name => "index_soldier_translations_on_incident_type"
   add_index "soldier_translations", ["locale"], :name => "index_soldier_translations_on_locale"
+  add_index "soldier_translations", ["place_died"], :name => "index_soldier_translations_on_place_died"
+  add_index "soldier_translations", ["place_from"], :name => "index_soldier_translations_on_place_from"
+  add_index "soldier_translations", ["rank"], :name => "index_soldier_translations_on_rank"
+  add_index "soldier_translations", ["served_with"], :name => "index_soldier_translations_on_served_with"
   add_index "soldier_translations", ["soldier_id"], :name => "index_soldier_translations_on_soldier_id"
 
   create_table "soldiers", :force => true do |t|
@@ -42,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20130620141107) do
     t.boolean  "is_male",    :default => true
   end
 
+  add_index "soldiers", ["died_at"], :name => "index_soldiers_on_died_at"
   add_index "soldiers", ["is_male"], :name => "index_soldiers_on_is_male"
 
   create_table "users", :force => true do |t|
