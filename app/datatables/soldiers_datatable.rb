@@ -57,7 +57,10 @@ private
     soldiers = Soldier.with_translations(I18n.locale).order("#{sort_column} #{sort_direction}")
     soldiers = soldiers.page(page).per_page(per_page)
     if params[:sSearch].present?
-      search_qry = "soldier_translations.name like :search "  
+      search_qry = "soldier_translations.first_name like :search or soldier_translations.last_name like :search or "  
+      search_qry << "soldier_translations.rank like :search or soldier_translations.served_with like :search or "  
+      search_qry << "soldier_translations.country_died like :search or soldier_translations.place_died like :search or "  
+      search_qry << "soldier_translations.incident_type like :search or soldier_translations.incident_description like :search "  
       soldiers = soldiers.where(search_qry, search: "%#{params[:sSearch]}%")
     end
     soldiers
