@@ -36,6 +36,7 @@ ka:
     male: მამრობითი
     female: მდედრობითი
     unknown: უცნობი
+    total: Total
   helpers:
     actions: აირჩიეთ
     links:

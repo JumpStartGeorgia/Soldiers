@@ -14,7 +14,7 @@
               :class => 'btn btn-danger' %>
 </div>
 
-  <p><%= image_tag @soldier.img.url(:medium) if @soldier.img_file_name.present? %></p>
+  <p><%= image_tag @soldier.img.url, :width => '30%', :height => '30%' if @soldier.img_file_name.present? %></p>
   <p><strong><%= model_class_tr.human_attribute_name(:first_name) %>:</strong>
   <%= @soldier.first_name %></p>
   <p><strong><%= model_class_tr.human_attribute_name(:last_name) %>:</strong>

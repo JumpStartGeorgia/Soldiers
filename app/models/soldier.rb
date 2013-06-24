@@ -1,8 +1,7 @@
 class Soldier < ActiveRecord::Base
 	translates :permalink, :first_name, :last_name, :place_from, :rank, :served_with, :country_died, :place_died, :incident_type, :incident_description
 
-	has_attached_file :img, :url => "/system/photo/:id/:permalink_:style.:extension",
-                  :styles => { :thumb => "100x100", :medium => "200x200", :big => "300x300" }, 
+	has_attached_file :img, :url => "/system/photo/:id/:permalink.:extension",
                   :default_url => "/images/:style/missing.png"
 
 	has_many :soldier_translations, :dependent => :destroy
@@ -25,6 +24,19 @@ class Soldier < ActiveRecord::Base
   ## all formats are [{key, value}, {key, value}, {key, value}....]
   ######################
 
+  # total dead
+  def self.total_dead
+    h = []
+    x = Soldier.count()
+
+    y = Hash.new
+    h << y
+    y[:key] = I18n.t('summary.total')
+    y[:value] = x
+
+    return h
+  end
+
   # gender
   def self.summary_gender
     h = []
@@ -39,6 +51,55 @@ class Soldier < ActiveRecord::Base
     h << y
     y[:key] = I18n.t('summary.female')
     y[:value] = x.has_key?(false).present? ? x[false] : 0
+
+    return h
+  end
+
+  # age 
+  # groups: 20-24, 25-29, 30-34, 35-39, 40-49
+  def self.summary_age
+    h = []
+    x = Soldier.select('age')
+
+    y = Hash.new
+    h << y
+    y[:key] = "20-24"
+    ary = x.select{|x| x.age <= 24 && x.age >= 20}
+    y[:value] = ary.present? ? ary.length : 0
+    y[:min] = 20
+    y[:max] = 24
+
+    y = Hash.new
+    h << y
+    y[:key] = "25-29"
+    ary = x.select{|x| x.age <= 29 && x.age >= 25}
+    y[:value] = ary.present? ? ary.length : 0
+    y[:min] = 25
+    y[:max] = 29
+
+    y = Hash.new
+    h << y
+    y[:key] = "30-34"
+    ary = x.select{|x| x.age <= 34 && x.age >= 30}
+    y[:value] = ary.present? ? ary.length : 0
+    y[:min] = 30
+    y[:max] = 34
+
+    y = Hash.new
+    h << y
+    y[:key] = "35-39"
+    ary = x.select{|x| x.age <= 39 && x.age >= 35}
+    y[:value] = ary.present? ? ary.length : 0
+    y[:min] = 35
+    y[:max] = 39
+
+    y = Hash.new
+    h << y
+    y[:key] = "40-49"
+    ary = x.select{|x| x.age <= 49 && x.age >= 40}
+    y[:value] = ary.present? ? ary.length : 0
+    y[:min] = 40
+    y[:max] = 49
 
     return h
   end

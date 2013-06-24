@@ -4,4 +4,10 @@ class RootController < ApplicationController
   end
 
 
+
+protected
+
+  def load_gon
+
+  end
 end
