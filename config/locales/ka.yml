@@ -3,7 +3,7 @@ ka:
   activerecord:
     models:
       user: მომხმარებელი
-      soldier: Soldier
+      soldier: ჯარისკაცი
     attributes:
       user:
         email: ელ.ფოსტა
@@ -15,8 +15,8 @@ ka:
         born_at: დაბადების თარიღი
         died_at: გარდაცვალების თარიღი
         age: ასაკი
-        is_male: Male
-        img: Photo
+        is_male: მამრობითი
+        img: ფოტო
       soldier_translation:
         name: სახელი
         first_name: სახელი
@@ -33,9 +33,9 @@ ka:
         required_field: "სავალდებულოა"
         already_exists: 'უკვე არსებობს მონაცემთა ბაზაში'
   summary:
-    male: Male
-    female: Female
-    unknown: Unknown
+    male: მამრობითი
+    female: მდედრობითი
+    unknown: უცნობი
   helpers:
     actions: აირჩიეთ
     links:
