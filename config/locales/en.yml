@@ -16,6 +16,7 @@ en:
         died_at: Date of Death
         age: Age
         is_male: Male
+        img: Photo
       soldier_translation:
         name: Name
         first_name: First Name

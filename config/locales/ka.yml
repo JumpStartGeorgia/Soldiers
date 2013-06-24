@@ -16,6 +16,7 @@ ka:
         died_at: გარდაცვალების თარიღი
         age: ასაკი
         is_male: Male
+        img: Photo
       soldier_translation:
         name: სახელი
         first_name: სახელი

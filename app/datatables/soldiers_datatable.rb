@@ -21,7 +21,7 @@ private
     soldiers.map do |soldier|
       [
         link_to(I18n.t('helpers.links.view'), admin_soldier_path(:id => soldier.id, :locale => I18n.locale), :class => 'btn btn-mini'),
-        "#{soldier.last_name}, #{soldier.first_name}",
+        photo_name(soldier),
         soldier.rank,
         soldier.served_with,
         soldier.country_died,
@@ -32,6 +32,16 @@ private
         action_links(soldier)
       ]
     end
+  end
+
+  def photo_name(soldier)
+    x = "#{soldier.last_name}, #{soldier.first_name}"
+    if soldier.img_file_name.present?
+      x << "<br />"
+      x << image_tag(soldier.img.url(:thumb))
+    end
+
+    return x.html_safe
   end
 
   def action_links(soldier)

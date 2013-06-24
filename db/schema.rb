@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130621130137) do
+ActiveRecord::Schema.define(:version => 20130624085349) do
 
   create_table "soldier_translations", :force => true do |t|
     t.integer  "soldier_id"
@@ -46,7 +46,11 @@ ActiveRecord::Schema.define(:version => 20130621130137) do
     t.integer  "age"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_male",    :default => true
+    t.boolean  "is_male",          :default => true
+    t.string   "img_file_name"
+    t.string   "img_content_type"
+    t.integer  "img_file_size"
+    t.datetime "img_updated_at"
   end
 
   add_index "soldiers", ["died_at"], :name => "index_soldiers_on_died_at"

@@ -1,16 +1,24 @@
 class Soldier < ActiveRecord::Base
 	translates :permalink, :first_name, :last_name, :place_from, :rank, :served_with, :country_died, :place_died, :incident_type, :incident_description
 
+	has_attached_file :img, :url => "/system/photo/:id/:permalink_:style.:extension",
+                  :styles => { :thumb => "100x100", :medium => "200x200", :big => "300x300" }, 
+                  :default_url => "/images/:style/missing.png"
+
 	has_many :soldier_translations, :dependent => :destroy
   accepts_nested_attributes_for :soldier_translations
   attr_accessible :soldier_translations_attributes,
       :born_at,
       :died_at,
       :age, 
-      :is_male
+      :is_male, 
+      :img,
+      :img_file_name,
+      :img_content_type,
+      :img_file_size,
+      :img_updated_at
 
   validates :died_at, :presence => true
-
 
   ######################
   ## summary queries
