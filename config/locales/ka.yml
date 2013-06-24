@@ -37,6 +37,14 @@ ka:
     female: მდედრობითი
     unknown: უცნობი
     total: Total
+    titles:
+      age: Age
+      gender: Gender
+      country: Theater
+      date_died: Date Died
+      rank: Rank
+      served_with: Served With
+      incidents: Incidents
   helpers:
     actions: აირჩიეთ
     links:

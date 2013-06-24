@@ -1,1 +1,14 @@
-Hi!
+
+<div>
+  total died: 
+  <%= @total_dead %>
+</div>
+
+<div class="soldier_profiles">
+<% @soldiers.each do |soldier| %>
+  <div id="<%= "soldier_profile_#{soldier.id}"%>" class="soldier_profile" data-id="<%= soldier.id %>">
+    name: <%= soldier.full_name %>
+
+  </div>
+<% end %>
+</div>

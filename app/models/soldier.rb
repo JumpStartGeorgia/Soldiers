@@ -19,11 +19,18 @@ class Soldier < ActiveRecord::Base
 
   validates :died_at, :presence => true
 
+  def self.sorted
+    with_translations(I18n.locale).order("soldiers.id asc")
+  end
+
+  def full_name
+    self.first_name.strip() + " " + self.last_name.strip()
+  end
+
   ######################
   ## summary queries
   ## all formats are [{key, value}, {key, value}, {key, value}....]
   ######################
-
   # total dead
   def self.total_dead
     h = []
@@ -57,13 +64,14 @@ class Soldier < ActiveRecord::Base
 
   # age 
   # groups: 20-24, 25-29, 30-34, 35-39, 40-49
+  AGE_CATEGORIES = ["20-24", "25-29", "30-34", "35-39", "40-49"]
   def self.summary_age
     h = []
     x = Soldier.select('age')
 
     y = Hash.new
     h << y
-    y[:key] = "20-24"
+    y[:key] = AGE_CATEGORIES[0]
     ary = x.select{|x| x.age <= 24 && x.age >= 20}
     y[:value] = ary.present? ? ary.length : 0
     y[:min] = 20
@@ -71,7 +79,7 @@ class Soldier < ActiveRecord::Base
 
     y = Hash.new
     h << y
-    y[:key] = "25-29"
+    y[:key] = AGE_CATEGORIES[1]
     ary = x.select{|x| x.age <= 29 && x.age >= 25}
     y[:value] = ary.present? ? ary.length : 0
     y[:min] = 25
@@ -79,7 +87,7 @@ class Soldier < ActiveRecord::Base
 
     y = Hash.new
     h << y
-    y[:key] = "30-34"
+    y[:key] = AGE_CATEGORIES[2]
     ary = x.select{|x| x.age <= 34 && x.age >= 30}
     y[:value] = ary.present? ? ary.length : 0
     y[:min] = 30
@@ -87,7 +95,7 @@ class Soldier < ActiveRecord::Base
 
     y = Hash.new
     h << y
-    y[:key] = "35-39"
+    y[:key] = AGE_CATEGORIES[3]
     ary = x.select{|x| x.age <= 39 && x.age >= 35}
     y[:value] = ary.present? ? ary.length : 0
     y[:min] = 35
@@ -95,7 +103,7 @@ class Soldier < ActiveRecord::Base
 
     y = Hash.new
     h << y
-    y[:key] = "40-49"
+    y[:key] = AGE_CATEGORIES[4]
     ary = x.select{|x| x.age <= 49 && x.age >= 40}
     y[:value] = ary.present? ? ary.length : 0
     y[:min] = 40
@@ -164,7 +172,32 @@ class Soldier < ActiveRecord::Base
     return create_summary_array(x)
   end
 
+  # for each incident type, get summary of incident descriptions
+  # format: [{key value items=>[{key value}, {key value}, ....] }, ....]
+  def self.summary_incidents_grouped
+    h = summary_incident_type
 
+    if h.present?
+      h.each do |type|
+        type[:items] = []
+
+        # get all descriptions with this type
+        a = SoldierTranslation.where(:locale => I18n.locale, :incident_type => type[:key]).count(:group => :incident_description)
+        if a.present?
+          a.keys.each do |key|
+            b = Hash.new
+            type[:items] << b
+            b[:key] = key.nil? ? I18n.t('summary.unknown') : key
+            b[:value] = a[key]
+          end
+          type[:items].sort_by{|c| c[:key]}
+        end
+      end
+      h.sort_by{|y| y[:key]}
+    end
+
+    return h
+  end
 
   ######################
   ## load from json

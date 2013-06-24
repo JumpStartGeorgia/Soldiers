@@ -37,6 +37,14 @@ en:
     female: Female
     unknown: Unknown
     total: Total
+    titles:
+      age: Age
+      gender: Gender
+      country: Theater
+      date_died: Date Died
+      rank: Rank
+      served_with: Served With
+      incidents: Incidents
   helpers:
     actions: Actions
     links:
