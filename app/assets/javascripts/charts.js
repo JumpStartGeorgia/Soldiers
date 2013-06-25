@@ -34,6 +34,9 @@ $(document).ready(function() {
         legend: {
             enabled: false
         },
+        tooltip: {
+          enabled: false
+        },
         credits: {
             enabled: false
         },
@@ -85,6 +88,9 @@ $(document).ready(function() {
         },
         legend: {
             enabled: false
+        },
+        tooltip: {
+          enabled: false
         },
         credits: {
             enabled: false
@@ -138,6 +144,9 @@ $(document).ready(function() {
         legend: {
             enabled: false
         },
+        tooltip: {
+          enabled: false
+        },
         credits: {
             enabled: false
         },
@@ -189,6 +198,9 @@ $(document).ready(function() {
         },
         legend: {
             enabled: false
+        },
+        tooltip: {
+          enabled: false
         },
         credits: {
             enabled: false
@@ -242,6 +254,9 @@ $(document).ready(function() {
         legend: {
             enabled: false
         },
+        tooltip: {
+          enabled: false
+        },
         credits: {
             enabled: false
         },
@@ -293,6 +308,9 @@ $(document).ready(function() {
         },
         legend: {
             enabled: false
+        },
+        tooltip: {
+          enabled: false
         },
         credits: {
             enabled: false
@@ -347,6 +365,9 @@ $(document).ready(function() {
         },
         legend: {
             enabled: false
+        },
+        tooltip: {
+          enabled: false
         },
         credits: {
             enabled: false
