@@ -4,7 +4,7 @@
   <%= @total_dead %>
 </div>
 
-<div class="soldier_profiles">
+<div id="soldier_profiles">
 <% @soldiers.each do |soldier| %>
   <div id="<%= "soldier_profile_#{soldier.id}"%>" class="soldier_profile" data-id="<%= soldier.id %>">
     name: <%= soldier.full_name %>
@@ -12,3 +12,18 @@
   </div>
 <% end %>
 </div>
+
+<div id="charts">
+  <div id="chart_gender"></div>
+  <div id="chart_age"></div>
+  <div id="chart_country"></div>
+  <div id="chart_rank"></div>
+  <!--div id="chart_served_with"></div-->
+  <% if @num_incidents > 0 %>
+    <% for i in 0..@num_incidents-1 %>
+      <div id="chart_incident_type_<%= i %>"></div>
+    <% end %>
+  <% end %>
+</div>  
+<div id="chart_date_died"></div>
+

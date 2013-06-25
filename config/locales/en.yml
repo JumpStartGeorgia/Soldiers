@@ -32,6 +32,12 @@ en:
       messages:
         required_field: "is a required field."
         already_exists: 'already exists in the database.'
+  highcharts:
+    downloadPNG: "Download PNG image"
+    downloadJPEG: "Download JPEG image"
+    downloadPDF: "Download PDF document"
+    downloadSVG: "Download SVG vector image"
+    printChart: "Print chart"
   summary:
     male: Male
     female: Female

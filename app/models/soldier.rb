@@ -27,10 +27,6 @@ class Soldier < ActiveRecord::Base
     self.first_name.strip() + " " + self.last_name.strip()
   end
 
-  ######################
-  ## summary queries
-  ## all formats are [{key, value}, {key, value}, {key, value}....]
-  ######################
   # total dead
   def self.total_dead
     h = []
@@ -38,26 +34,28 @@ class Soldier < ActiveRecord::Base
 
     y = Hash.new
     h << y
-    y[:key] = I18n.t('summary.total')
-    y[:value] = x
+    h[:headers] << I18n.t('summary.total')
+    h[:values] << x
 
     return h
   end
 
+  ######################
+  ## summary queries
+  ## all formats are { headers => [], values => []}
+  ######################
   # gender
   def self.summary_gender
-    h = []
+    h = Hash.new
+    h[:headers] = []
+    h[:values] = []
     x = Soldier.count(:group => :is_male)
 
-    y = Hash.new
-    h << y
-    y[:key] = I18n.t('summary.male')
-    y[:value] = x.has_key?(true).present? ? x[true] : 0
+    h[:headers] << I18n.t('summary.male')
+    h[:values] << (x.has_key?(true).present? ? x[true] : 0)
 
-    y = Hash.new
-    h << y
-    y[:key] = I18n.t('summary.female')
-    y[:value] = x.has_key?(false).present? ? x[false] : 0
+    h[:headers] << I18n.t('summary.female')
+    h[:values] << (x.has_key?(false).present? ? x[false] : 0)
 
     return h
   end
@@ -66,65 +64,71 @@ class Soldier < ActiveRecord::Base
   # groups: 20-24, 25-29, 30-34, 35-39, 40-49
   AGE_CATEGORIES = ["20-24", "25-29", "30-34", "35-39", "40-49"]
   def self.summary_age
-    h = []
+    h = Hash.new
+    h[:headers] = []
+    h[:values] = []
+    h[:min] = []
+    h[:max] = []
     x = Soldier.select('age')
 
-    y = Hash.new
-    h << y
-    y[:key] = AGE_CATEGORIES[0]
+    h[:headers] << AGE_CATEGORIES[0]
     ary = x.select{|x| x.age <= 24 && x.age >= 20}
-    y[:value] = ary.present? ? ary.length : 0
-    y[:min] = 20
-    y[:max] = 24
+    h[:values] << (ary.present? ? ary.length : 0)
+    h[:min] << 20
+    h[:max] << 24
 
-    y = Hash.new
-    h << y
-    y[:key] = AGE_CATEGORIES[1]
+    h[:headers] << AGE_CATEGORIES[1]
     ary = x.select{|x| x.age <= 29 && x.age >= 25}
-    y[:value] = ary.present? ? ary.length : 0
-    y[:min] = 25
-    y[:max] = 29
+    h[:values] << (ary.present? ? ary.length : 0)
+    h[:min] << 25
+    h[:max] << 29
 
-    y = Hash.new
-    h << y
-    y[:key] = AGE_CATEGORIES[2]
+    h[:headers] << AGE_CATEGORIES[2]
     ary = x.select{|x| x.age <= 34 && x.age >= 30}
-    y[:value] = ary.present? ? ary.length : 0
-    y[:min] = 30
-    y[:max] = 34
+    h[:values] << (ary.present? ? ary.length : 0)
+    h[:min] << 30
+    h[:max] << 34
 
-    y = Hash.new
-    h << y
-    y[:key] = AGE_CATEGORIES[3]
+    h[:headers] << AGE_CATEGORIES[3]
     ary = x.select{|x| x.age <= 39 && x.age >= 35}
-    y[:value] = ary.present? ? ary.length : 0
-    y[:min] = 35
-    y[:max] = 39
+    h[:values] << (ary.present? ? ary.length : 0)
+    h[:min] << 35
+    h[:max] << 39
 
-    y = Hash.new
-    h << y
-    y[:key] = AGE_CATEGORIES[4]
+    h[:headers] << AGE_CATEGORIES[4]
     ary = x.select{|x| x.age <= 49 && x.age >= 40}
-    y[:value] = ary.present? ? ary.length : 0
-    y[:min] = 40
-    y[:max] = 49
+    h[:values] << (ary.present? ? ary.length : 0)
+    h[:min] << 40
+    h[:max] << 49
 
     return h
   end
 
   # date died
   def self.summary_date_died
-    h = []
-    x = Soldier.count(:group => :died_at)
+    h = Hash.new
+    h[:headers] = []
+    h[:values] = []
+    x = Soldier.select("died_at").group_by{|x| x.died_at.beginning_of_month}
+    start_year = 2007
+    end_year = Time.now.year
 
     if x.present?
+      dates = []
       x.keys.each do |key|
-        y = Hash.new
-        h << y
-        y[:key] = key.strftime('%F')
-        y[:value] = x[key]
+        dates << {:month => key.month, :year => key.year, :count => x[key].count}
       end
-      h.sort_by{|y| y[:key]}
+  
+      for i in start_year..end_year
+        for j in 1..12
+          h[:headers] << "#{i} #{Date::MONTHNAMES[j]}"
+          date = dates.select{|x| x[:month] == j && x[:year] == i}
+          h[:values] << (date.present? ? date.first[:count] : nil)
+
+          # if this is the current month/year, stop
+          break if i==end_year && j==Time.now.month
+        end
+      end
     end
 
     return h
@@ -173,27 +177,20 @@ class Soldier < ActiveRecord::Base
   end
 
   # for each incident type, get summary of incident descriptions
-  # format: [{key value items=>[{key value}, {key value}, ....] }, ....]
+  # format: [{header value items => {headers values}}, {header value items => {headers values}}, etc]
   def self.summary_incidents_grouped
-    h = summary_incident_type
+    h = []
+    x = summary_incident_type
 
-    if h.present?
-      h.each do |type|
-        type[:items] = []
-
-        # get all descriptions with this type
-        a = SoldierTranslation.where(:locale => I18n.locale, :incident_type => type[:key]).count(:group => :incident_description)
-        if a.present?
-          a.keys.each do |key|
-            b = Hash.new
-            type[:items] << b
-            b[:key] = key.nil? ? I18n.t('summary.unknown') : key
-            b[:value] = a[key]
-          end
-          type[:items].sort_by{|c| c[:key]}
-        end
+    if x.present?
+      for i in 0..x[:headers].length-1
+        z = Hash.new
+        h << z
+        z[:header] = x[:headers][i]
+        z[:value] = x[:values][i]
+        a = SoldierTranslation.where(:locale => I18n.locale, :incident_type => z[:header]).count(:group => :incident_description)
+        z[:items] = create_summary_array(a)
       end
-      h.sort_by{|y| y[:key]}
     end
 
     return h
@@ -244,16 +241,16 @@ puts "----------- - could not find ka match for #{record["id"]}"
 protected
 
   def self.create_summary_array(data)
-    h = []
+    h = Hash.new
+    h[:headers] = []
+    h[:values] = []
 
     if data.present?
       data.keys.each do |key|
-        y = Hash.new
-        h << y
-        y[:key] = key.nil? ? I18n.t('summary.unknown') : key
-        y[:value] = data[key]
+        h[:headers] << (key.nil? ? I18n.t('summary.unknown') : key)
+        h[:values] << data[key]
       end
-      h.sort_by{|y| y[:key]}
+#      h.sort_by{|y| y[:key]}
     end
 
     return h

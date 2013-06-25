@@ -232,3 +232,10 @@ footer, footer ul li, footer div#right ul li {
   background-color: #eee;
   padding: 0.5em 1em;
 }
+
+/* highcharts basic styles */
+.highcharts-container hr{
+  margin: 0;
+}
+
+

@@ -32,6 +32,12 @@ ka:
       messages:
         required_field: "სავალდებულოა"
         already_exists: 'უკვე არსებობს მონაცემთა ბაზაში'
+  highcharts:
+    downloadPNG: "ჩამოტვირთე PNG გამოსახულება"
+    downloadJPEG: "ჩამოტვირთე JPEG გამოსახულება"
+    downloadPDF: "ჩამოტვირთე PDF დოკუმენტი"
+    downloadSVG: "ჩამოტვირთე SVG ვექტორული გამოსახულება"
+    printChart: "ამობეჭდე გრაფიკი"
   summary:
     male: მამრობითი
     female: მდედრობითი
