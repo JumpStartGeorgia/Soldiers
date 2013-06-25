@@ -16,6 +16,7 @@ en:
         died_at: Date of Death
         age: Age
         is_male: Male
+        gender: Gender
         img: Photo
       soldier_translation:
         name: Name
@@ -128,3 +129,8 @@ en:
         title: New User
       show:
         title: User Details
+  root:
+    index:
+      location: Location
+      incident: Incident
+      hometown: Hometown

@@ -1,3 +1,5 @@
+<%- model_class = Soldier -%>
+<%- model_class_tr = SoldierTranslation -%>
 
 <div>
   total died: 
@@ -6,9 +8,57 @@
 
 <div id="soldier_profiles">
 <% @soldiers.each do |soldier| %>
-  <div id="<%= "soldier_profile_#{soldier.id}"%>" class="soldier_profile" data-id="<%= soldier.id %>">
-    name: <%= soldier.full_name %>
-
+  <div id="<%= "soldier_profile_#{soldier.id}"%>" class="soldier_profile row-fluid" data-id="<%= soldier.id %>"
+      data-age="<%= soldier.age%>" data-gender="<%= soldier.gender %>" data-rank="<%= soldier.rank %>" 
+      data-incident-type="<%= soldier.incident_type %>" data-incident-description="<%= soldier.incident_description %>"
+      data-country="<% soldier.country_died %>" data-date-died="<%= soldier.died_at.beginning_of_month %>">
+    <div class="soldier_photo span1"></div>
+    <div class="soldier_photo span3">
+      <%= image_tag soldier.img.url if soldier.img_file_name %>
+    </div>
+    <div class="soldier_bio span7">
+      <h2><%= soldier.full_name %></h2>
+      <div class="row-fluid">
+        <div class="span6">
+          <ul>
+            <li>
+              <strong><%= model_class.human_attribute_name(:age) %>:</strong>
+              <%= soldier.age %>
+            </li>
+            <li>
+              <strong><%= model_class.human_attribute_name(:gender) %>:</strong>
+              <%= soldier.gender %>
+            </li>
+            <li>
+              <strong><%= t('hometown') %>:</strong>
+              <%= soldier.place_from %>
+            </li>
+            <li>
+              <strong><%= model_class_tr.human_attribute_name(:rank) %>:</strong>
+              <%= soldier.rank %>
+            </li>
+            <li>
+              <strong><%= model_class_tr.human_attribute_name(:served_with) %>:</strong>
+              <%= soldier.served_with %>
+            </li>
+          </ul>
+        </div>
+        <div class="soldier_incident span4">
+          <ul>
+            <li>
+              <strong><%= t('.incident') %>:</strong>
+              <%= soldier.incident_type %>
+              -
+              <%= soldier.incident_description %>
+            </li>
+            <li>
+              <strong><%= t('.location') %>:</strong>  
+              <%= soldier.place_died.present? ? "#{soldier.place_died}, #{soldier.country_died}" : soldier.country_died %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>
 </div>
@@ -24,6 +74,6 @@
       <div id="chart_incident_type_<%= i %>"></div>
     <% end %>
   <% end %>
+  <div id="chart_date_died"></div>
 </div>  
-<div id="chart_date_died"></div>
 

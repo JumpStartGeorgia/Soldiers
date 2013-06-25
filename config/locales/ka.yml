@@ -16,6 +16,7 @@ ka:
         died_at: გარდაცვალების თარიღი
         age: ასაკი
         is_male: მამრობითი
+        gender: Gender
         img: ფოტო
       soldier_translation:
         name: სახელი
@@ -127,3 +128,8 @@ ka:
         title: ახალი მომხმარებელი
       show:
         title: მომხმარებლის დეტალები
+  root:
+    index:
+      location: Location
+      incident: Incident
+      hometown: Hometown

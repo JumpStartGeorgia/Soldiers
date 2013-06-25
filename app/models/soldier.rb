@@ -27,6 +27,14 @@ class Soldier < ActiveRecord::Base
     self.first_name.strip() + " " + self.last_name.strip()
   end
 
+  def gender
+    if self.is_male 
+      I18n.t('summary.male') 
+    else 
+      I18n.t('summary.female') 
+    end 
+  end
+
   # total dead
   def self.total_dead
     h = []
