@@ -16,7 +16,7 @@ ka:
         died_at: გარდაცვალების თარიღი
         age: ასაკი
         is_male: მამრობითი
-        gender: Gender
+        gender: სქესი
         img: ფოტო
       soldier_translation:
         name: სახელი
@@ -43,15 +43,15 @@ ka:
     male: მამრობითი
     female: მდედრობითი
     unknown: უცნობი
-    total: Total
+    total: სულ
     titles:
-      age: Age
-      gender: Gender
-      country: Theater
-      date_died: Date Died
-      rank: Rank
-      served_with: Served With
-      incidents: Incidents
+      age: ასაკი
+      gender: სქესი
+      country: გარდაცვალების ადგილი
+      date_died: გარდაცვალების თარიღი
+      rank: რანგი
+      served_with: მსახურობდა 
+      incidents: ინციდენტები
   helpers:
     actions: აირჩიეთ
     links:
@@ -88,7 +88,7 @@ ka:
       confirm: დარწმუნებული ხართ?
       new: ახალი
     common:
-      app_name: Georgian Soldiers
+      app_name: ქართველი ჯარისკაცები
       added_on: "დამატებულია: %{date}" 
     msgs:
       does_not_exist: თქვენ ცდილობთ იხილოთ გვერდი, რომელიც არ არსებობს.
@@ -130,6 +130,6 @@ ka:
         title: მომხმარებლის დეტალები
   root:
     index:
-      location: Location
-      incident: Incident
-      hometown: Hometown
+      location: მდებარეობა
+      incident: ინციდენტი
+      hometown: საცხოვრებელი ადგილი 
