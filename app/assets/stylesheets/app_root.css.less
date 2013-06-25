@@ -1,0 +1,74 @@
+@import "twitter/bootstrap/mixins";
+
+
+
+body.app_root {
+  background: #fdfcfa;
+  padding-top: 60px;
+
+  .navbar {
+    .navbar-inner {
+      background: #fbf8f3;
+      .box-shadow(none);
+
+      #center_header {
+        text-align: center;
+        
+        a {
+        }
+      }
+    }
+  }
+
+  #header_bg {
+    background: red;
+    height: 150px;
+    & > .container-fluid > .row-fluid > [class^="span"] {
+      text-align: center;
+      background: #fbf8f3;
+    }
+  }
+
+  #header_text {
+    margin: 0px auto;
+    text-transform: uppercase;
+    text-align: center;
+    float: none;
+  }
+
+  #thumbs {
+    li {
+      display: block;
+      float: left;
+      width: 5%;
+      margin: 0px;
+      a {
+        display: block;
+        position: relative;
+        &:hover img:last-child, img:first-child, &.active img:last-child {
+          .opacity(100);
+        }
+        &:hover img:first-child, img:last-child, &.active img:first-child {
+          .opacity(0);
+        }
+        img {
+          display: block;
+          position: relative;
+          z-index: 1;
+          .transition(opacity .25s linear);
+          &:last-child {
+            position: absolute;
+            z-index: 2;
+            top: 0px;
+            left: 0px;
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    margin-top: 0px;
+    background: none !important;
+  }
+}
