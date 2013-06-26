@@ -6,7 +6,7 @@ class RootController < ApplicationController
     
     load_chart_gon
 
-    render :layout => 'application_root'
+#    render :layout => 'application_root'
 
   end
 
