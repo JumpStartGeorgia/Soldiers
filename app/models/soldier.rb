@@ -28,7 +28,7 @@ class Soldier < ActiveRecord::Base
   validates :died_at, :presence => true
 
   def self.sorted
-    with_translations(I18n.locale).order("soldiers.id asc")
+    with_translations(I18n.locale).order("soldiers.died_at DESC, soldier_translations.last_name ASC")
   end
 
   def full_name
