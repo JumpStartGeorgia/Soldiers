@@ -22,7 +22,6 @@ protected
     gon.highcharts_downloadSVG = t('highcharts.downloadSVG')
     gon.highcharts_printChart = t('highcharts.printChart')
 
-
     # gender
     gon.gender_title = I18n.t('summary.titles.gender')
     x = Soldier.summary_gender

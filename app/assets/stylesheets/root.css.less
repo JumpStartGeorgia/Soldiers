@@ -1,6 +1,52 @@
+@import "twitter/bootstrap/mixins";
+
+#thumbs {
+  li {
+    display: block;
+    float: left;
+    width: 5.882352941%;
+    margin: 0px;
+    a {
+      display: block;
+      position: relative;
+      &:hover img:last-child, img:first-child, &.active img:last-child {
+        .opacity(100);
+      }
+      &:hover img:first-child, img:last-child, &.active img:first-child {
+        .opacity(0);
+      }
+      img {
+        display: block;
+        position: relative;
+        z-index: 1;
+        .transition(opacity .25s linear);
+        &:last-child {
+          position: absolute;
+          z-index: 2;
+          top: 0px;
+          left: 0px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  #thumbs ul > li {
+    width: 8.333333333%;
+  }
+}
+
+@media (max-width: 600px) {
+  #thumbs ul > li {
+    width: 11.111111111%;
+  }
+}
+
 #soldier_profiles{
   .soldier_profile{
     padding: 20px;
+    display: none;
     .soldier_photo{
 
     }
@@ -9,6 +55,32 @@
     }
     .soldier_incident{
 
+    }
+    .soldier_nav{
+      li {
+        a {
+          display: block;
+          position: relative;
+          &:hover img:last-child, img:first-child, &.active img:last-child {
+            .opacity(100);
+          }
+          &:hover img:first-child, img:last-child, &.active img:first-child {
+            .opacity(0);
+          }
+          img {
+            display: block;
+            position: relative;
+            z-index: 1;
+            .transition(opacity .25s linear);
+            &:last-child {
+              position: absolute;
+              z-index: 2;
+              top: 0px;
+              left: 0px;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -32,3 +104,5 @@
     }
   }
 }
+
+
