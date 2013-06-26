@@ -69,7 +69,7 @@
 		              <% end %>
 							    <% I18n.available_locales.each do |locale| %>
 								    <% if locale != I18n.locale %>
-									    <li><%= link_to t("app.language.#{locale}"), params.merge(:locale => locale) %></li>
+									    <li class="locale_switcher"><%= link_to t("app.language.#{locale}"), params.merge(:locale => locale) %></li>
 								    <% end %>
 							    <% end %>
 	              </ul>
@@ -84,9 +84,14 @@
 
 
     <div id="header_bg">
+      <!--<img src="/assets/header-bg.jpg" alt="" />-->
       <div class="container-fluid">
         <div class="row-fluid">
-          <div class="span4 offset4"><%= @total_dead %></div>
+          <div class="span4">
+            <h1><%= @total_dead %></h1>
+            <h3>Georgian Soldier dies in International Mission</h3>
+            <h5>1570 soldiers are in afghanistan now</h5>
+          </div>
         </div>
       </div>
     </div>
@@ -101,20 +106,17 @@
       </div>
     </div>
 
+		<% if content_for?(:title) %>
+			<div class="page-header">
+			  <div class="block">
+          <h1>
+					  <%= yield(:title) %>
+				  </h1>
+				</div>
+			</div>
+		<% end %>
 
-    <div id="thumbs">
-      <ul>
-        <% 54.times do %>
-          <li>
-            <a href="javascript:;">
-              <img src="http://www.chinaodysseytours.com/xian/img/warriors-11.jpg" />
-              <img src="http://www.chinaodysseytours.com/xian/img/terracotta-6.jpg" />
-            </a>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-
+    <%= yield %>
 
 
 
