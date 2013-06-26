@@ -26,7 +26,21 @@
 	<%= f.input :age, :as => :string, :input_html => {:size => 3} %>
 	<%= f.input :is_male, :as => :radio %>
   <%= f.input :img, :as => :file %>
+  <% if @soldier.img_file_name.present? %>
+    <div class="control-group">
+      <div class="controls">
+        <%= image_tag @soldier.img.url %>
+      </div>
+    </div>
+  <% end %>
   <%= f.input :img_bw, :as => :file %>
+  <% if @soldier.img_bw_file_name.present? %>
+    <div class="control-group">
+      <div class="controls">
+        <%= image_tag @soldier.img_bw.url %>
+      </div>
+    </div>
+  <% end %>
 
 
   <div class="form-actions">

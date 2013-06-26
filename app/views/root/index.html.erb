@@ -59,6 +59,11 @@
               <strong><%= t('.date') %>:</strong>  
               <%= l soldier.died_at, :format => :long if soldier.died_at.present? %>
             </li>
+            <% if user_signed_in? && current_user.role?(User::ROLES[:user]) %>
+              <li>
+                <%= link_to t('helpers.links.edit'), edit_admin_soldier_path(soldier.id), :class => 'btn' %>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>

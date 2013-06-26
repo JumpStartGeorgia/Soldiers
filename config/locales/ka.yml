@@ -18,7 +18,7 @@ ka:
         is_male: მამრობითი
         gender: სქესი
         img: ფოტო
-        img_bw: "Black & White Photo"
+        img_bw: შავ-თეთრი ფოტო
       soldier_translation:
         name: სახელი
         first_name: სახელი
