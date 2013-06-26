@@ -55,6 +55,10 @@
               <strong><%= t('.location') %>:</strong>  
               <%= soldier.place_died.present? ? "#{soldier.place_died}, #{soldier.country_died}" : soldier.country_died %>
             </li>
+            <li>
+              <strong><%= t('.date') %>:</strong>  
+              <%= l soldier.died_at, :format => :long if soldier.died_at.present? %>
+            </li>
           </ul>
         </div>
       </div>
