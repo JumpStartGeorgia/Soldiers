@@ -14,7 +14,7 @@
       data-country="<% soldier.country_died %>" data-date-died="<%= soldier.died_at.beginning_of_month %>">
     <div class="soldier_photo span1"></div>
     <div class="soldier_photo span2">
-      <%= image_tag soldier.img.url %>
+      <%= image_tag soldier.img.url, :alt => soldier.full_name %>
     </div>
     <div class="soldier_bio span6">
       <h2><%= soldier.full_name %></h2>
