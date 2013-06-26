@@ -3,7 +3,8 @@ $(document).ready(function() {
   if (gon.gender_values){
     $('#chart_gender').highcharts({
         chart: {
-            type: 'bar'
+            type: 'bar',
+            height: 50 + 35*gon.gender_headers.length
         },
         title: {
             text: gon.gender_title
@@ -29,7 +30,10 @@ $(document).ready(function() {
                 dataLabels: {
                     enabled: true
                 }
-            }
+            },
+            series: {
+	            pointWidth: 20
+  	        }
         },
         legend: {
             enabled: false
@@ -58,7 +62,8 @@ $(document).ready(function() {
   if (gon.age_values){
     $('#chart_age').highcharts({
         chart: {
-            type: 'bar'
+            type: 'bar',
+            height: 50 + 35*gon.age_headers.length
         },
         title: {
             text: gon.age_title
@@ -84,7 +89,10 @@ $(document).ready(function() {
                 dataLabels: {
                     enabled: true
                 }
-            }
+            },
+            series: {
+	            pointWidth: 20
+  	        }
         },
         legend: {
             enabled: false
@@ -113,7 +121,8 @@ $(document).ready(function() {
   if (gon.country_values){
     $('#chart_country').highcharts({
         chart: {
-            type: 'bar'
+            type: 'bar',
+            height: 50 + 35*gon.country_headers.length
         },
         title: {
             text: gon.country_title
@@ -139,7 +148,10 @@ $(document).ready(function() {
                 dataLabels: {
                     enabled: true
                 }
-            }
+            },
+            series: {
+	            pointWidth: 20
+  	        }
         },
         legend: {
             enabled: false
@@ -168,7 +180,8 @@ $(document).ready(function() {
   if (gon.rank_values){
     $('#chart_rank').highcharts({
         chart: {
-            type: 'bar'
+            type: 'bar',
+            height: 50 + 35*gon.rank_headers.length
         },
         title: {
             text: gon.rank_title
@@ -194,7 +207,10 @@ $(document).ready(function() {
                 dataLabels: {
                     enabled: true
                 }
-            }
+            },
+            series: {
+	            pointWidth: 20
+  	        }
         },
         legend: {
             enabled: false
@@ -223,7 +239,8 @@ $(document).ready(function() {
   if (gon.served_with_values){
     $('#chart_served_with').highcharts({
         chart: {
-            type: 'bar'
+            type: 'bar',
+            height: 50 + 35*gon.served_with_headers.length
         },
         title: {
             text: gon.served_with_title
@@ -249,7 +266,10 @@ $(document).ready(function() {
                 dataLabels: {
                     enabled: true
                 }
-            }
+            },
+            series: {
+	            pointWidth: 20
+  	        }
         },
         legend: {
             enabled: false
@@ -304,7 +324,10 @@ $(document).ready(function() {
                 dataLabels: {
                     enabled: true
                 }
-            }
+            },
+            series: {
+	            pointWidth: 20
+  	        }
         },
         legend: {
             enabled: false
@@ -335,7 +358,8 @@ $(document).ready(function() {
     for(var i=0;i<gon.incidents_num;i++){
       $('#chart_incident_type_' + i).highcharts({
         chart: {
-            type: 'bar'
+            type: 'bar',
+            height: 50 + 35*gon.incident_types[i].headers.length
         },
         title: {
             text: gon.incident_types[i].title
@@ -361,7 +385,10 @@ $(document).ready(function() {
                 dataLabels: {
                     enabled: true
                 }
-            }
+            },
+            series: {
+	            pointWidth: 20
+  	        }
         },
         legend: {
             enabled: false
