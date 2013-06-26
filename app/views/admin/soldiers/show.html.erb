@@ -15,8 +15,8 @@
 </div>
 
   <p>
-    <%= image_tag @soldier.img.url if @soldier.img_file_name.present? %>
-    <%= image_tag @soldier.img_bw.url if @soldier.img_bw_file_name.present? %>
+    <%= image_tag @soldier.img.url %>
+    <%= image_tag @soldier.img_bw.url %>
   </p>
   <p><strong><%= model_class_tr.human_attribute_name(:first_name) %>:</strong>
   <%= @soldier.first_name %></p>

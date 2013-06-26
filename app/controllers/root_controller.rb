@@ -62,7 +62,7 @@ protected
       gon.rank_headers = x[:headers]
       gon.rank_values = x[:values]
     end
-=begin
+
     # served with
     gon.served_with_title = I18n.t('summary.titles.served_with')
     x = Soldier.summary_served_with
@@ -70,7 +70,7 @@ protected
       gon.served_with_headers = x[:headers]
       gon.served_with_values = x[:values]
     end
-=end
+
     # incidents
     x = Soldier.summary_incidents_grouped
     if x.present?

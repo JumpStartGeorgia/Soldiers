@@ -2,28 +2,36 @@ module LoadData
 	require 'net/http'
 	require 'net/https'
 
-  #en = https://spreadsheets.google.com/feeds/list/0AtUyMZoeaZt8dGh5SF9CX1ZKZ0JTXzNKbUhwclNudVE/od6/public/values?alt=json
-  #ka = https://spreadsheets.google.com/feeds/list/0AtUyMZoeaZt8dGh5SF9CX1ZKZ0JTXzNKbUhwclNudVE/1/public/values?alt=json
+  EN_URL = "https://spreadsheets.google.com/feeds/list/0AtUyMZoeaZt8dGh5SF9CX1ZKZ0JTXzNKbUhwclNudVE/od6/public/values?alt=json"
+  KA_URL = "https://spreadsheets.google.com/feeds/list/0AtUyMZoeaZt8dGh5SF9CX1ZKZ0JTXzNKbUhwclNudVE/1/public/values?alt=json"
 
   def self.google_spreadsheet_json_multi_lang()
-    en_url = "https://spreadsheets.google.com/feeds/list/0AtUyMZoeaZt8dGh5SF9CX1ZKZ0JTXzNKbUhwclNudVE/od6/public/values?alt=json"
-    ka_url = "https://spreadsheets.google.com/feeds/list/0AtUyMZoeaZt8dGh5SF9CX1ZKZ0JTXzNKbUhwclNudVE/1/public/values?alt=json"
-    
-puts 'getting en'
-    en_json = format_data(en_url)
-puts 'getting ka'
-    ka_json = format_data(ka_url)
+    process_request()
 
-    if en_json.present? && ka_json.present?
-puts 'creating records'
-      Soldier.load_from_json(en_json, ka_json)
-    end
+    return nil
+  end
+
+  def self.google_spreadsheet_json_multi_lang_with_images(color_image_path, bw_image_path)
+    process_request(color_image_path, bw_image_path)
 
     return nil
   end
 
 
 protected
+
+  def self.process_request(color_image_path=nil, bw_image_path=nil)
+puts 'getting en'
+    en_json = format_data(EN_URL)
+puts 'getting ka'
+    ka_json = format_data(KA_URL)
+  
+    if en_json.present? && ka_json.present?
+puts 'creating records'
+      Soldier.load_from_json(en_json, ka_json, color_image_path, bw_image_path)
+    end
+
+  end
 
   def self.format_data(url)
     formatted_json = []

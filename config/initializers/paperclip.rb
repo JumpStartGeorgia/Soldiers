@@ -1,4 +1,4 @@
 Paperclip.interpolates('permalink') do |attachment, style|
-  attachment.instance.permalink
+  attachment.instance.common_permalink
 end
 

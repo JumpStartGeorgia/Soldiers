@@ -2,10 +2,10 @@ class Soldier < ActiveRecord::Base
 	translates :permalink, :first_name, :last_name, :place_from, :rank, :served_with, :country_died, :place_died, :incident_type, :incident_description
 
 	has_attached_file :img, :url => "/system/photo/:id/:permalink.:extension",
-                  :default_url => "/images/missing.png"
+                  :default_url => "/assets/missing.jpg"
 
 	has_attached_file :img_bw, :url => "/system/photo/:id/:permalink_bw.:extension",
-                  :default_url => "/images/missing_bw.png"
+                  :default_url => "/assets/missing_bw.jpg"
 
 	has_many :soldier_translations, :dependent => :destroy
   accepts_nested_attributes_for :soldier_translations
@@ -41,6 +41,12 @@ class Soldier < ActiveRecord::Base
     else 
       I18n.t('summary.female') 
     end 
+  end
+
+  # the image uses the permalink value which can be different for each langauge
+  # use the ka value as the common permalink
+  def common_permalink
+    self.soldier_translations.select{|x| x.locale == "ka"}.first.permalink
   end
 
   # total dead
@@ -216,16 +222,30 @@ class Soldier < ActiveRecord::Base
   ## load from json
   ## - expect each item to have key names that match attr names
   ######################
-  def self.load_from_json(en_json, ka_json)
+  def self.load_from_json(en_json, ka_json, color_image_path=nil, bw_image_path=nil)
     if en_json.present? && ka_json.present?
+      has_images = false
+puts "color = #{color_image_path}"
+puts "bw = #{bw_image_path}"
+
+      # get path to images
+      if color_image_path.present? && bw_image_path.present? && Dir.exists?(color_image_path) && Dir.exists?(bw_image_path)
+puts "found images"
+        has_images = true
+      end
+
       Soldier.transaction do
         en_json.each_with_index do |record, index|
           puts index
+
+          color_image_file = nil
+          bw_image_file = nil
 
           # get ka record
           ka_record = ka_json.select{|x| x["id"] == record["id"]}.first
 
           s = Soldier.new(:born_at => record["born_at"], :died_at => record["died_at"], :age => record["age"])
+
           if s.save
             s.soldier_translations.create(:locale => 'en', :first_name => record["first_name"], :last_name => record["last_name"],
               :place_from => record["place_from"], :rank => record["rank"], :served_with => record["served_with"], 
@@ -244,6 +264,30 @@ puts "----------- - could not find ka match for #{record["id"]}"
                 :place_from => record["place_from"], :rank => record["rank"], :served_with => record["served_with"], 
                 :country_died => record["country_died"], :place_died => record["place_died"], 
                 :incident_type => record["incident_type"], :incident_description => record["incident_description"])
+            end
+
+            # add images
+            # must have both images in order to add
+            if has_images
+  puts "- trying to add images"
+              # find color image
+              color = Dir.glob(color_image_path + "/" + record["id"] + ".*")
+
+              # find bw image
+              bw = Dir.glob(bw_image_path + "/" + record["id"] + ".*")
+
+              if color.present? && bw.present?
+  puts "- found color and bw; adding"
+                color_image_file = File.open(color.first)
+                bw_image_file = File.open(bw.first)
+                s.img = color_image_file
+                s.img_bw = bw_image_file
+                s.save
+              end
+
+              # close the files if they are open
+              color_image_file.close if color_image_file.present?
+              bw_image_file.close if bw_image_file.present?
             end
           else
             puts "****************************"

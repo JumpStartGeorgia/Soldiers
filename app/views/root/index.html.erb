@@ -13,10 +13,10 @@
       data-incident-type="<%= soldier.incident_type %>" data-incident-description="<%= soldier.incident_description %>"
       data-country="<% soldier.country_died %>" data-date-died="<%= soldier.died_at.beginning_of_month %>">
     <div class="soldier_photo span1"></div>
-    <div class="soldier_photo span3">
-      <%= image_tag soldier.img.url if soldier.img_file_name %>
+    <div class="soldier_photo span2">
+      <%= image_tag soldier.img.url %>
     </div>
-    <div class="soldier_bio span7">
+    <div class="soldier_bio span6">
       <h2><%= soldier.full_name %></h2>
       <div class="row-fluid">
         <div class="span6">
@@ -68,7 +68,7 @@
   <div id="chart_age"></div>
   <div id="chart_country"></div>
   <div id="chart_rank"></div>
-  <!--div id="chart_served_with"></div-->
+  <div id="chart_served_with"></div>
   <% if @num_incidents > 0 %>
     <% for i in 0..@num_incidents-1 %>
       <div id="chart_incident_type_<%= i %>"></div>

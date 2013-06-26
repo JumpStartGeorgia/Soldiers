@@ -36,10 +36,8 @@ private
 
   def photo_name(soldier)
     x = "#{soldier.last_name}, #{soldier.first_name}"
-    if soldier.img_file_name.present?
-      x << "<br />"
-      x << image_tag(soldier.img.url)
-    end
+    x << "<br />"
+    x << image_tag(soldier.img.url)
 
     return x.html_safe
   end
