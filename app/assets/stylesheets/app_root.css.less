@@ -37,10 +37,10 @@ body.app_root {
   }
 
   #thumbs {
-    li {
+    & > ul > li {
       display: block;
       float: left;
-      width: 5%;
+      width: 5.882352941%;
       margin: 0px;
       a {
         display: block;
@@ -72,3 +72,19 @@ body.app_root {
     background: none !important;
   }
 }
+
+
+@media (max-width: 1000px) {
+  body.app_root #thumbs > ul > li {
+    width: 8.333333333%;
+  }
+}
+
+@media (max-width: 600px) {
+  body.app_root #thumbs > ul > li {
+    width: 11.111111111%;
+  }
+}
+
+
+
