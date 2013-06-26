@@ -2,7 +2,10 @@ class Soldier < ActiveRecord::Base
 	translates :permalink, :first_name, :last_name, :place_from, :rank, :served_with, :country_died, :place_died, :incident_type, :incident_description
 
 	has_attached_file :img, :url => "/system/photo/:id/:permalink.:extension",
-                  :default_url => "/images/:style/missing.png"
+                  :default_url => "/images/missing.png"
+
+	has_attached_file :img_bw, :url => "/system/photo/:id/:permalink_bw.:extension",
+                  :default_url => "/images/missing_bw.png"
 
 	has_many :soldier_translations, :dependent => :destroy
   accepts_nested_attributes_for :soldier_translations
@@ -15,7 +18,12 @@ class Soldier < ActiveRecord::Base
       :img_file_name,
       :img_content_type,
       :img_file_size,
-      :img_updated_at
+      :img_updated_at,
+      :img_bw,
+      :img_bw_file_name,
+      :img_bw_content_type,
+      :img_bw_file_size,
+      :img_bw_updated_at
 
   validates :died_at, :presence => true
 

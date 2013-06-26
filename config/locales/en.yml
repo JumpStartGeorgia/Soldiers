@@ -18,6 +18,7 @@ en:
         is_male: Male
         gender: Gender
         img: Photo
+        img_bw: "Black & White Photo"
       soldier_translation:
         name: Name
         first_name: First Name

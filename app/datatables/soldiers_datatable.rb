@@ -38,7 +38,7 @@ private
     x = "#{soldier.last_name}, #{soldier.first_name}"
     if soldier.img_file_name.present?
       x << "<br />"
-      x << image_tag(soldier.img.url, :width => '30%', :height => '30%')
+      x << image_tag(soldier.img.url)
     end
 
     return x.html_safe
