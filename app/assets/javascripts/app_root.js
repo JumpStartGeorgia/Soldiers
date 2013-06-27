@@ -103,10 +103,20 @@ $(document).ready(function() {
     });
 
   $('#thumbs li > a').click(function () {
+    if (load_soldier_profile($(this).data('id')) === false)
+    {
+      return;
+    }
+
+    var active = $('#soldier_profiles .soldier_profile.active');
+    if (active.length)
+    {
+      $('html, body').animate({ scrollTop: active.offset().top + active.outerHeight() - $(window).height() }, 'fast');
+    }
+
     $('#thumbs li > a.active').removeClass('active');
     $(this).addClass('active');
     location.hash = $(this).data('permalink');
-    load_soldier_profile($(this).data('id'));
   });
   
 
@@ -127,6 +137,7 @@ $(document).ready(function() {
       new_item = $('#thumbs li:first-child').children();
     }
 
+    // if the last animation is still running
     if (load_soldier_profile($(new_item).data('id')) === false)
     {
       return;
