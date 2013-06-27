@@ -81,11 +81,21 @@ function load_soldier_profile(id){
 
 $(document).ready(function() {
 
+  // if name exists in hash, then show that profile
+  if (location.hash != undefined && location.hash.length > 1 && location.hash != "#_"){
+    var name = location.hash.replace('#','');
+    var item = $('#thumbs li > a[data-permalink="' + name + '"]');
+    if (item.length == 1){
+      $(item).addClass('active');
+      load_soldier_profile($(item).data('id'));
+    }
+  }
+
   $('#thumbs li > a').click(function () {
     $('#thumbs li > a.active').removeClass('active');
     $(this).addClass('active');
+    location.hash = $(this).data('permalink');
     load_soldier_profile($(this).data('id'));
-
   });
   
 
@@ -95,7 +105,7 @@ $(document).ready(function() {
       $('#thumbs li > a.active').removeClass('active');
       $('#soldier_profiles .soldier_profile.active').removeClass('active');
     });
-    
+    location.hash = "_";
   });
   
   // load the next one
@@ -108,6 +118,7 @@ $(document).ready(function() {
     
     $('#thumbs li > a.active').removeClass('active');
     $(new_item).addClass('active');
+    location.hash = $(new_item).data('permalink');
     load_soldier_profile($(new_item).data('id'));
   });
   
@@ -121,6 +132,7 @@ $(document).ready(function() {
     
     $('#thumbs li > a.active').removeClass('active');
     $(new_item).addClass('active');
+    location.hash = $(new_item).data('permalink');
     load_soldier_profile($(new_item).data('id'));
   });
   

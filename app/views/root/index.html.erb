@@ -9,7 +9,7 @@
       data-age="<%= soldier.age%>" data-gender="<%= soldier.gender %>" data-rank="<%= soldier.rank %>" 
       data-incident-type="<%= soldier.incident_type %>" data-incident-description="<%= soldier.incident_description %>"
       data-country="<%= soldier.country_died %>" data-date-died="<%= soldier.died_at.beginning_of_month %>" 
-      data-served-with="<%= soldier.served_with%>">
+      data-served-with="<%= soldier.served_with%>" data-permalink="<%=soldier.permalink%>">
           <%= image_tag soldier.img_bw.url, :alt => soldier.full_name, :title => soldier.full_name %>
           <%= image_tag soldier.img.url, :alt => soldier.full_name, :title => soldier.full_name %>
         </a>
