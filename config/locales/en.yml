@@ -49,7 +49,7 @@ en:
       age: Age
       gender: Gender
       country: Theater
-      date_died: Date Died
+      date_died: When They Died
       rank: Rank
       served_with: Served With
       incidents: Incidents
@@ -104,6 +104,19 @@ en:
       sign_out: Sign Out
       js_link_title: "Visit JumpStart Georgia's website"
       js_link_text: Built by
+    application_root:
+      admin: Admin
+      soldiers: Soldiers
+      users: Users
+      sign_out: Sign Out
+      js_link_title: "Visit JumpStart Georgia's website"
+      js_link_text: Built by
+      download: Download Data
+      last_updated: Updated %{date}
+      header2: Georgian Soldier Deaths in International Mission
+      header3: 1570 soldiers are in Afghanistan now
+      about_header: About
+      about_text: Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
     unsupported_browser:
       title: Unsupported Browser
       p1: We are sorry to report that your browser is out of date and will not properly render the content from this website.
@@ -136,3 +149,4 @@ en:
       incident: Incident
       hometown: Hometown
       date: Date
+

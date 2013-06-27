@@ -37,12 +37,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <%#= link_to(t('app.common.app_name'), root_path(:locale => I18n.locale),:class=>"brand font")%>
           <div class="container-fluid nav-collapse">
 
             <div class="row-fluid">
               <div class="span4 offset4" id="center_header">
-                <a href="<%= root_path(:locale => I18n.locale) %>"><%= t('app.common.app_name') %></a>
+                <%= link_to(t('app.common.app_name'), root_path(:locale => I18n.locale))%>
               </div>
               <div class="span4">
 	              <ul class="nav pull-right">
@@ -89,8 +88,8 @@
         <div class="row-fluid">
           <div class="span4">
             <h1><%= @total_dead %></h1>
-            <h3>Georgian Soldier dies in International Mission</h3>
-            <h5>1570 soldiers are in afghanistan now</h5>
+            <h3><%= t('.header2') %></h3>
+            <h5><%= t('.header3') %></h5>
           </div>
         </div>
       </div>
@@ -99,34 +98,22 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span9" id="header_text">
-          <h1>about</h1>
-          <h3>the uk's military tole in afghanistan since 2001 has not</h3>
+        <div id="about_container" class="span10">
+          <h1><%= t('.about_header') %></h1>
+          <h3><%= t('.about_text') %></h3>
         </div>
       </div>
     </div>
 
-		<% if content_for?(:title) %>
-			<div class="page-header">
-			  <div class="block">
-          <h1>
-					  <%= yield(:title) %>
-				  </h1>
-				</div>
-			</div>
-		<% end %>
-
     <%= yield %>
 
 
-
-
-
-
     <footer class="clear">
-			<div id="left">&copy; 2012</div>
+			<div id="left">
+        <%= link_to t('.download'), '#' %>
+      </div>
 		  <div id="middle">
-				&nbsp;
+				<%= t('.last_updated', :date => @last_update) %>
 			</div>
 			<div id="right" class="clear">
 				<ul>

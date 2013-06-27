@@ -3,6 +3,8 @@ class RootController < ApplicationController
   def index
     @soldiers = Soldier.sorted
     @total_dead = @soldiers.length
+
+    @last_update = Soldier.last_update
     
     load_chart_gon
 

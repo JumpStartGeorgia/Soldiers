@@ -13,7 +13,9 @@ $(document).ready(function() {
             categories: gon.gender_headers,
             title: {
                 text: null
-            }
+            },
+            lineColor: '#c9c9c9',
+            tickColor: '#c9c9c9'
         },
         yAxis: {
             min: 0,
@@ -32,7 +34,8 @@ $(document).ready(function() {
                 }
             },
             series: {
-	            pointWidth: 20
+	            pointWidth: 20,
+              color: '#f1dce1'
   	        }
         },
         legend: {
@@ -91,7 +94,8 @@ $(document).ready(function() {
                 }
             },
             series: {
-	            pointWidth: 20
+	            pointWidth: 20,
+              color: '#f1dce1'
   	        }
         },
         legend: {
@@ -131,7 +135,9 @@ $(document).ready(function() {
             categories: gon.country_headers,
             title: {
                 text: null
-            }
+            },
+            lineColor: '#c9c9c9',
+            tickColor: '#c9c9c9'
         },
         yAxis: {
             min: 0,
@@ -150,7 +156,8 @@ $(document).ready(function() {
                 }
             },
             series: {
-	            pointWidth: 20
+	            pointWidth: 20,
+              color: '#f1dce1'
   	        }
         },
         legend: {
@@ -190,7 +197,9 @@ $(document).ready(function() {
             categories: gon.rank_headers,
             title: {
                 text: null
-            }
+            },
+            lineColor: '#c9c9c9',
+            tickColor: '#c9c9c9'
         },
         yAxis: {
             min: 0,
@@ -209,7 +218,8 @@ $(document).ready(function() {
                 }
             },
             series: {
-	            pointWidth: 20
+	            pointWidth: 20,
+              color: '#f1dce1'
   	        }
         },
         legend: {
@@ -249,7 +259,9 @@ $(document).ready(function() {
             categories: gon.served_with_headers,
             title: {
                 text: null
-            }
+            },
+            lineColor: '#c9c9c9',
+            tickColor: '#c9c9c9'
         },
         yAxis: {
             min: 0,
@@ -268,7 +280,8 @@ $(document).ready(function() {
                 }
             },
             series: {
-	            pointWidth: 20
+	            pointWidth: 20,
+              color: '#f1dce1'
   	        }
         },
         legend: {
@@ -283,64 +296,6 @@ $(document).ready(function() {
         series: [{
             name: gon.served_with_title,
             data: gon.served_with_values
-        }],
-        lang: {
-          downloadPNG: gon.highcharts_downloadPNG,
-          downloadJPEG: gon.highcharts_downloadJPEG,
-          downloadPDF: gon.highcharts_downloadPDF,
-          downloadSVG: gon.highcharts_downloadSVG,
-          printChart: gon.highcharts_printChart
-        }
-    });
-  }
-
-  ////////////////////////////////////////
-  if (gon.date_died_values){
-    $('#chart_date_died').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: gon.date_died_title
-        },
-        xAxis: {
-            categories: gon.date_died_headers,
-            title: {
-                text: null
-            }
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: null
-            },
-            labels: {
-                enabled: false
-            },
-            gridLineWidth: 0
-        },
-        plotOptions: {
-            column: {
-                dataLabels: {
-                    enabled: true
-                }
-            },
-            series: {
-	            pointWidth: 20
-  	        }
-        },
-        legend: {
-            enabled: false
-        },
-        tooltip: {
-          enabled: false
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: gon.date_died_title,
-            data: gon.date_died_values
         }],
         lang: {
           downloadPNG: gon.highcharts_downloadPNG,
@@ -368,7 +323,9 @@ $(document).ready(function() {
             categories: gon.incident_types[i].headers,
             title: {
                 text: null
-            }
+            },
+            lineColor: '#c9c9c9',
+            tickColor: '#c9c9c9'
         },
         yAxis: {
             min: 0,
@@ -387,7 +344,8 @@ $(document).ready(function() {
                 }
             },
             series: {
-	            pointWidth: 20
+	            pointWidth: 20,
+              color: '#f1dce1'
   	        }
         },
         legend: {
@@ -412,6 +370,77 @@ $(document).ready(function() {
         }
       });
     }
+  }
+
+
+  ////////////////////////////////////////
+  if (gon.date_died_values){
+    $('#chart_date_died').highcharts({
+        chart: {
+            type: 'column',
+            marginLeft: 40,
+            marginRight: 40,
+        },
+        title: {
+            text: gon.date_died_title
+        },
+        xAxis: {
+            categories: gon.date_died_headers,
+            title: {
+                text: null
+            },
+            type: 'datetime',
+            dateTimeLabelFormats: {
+                month: '%d %b',
+            },
+            tickInterval: 10,
+            lineColor: '#c9c9c9',
+            tickColor: '#c9c9c9'
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: null
+            },
+            labels: {
+                enabled: false
+            },
+            gridLineWidth: 0
+        },
+        plotOptions: {
+            column: {
+                dataLabels: {
+                    enabled: true
+                }
+            },
+            series: {
+	            pointWidth: 20,
+              color: '#f1dce1'
+  	        }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            formatter: function() {
+                return '<b>'+ this.x + ':</b> '+ this.y;
+            }
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: gon.date_died_title,
+            data: gon.date_died_values
+        }],
+        lang: {
+          downloadPNG: gon.highcharts_downloadPNG,
+          downloadJPEG: gon.highcharts_downloadJPEG,
+          downloadPDF: gon.highcharts_downloadPDF,
+          downloadSVG: gon.highcharts_downloadSVG,
+          printChart: gon.highcharts_printChart
+        }
+    });
   }
 
 

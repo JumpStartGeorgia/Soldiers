@@ -31,6 +31,13 @@ class Soldier < ActiveRecord::Base
     with_translations(I18n.locale).order("soldiers.died_at DESC, soldier_translations.last_name ASC")
   end
 
+  def self.last_update
+    x = select('created_at').order('created_at desc').limit(1)
+    if x.present?
+      I18n.l(x.first.created_at, :format => :no_time)
+    end
+  end
+
   def full_name
     self.first_name.strip() + " " + self.last_name.strip()
   end
