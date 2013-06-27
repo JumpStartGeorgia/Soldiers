@@ -49,7 +49,7 @@ ka:
       age: ასაკი
       gender: სქესი
       country: გარდაცვალების ადგილი
-      date_died: When They Died
+      date_died: დაღუპვის თარიღი
       rank: რანგი
       served_with: მსახურობდა 
       incidents: ინციდენტები
@@ -107,11 +107,11 @@ ka:
       sign_out: გასვლა
       js_link_title: "ეწვიეთ ჯამპსტარტ ჯორჯიას ვებ-გვერდს"
       js_link_text: აგებულია
-      download: Download Data
-      last_updated: Updated %{date}
-      header2: Georgian Soldier Deaths in International Mission
-      header3: 1570 soldiers are in Afghanistan now
-      about_header: About
+      download: მონაცემების ჩამოტვირთვა
+      last_updated: განახლებულია %{date}
+      header2: საერთაშორისო მისიაში დაღუპული ქართველი ჯარისკაცბეი
+      header3: ამჯამად ავღანეთში იმყოფება 1570 კარისკაცი 
+      about_header: შესახებ
       about_text: Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
     unsupported_browser:
       title: არასათანადო ბრაუზერი
