@@ -43,10 +43,18 @@
   }
 }
 
-#soldier_profiles{
+#soldier_profiles {
+  position: relative;
   .soldier_profile{
     padding: 20px;
     display: none;
+
+    &.absolute {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+
     .soldier_photo{
 
     }

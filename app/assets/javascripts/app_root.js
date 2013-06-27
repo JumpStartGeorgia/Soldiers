@@ -49,17 +49,16 @@ function load_soldier_profile (id)
     return false;
   }
 
-  if (profiles.filter('.active').length)
+  var target = profiles.filter('[data-id="' + id + '"]');
+  var active = profiles.filter('.active');
+  if (active.length)
   {
-    profiles.filter('.active').fadeOut(function()
-    {
-      $(this).removeClass('active');
-      profiles.filter('[data-id="' + id + '"]').addClass('active').fadeIn();
-    });
+    target.addClass('absolute').addClass('active').fadeIn();
+    active.removeClass('active').fadeOut(function (){ target.removeClass('absolute'); });
   }
   else
   {
-    profiles.filter('[data-id="' + id + '"]').addClass('active').slideDown();
+    target.addClass('active').slideDown();
   }
 
   // highlight the matching chart bars
@@ -109,9 +108,10 @@ $(document).ready(function() {
     }
 
     var active = $('#soldier_profiles .soldier_profile.active');
-    if (active.length)
+    var y = active.offset().top + active.outerHeight() - $(window).height();
+    if (active.length && $(window).scrollTop() < y)
     {
-      $('html, body').animate({ scrollTop: active.offset().top + active.outerHeight() - $(window).height() }, 'fast');
+      $('html, body').animate({ scrollTop: y }, 'fast');
     }
 
     $('#thumbs li > a.active').removeClass('active');
