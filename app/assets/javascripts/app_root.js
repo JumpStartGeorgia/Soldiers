@@ -21,7 +21,6 @@ function highlight_chart_data_age(id, chart_id, data_name){
   }
 }
 
-
 function highlight_chart_data(id, chart_id, data_name){
   var items = $(chart_id + ' .highcharts-axis-labels text');
   for (var j=0; j<items.length; j++){
@@ -81,15 +80,17 @@ function load_soldier_profile(id){
 
 $(document).ready(function() {
 
-  // if name exists in hash, then show that profile
-  if (location.hash != undefined && location.hash.length > 1 && location.hash != "#_"){
-    var name = location.hash.replace('#','');
-    var item = $('#thumbs li > a[data-permalink="' + name + '"]');
-    if (item.length == 1){
-      $(item).addClass('active');
-      load_soldier_profile($(item).data('id'));
-    }
-  }
+    $(window).load(function(){
+      // if name exists in hash, then show that profile
+      if (location.hash != undefined && location.hash.length > 1 && location.hash != "#_"){
+        var name = location.hash.replace('#','');
+        var item = $('#thumbs li > a[data-permalink="' + name + '"]');
+        if (item.length == 1){
+          $(item).addClass('active');
+          load_soldier_profile($(item).data('id'));
+        }
+      }
+    });
 
   $('#thumbs li > a').click(function () {
     $('#thumbs li > a.active').removeClass('active');

@@ -1,5 +1,6 @@
 var bar_color = '#f1dce1';
 var bar_color_highlight = '#a31e33';
+var bar_height = 10;
 
 $(document).ready(function() {
 
@@ -7,10 +8,10 @@ $(document).ready(function() {
     $('#chart_gender').highcharts({
         chart: {
             type: 'bar',
-            height: 50 + 35*gon.gender_headers.length
+            height: 50 + (bar_height+5)*gon.gender_headers.length
         },
         title: {
-            text: gon.gender_title
+            text: gon.gender_title,
         },
         xAxis: {
             categories: gon.gender_headers,
@@ -37,7 +38,7 @@ $(document).ready(function() {
                 }
             },
             series: {
-	            pointWidth: 20,
+	            pointWidth: bar_height,
               color: bar_color
   	        }
         },
@@ -69,7 +70,7 @@ $(document).ready(function() {
     $('#chart_age').highcharts({
         chart: {
             type: 'bar',
-            height: 50 + 35*gon.age_headers.length
+            height: 50 + (bar_height+5)*gon.age_headers.length
         },
         title: {
             text: gon.age_title
@@ -97,7 +98,7 @@ $(document).ready(function() {
                 }
             },
             series: {
-	            pointWidth: 20,
+	            pointWidth: bar_height,
               color: bar_color
   	        }
         },
@@ -129,7 +130,7 @@ $(document).ready(function() {
     $('#chart_country').highcharts({
         chart: {
             type: 'bar',
-            height: 50 + 35*gon.country_headers.length
+            height: 50 + (bar_height+5)*gon.country_headers.length
         },
         title: {
             text: gon.country_title
@@ -159,7 +160,7 @@ $(document).ready(function() {
                 }
             },
             series: {
-	            pointWidth: 20,
+	            pointWidth: bar_height,
               color: bar_color
   	        }
         },
@@ -191,7 +192,7 @@ $(document).ready(function() {
     $('#chart_rank').highcharts({
         chart: {
             type: 'bar',
-            height: 50 + 35*gon.rank_headers.length
+            height: 50 + (bar_height+5)*gon.rank_headers.length
         },
         title: {
             text: gon.rank_title
@@ -221,7 +222,7 @@ $(document).ready(function() {
                 }
             },
             series: {
-	            pointWidth: 20,
+	            pointWidth: bar_height,
               color: bar_color
   	        }
         },
@@ -253,7 +254,7 @@ $(document).ready(function() {
     $('#chart_served_with').highcharts({
         chart: {
             type: 'bar',
-            height: 50 + 35*gon.served_with_headers.length
+            height: 50 + (bar_height+5)*gon.served_with_headers.length
         },
         title: {
             text: gon.served_with_title
@@ -283,7 +284,7 @@ $(document).ready(function() {
                 }
             },
             series: {
-	            pointWidth: 20,
+	            pointWidth: bar_height,
               color: bar_color
   	        }
         },
@@ -317,7 +318,7 @@ $(document).ready(function() {
       $('#chart_incident_type_' + i).highcharts({
         chart: {
             type: 'bar',
-            height: 50 + 35*gon.incident_types[i].headers.length
+            height: 50 + (bar_height+5)*gon.incident_types[i].headers.length
         },
         title: {
             text: gon.incident_types[i].title
@@ -347,7 +348,7 @@ $(document).ready(function() {
                 }
             },
             series: {
-	            pointWidth: 20,
+	            pointWidth: bar_height,
               color: bar_color
   	        }
         },
@@ -382,7 +383,7 @@ $(document).ready(function() {
         chart: {
             type: 'column',
             marginLeft: 40,
-            marginRight: 40,
+            marginRight: 40
         },
         title: {
             text: gon.date_died_title
@@ -417,7 +418,7 @@ $(document).ready(function() {
                 }
             },
             series: {
-	            pointWidth: 20,
+	            pointWidth: bar_height,
               color: bar_color
   	        }
         },
