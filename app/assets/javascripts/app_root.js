@@ -41,16 +41,25 @@ function highlight_chart_data(id, chart_id, data_name){
   }
 }
 
-function load_soldier_profile(id){
-  if ($('#soldier_profiles .soldier_profile.active').length > 0){
-    $('#soldier_profiles .soldier_profile.active').fadeOut(function(){
-      $('#soldier_profiles .soldier_profile.active').removeClass('active');
-      $('#soldier_profiles .soldier_profile[data-id="' + id + '"]').addClass('active');
-      $('#soldier_profiles .soldier_profile[data-id="' + id + '"]').fadeIn();
+function load_soldier_profile (id)
+{
+  var profiles = $('#soldier_profiles .soldier_profile');
+  if (profiles.is(':animated'))
+  {
+    return false;
+  }
+
+  if (profiles.filter('.active').length)
+  {
+    profiles.filter('.active').fadeOut(function()
+    {
+      $(this).removeClass('active');
+      profiles.filter('[data-id="' + id + '"]').addClass('active').fadeIn();
     });
-  } else {
-    $('#soldier_profiles .soldier_profile[data-id="' + id + '"]').addClass('active');
-    $('#soldier_profiles .soldier_profile[data-id="' + id + '"]').slideDown();
+  }
+  else
+  {
+    profiles.filter('[data-id="' + id + '"]').addClass('active').slideDown();
   }
 
   // highlight the matching chart bars
@@ -72,10 +81,11 @@ function load_soldier_profile(id){
   highlight_chart_data(id, '#chart_served_with', 'served-with');
 
   // incidents
-  for (var i=0; i<gon.incidents_num; i++){
+  for (var i=0; i<gon.incidents_num; i++)
+  {
     highlight_chart_data(id, '#chart_incident_type_'+i.toString(), 'incident-description');
   }
-
+  return true;
 }
 
 $(document).ready(function() {
@@ -116,11 +126,14 @@ $(document).ready(function() {
     if ($('#thumbs li > a.active').parent().is('li:last-child')){
       new_item = $('#thumbs li:first-child').children();
     }
-    
+
+    if (load_soldier_profile($(new_item).data('id')) === false)
+    {
+      return;
+    }
     $('#thumbs li > a.active').removeClass('active');
     $(new_item).addClass('active');
     location.hash = $(new_item).data('permalink');
-    load_soldier_profile($(new_item).data('id'));
   });
   
   // load the previous one
@@ -130,11 +143,15 @@ $(document).ready(function() {
     if ($('#thumbs li > a.active').parent().is('li:first-child')){
       new_item = $('#thumbs li:last-child').children();
     }
-    
+
+
+    if (load_soldier_profile($(new_item).data('id')) === false)
+    {
+      return;
+    }
     $('#thumbs li > a.active').removeClass('active');
     $(new_item).addClass('active');
     location.hash = $(new_item).data('permalink');
-    load_soldier_profile($(new_item).data('id'));
   });
   
 
