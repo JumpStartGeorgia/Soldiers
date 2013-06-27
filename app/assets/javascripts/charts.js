@@ -1,6 +1,8 @@
 var bar_color = '#f1dce1';
 var bar_color_highlight = '#a31e33';
 var bar_height = 10;
+var axis_label_width = '150px';
+var axis_label_width_wider = '250px';
 
 $(document).ready(function() {
 
@@ -19,7 +21,12 @@ $(document).ready(function() {
                 text: null
             },
             lineColor: '#c9c9c9',
-            tickColor: '#c9c9c9'
+            tickColor: '#c9c9c9',
+            labels: {
+              style: {
+                  width: axis_label_width
+              }
+            }
         },
         yAxis: {
             min: 0,
@@ -79,6 +86,13 @@ $(document).ready(function() {
             categories: gon.age_headers,
             title: {
                 text: null
+            },
+            lineColor: '#c9c9c9',
+            tickColor: '#c9c9c9',
+            labels: {
+              style: {
+                  width: axis_label_width
+              }
             }
         },
         yAxis: {
@@ -141,7 +155,12 @@ $(document).ready(function() {
                 text: null
             },
             lineColor: '#c9c9c9',
-            tickColor: '#c9c9c9'
+            tickColor: '#c9c9c9',
+            labels: {
+              style: {
+                  width: axis_label_width
+              }
+            }
         },
         yAxis: {
             min: 0,
@@ -203,7 +222,12 @@ $(document).ready(function() {
                 text: null
             },
             lineColor: '#c9c9c9',
-            tickColor: '#c9c9c9'
+            tickColor: '#c9c9c9',
+            labels: {
+              style: {
+                  width: axis_label_width_wider
+              }
+            }
         },
         yAxis: {
             min: 0,
@@ -265,7 +289,12 @@ $(document).ready(function() {
                 text: null
             },
             lineColor: '#c9c9c9',
-            tickColor: '#c9c9c9'
+            tickColor: '#c9c9c9',
+            labels: {
+              style: {
+                  width: axis_label_width_wider
+              }
+            }
         },
         yAxis: {
             min: 0,
@@ -329,7 +358,12 @@ $(document).ready(function() {
                 text: null
             },
             lineColor: '#c9c9c9',
-            tickColor: '#c9c9c9'
+            tickColor: '#c9c9c9',
+            labels: {
+              style: {
+                  width: axis_label_width
+              }
+            }
         },
         yAxis: {
             min: 0,
