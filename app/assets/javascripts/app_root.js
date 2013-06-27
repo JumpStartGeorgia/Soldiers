@@ -1,3 +1,47 @@
+function highlight_chart_data_age(id, chart_id, data_name){
+  var items = $(chart_id + ' .highcharts-axis-labels text');
+  for (var j=0; j<items.length; j++){
+    var t = $(items[j]).find('tspan').text();
+    // if the text is too long, it will take up more than one tspan for full name
+    // so have to build full name
+    if ($(items[j]).find('tspan').length > 1){
+      t = $(items[j]).find('tspan').map(function() {
+        return $(this).text();
+      }).get().join(' ');      
+    }
+
+    // split the numbers
+    var nums = t.split('-');
+
+    if (nums[0] <= $('#thumbs li a[data-id="' + id + '"]').data(data_name) && nums[1] >= $('#thumbs li a[data-id="' + id + '"]').data(data_name)){
+      // found match, now highlight the correct bar
+      $($(chart_id + ' .highcharts-series-group .highcharts-series rect')[j]).attr('fill', bar_color_highlight);
+      break;
+    }
+  }
+}
+
+
+function highlight_chart_data(id, chart_id, data_name){
+  var items = $(chart_id + ' .highcharts-axis-labels text');
+  for (var j=0; j<items.length; j++){
+    var t = $(items[j]).find('tspan').text();
+    // if the text is too long, it will take up more than one tspan for full name
+    // so have to build full name
+    if ($(items[j]).find('tspan').length > 1){
+      t = $(items[j]).find('tspan').map(function() {
+        return $(this).text();
+      }).get().join(' ');      
+    }
+
+    if (t == $('#thumbs li a[data-id="' + id + '"]').data(data_name)){
+      // found match, now highlight the correct bar
+      $($(chart_id + ' .highcharts-series-group .highcharts-series rect')[j]).attr('fill', bar_color_highlight);
+      break;
+    }
+  }
+}
+
 function load_soldier_profile(id){
   if ($('#soldier_profiles .soldier_profile.active').length > 0){
     $('#soldier_profiles .soldier_profile.active').fadeOut(function(){
@@ -9,6 +53,30 @@ function load_soldier_profile(id){
     $('#soldier_profiles .soldier_profile[data-id="' + id + '"]').addClass('active');
     $('#soldier_profiles .soldier_profile[data-id="' + id + '"]').slideDown();
   }
+
+  // highlight the matching chart bars
+  // - first reset all bar colors
+  $('.highcharts-series-group .highcharts-series rect').attr('fill', bar_color);
+  // gender
+  highlight_chart_data(id, '#chart_gender', 'gender');
+
+  // age
+  highlight_chart_data_age(id, '#chart_age', 'age');
+
+  // country
+  highlight_chart_data(id, '#chart_country', 'country');
+
+  // rank
+  highlight_chart_data(id, '#chart_rank', 'rank');
+
+  // served_with
+  highlight_chart_data(id, '#chart_served_with', 'served-with');
+
+  // incidents
+  for (var i=0; i<gon.incidents_num; i++){
+    highlight_chart_data(id, '#chart_incident_type_'+i.toString(), 'incident-description');
+  }
+
 }
 
 $(document).ready(function() {

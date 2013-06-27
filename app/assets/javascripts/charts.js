@@ -1,3 +1,6 @@
+var bar_color = '#f1dce1';
+var bar_color_highlight = '#a31e33';
+
 $(document).ready(function() {
 
   if (gon.gender_values){
@@ -35,7 +38,7 @@ $(document).ready(function() {
             },
             series: {
 	            pointWidth: 20,
-              color: '#f1dce1'
+              color: bar_color
   	        }
         },
         legend: {
@@ -95,7 +98,7 @@ $(document).ready(function() {
             },
             series: {
 	            pointWidth: 20,
-              color: '#f1dce1'
+              color: bar_color
   	        }
         },
         legend: {
@@ -157,7 +160,7 @@ $(document).ready(function() {
             },
             series: {
 	            pointWidth: 20,
-              color: '#f1dce1'
+              color: bar_color
   	        }
         },
         legend: {
@@ -219,7 +222,7 @@ $(document).ready(function() {
             },
             series: {
 	            pointWidth: 20,
-              color: '#f1dce1'
+              color: bar_color
   	        }
         },
         legend: {
@@ -281,7 +284,7 @@ $(document).ready(function() {
             },
             series: {
 	            pointWidth: 20,
-              color: '#f1dce1'
+              color: bar_color
   	        }
         },
         legend: {
@@ -345,7 +348,7 @@ $(document).ready(function() {
             },
             series: {
 	            pointWidth: 20,
-              color: '#f1dce1'
+              color: bar_color
   	        }
         },
         legend: {
@@ -415,7 +418,7 @@ $(document).ready(function() {
             },
             series: {
 	            pointWidth: 20,
-              color: '#f1dce1'
+              color: bar_color
   	        }
         },
         legend: {
