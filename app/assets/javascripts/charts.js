@@ -6,6 +6,17 @@ var axis_label_width_wider = '250px';
 
 $(document).ready(function() {
 
+  Highcharts.setOptions({
+    lang: {
+      months: gon.month_names,
+      downloadPNG: gon.highcharts_downloadPNG,
+      downloadJPEG: gon.highcharts_downloadJPEG,
+      downloadPDF: gon.highcharts_downloadPDF,
+      downloadSVG: gon.highcharts_downloadSVG,
+      printChart: gon.highcharts_printChart
+    } 
+  });
+
   if (gon.gender_values){
     $('#chart_gender').highcharts({
         chart: {
@@ -61,14 +72,7 @@ $(document).ready(function() {
         series: [{
             name: gon.gender_title,
             data: gon.gender_values
-        }],
-        lang: {
-          downloadPNG: gon.highcharts_downloadPNG,
-          downloadJPEG: gon.highcharts_downloadJPEG,
-          downloadPDF: gon.highcharts_downloadPDF,
-          downloadSVG: gon.highcharts_downloadSVG,
-          printChart: gon.highcharts_printChart
-        }
+        }]
     });
   }
 
@@ -128,14 +132,7 @@ $(document).ready(function() {
         series: [{
             name: gon.age_title,
             data: gon.age_values
-        }],
-        lang: {
-          downloadPNG: gon.highcharts_downloadPNG,
-          downloadJPEG: gon.highcharts_downloadJPEG,
-          downloadPDF: gon.highcharts_downloadPDF,
-          downloadSVG: gon.highcharts_downloadSVG,
-          printChart: gon.highcharts_printChart
-        }
+        }]
     });
   }
 
@@ -195,14 +192,7 @@ $(document).ready(function() {
         series: [{
             name: gon.country_title,
             data: gon.country_values
-        }],
-        lang: {
-          downloadPNG: gon.highcharts_downloadPNG,
-          downloadJPEG: gon.highcharts_downloadJPEG,
-          downloadPDF: gon.highcharts_downloadPDF,
-          downloadSVG: gon.highcharts_downloadSVG,
-          printChart: gon.highcharts_printChart
-        }
+        }]
     });
   }
 
@@ -262,14 +252,7 @@ $(document).ready(function() {
         series: [{
             name: gon.rank_title,
             data: gon.rank_values
-        }],
-        lang: {
-          downloadPNG: gon.highcharts_downloadPNG,
-          downloadJPEG: gon.highcharts_downloadJPEG,
-          downloadPDF: gon.highcharts_downloadPDF,
-          downloadSVG: gon.highcharts_downloadSVG,
-          printChart: gon.highcharts_printChart
-        }
+        }]
     });
   }
 
@@ -329,14 +312,7 @@ $(document).ready(function() {
         series: [{
             name: gon.served_with_title,
             data: gon.served_with_values
-        }],
-        lang: {
-          downloadPNG: gon.highcharts_downloadPNG,
-          downloadJPEG: gon.highcharts_downloadJPEG,
-          downloadPDF: gon.highcharts_downloadPDF,
-          downloadSVG: gon.highcharts_downloadSVG,
-          printChart: gon.highcharts_printChart
-        }
+        }]
     });
   }
 
@@ -396,14 +372,7 @@ $(document).ready(function() {
         series: [{
             name: gon.incident_description_title,
             data: gon.incident_description_values
-        }],
-        lang: {
-          downloadPNG: gon.highcharts_downloadPNG,
-          downloadJPEG: gon.highcharts_downloadJPEG,
-          downloadPDF: gon.highcharts_downloadPDF,
-          downloadSVG: gon.highcharts_downloadSVG,
-          printChart: gon.highcharts_printChart
-        }
+        }]
     });
   }
 
@@ -464,14 +433,7 @@ $(document).ready(function() {
         series: [{
             name: gon.incident_types[i].title,
             data: gon.incident_types[i].values
-        }],
-        lang: {
-          downloadPNG: gon.highcharts_downloadPNG,
-          downloadJPEG: gon.highcharts_downloadJPEG,
-          downloadPDF: gon.highcharts_downloadPDF,
-          downloadSVG: gon.highcharts_downloadSVG,
-          printChart: gon.highcharts_printChart
-        }
+        }]
       });
     }
   }
@@ -495,7 +457,7 @@ $(document).ready(function() {
             },
             type: 'datetime',
             dateTimeLabelFormats: {
-                month: '%d %b',
+                month: '%d %b'
             },
             tickInterval: 10,
             lineColor: '#c9c9c9',
@@ -536,14 +498,7 @@ $(document).ready(function() {
         series: [{
             name: gon.date_died_title,
             data: gon.date_died_values
-        }],
-        lang: {
-          downloadPNG: gon.highcharts_downloadPNG,
-          downloadJPEG: gon.highcharts_downloadJPEG,
-          downloadPDF: gon.highcharts_downloadPDF,
-          downloadSVG: gon.highcharts_downloadSVG,
-          printChart: gon.highcharts_printChart
-        }
+        }]
     });
   }
 
