@@ -81,7 +81,7 @@ protected
       for i in 0..x.length-1
         h = Hash.new
         gon.incident_types << h
-        h[:title] = x[i][:header]
+        h[:title] = x[i]["header"]
         h[:headers] = x[i]["items"]["headers"]
         h[:values] = x[i]["items"]["values"]
       end
