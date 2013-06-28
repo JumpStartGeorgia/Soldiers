@@ -1,4 +1,6 @@
 class Admin::SoldiersController < ApplicationController
+  require 'json_cache'
+
   before_filter :authenticate_user!
   before_filter do |controller_instance|
     controller_instance.send(:valid_role?, User::ROLES[:user])
@@ -58,6 +60,9 @@ class Admin::SoldiersController < ApplicationController
 
     respond_to do |format|
       if @soldier.save
+        # clear the cache files so the new data is avaialble
+        JsonCache.clear
+
         format.html { redirect_to admin_soldier_path(@soldier), notice: t('app.msgs.success_created', :obj => t('activerecord.models.soldier')) }
         format.json { render json: @soldier, status: :created, location: @soldier }
       else
@@ -77,6 +82,9 @@ class Admin::SoldiersController < ApplicationController
 
     respond_to do |format|
       if @soldier.update_attributes(params[:soldier])
+        # clear the cache files so the new data is avaialble
+        JsonCache.clear
+
         format.html { redirect_to admin_soldier_path(@soldier), notice: t('app.msgs.success_created', :obj => t('activerecord.models.soldier')) }
         format.json { head :ok }
       else

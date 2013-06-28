@@ -1,6 +1,7 @@
 module LoadData
 	require 'net/http'
 	require 'net/https'
+  require 'json_cache'
 
   EN_URL = "https://spreadsheets.google.com/feeds/list/0AtUyMZoeaZt8dGh5SF9CX1ZKZ0JTXzNKbUhwclNudVE/od6/public/values?alt=json"
   KA_URL = "https://spreadsheets.google.com/feeds/list/0AtUyMZoeaZt8dGh5SF9CX1ZKZ0JTXzNKbUhwclNudVE/1/public/values?alt=json"
@@ -8,11 +9,17 @@ module LoadData
   def self.google_spreadsheet_json_multi_lang()
     process_request()
 
+    # clear the cache files so the new data is avaialble
+    JsonCache.clear
+
     return nil
   end
 
   def self.google_spreadsheet_json_multi_lang_with_images(color_image_path, bw_image_path)
     process_request(color_image_path, bw_image_path)
+
+    # clear the cache files so the new data is avaialble
+    JsonCache.clear
 
     return nil
   end
