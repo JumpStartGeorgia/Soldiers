@@ -340,6 +340,72 @@ $(document).ready(function() {
     });
   }
 
+  ////////////////////////////////////////
+  if (gon.incident_description_values){
+    $('#chart_incident_description').highcharts({
+        chart: {
+            type: 'bar',
+            height: 50 + (bar_height+5)*gon.incident_description_headers.length
+        },
+        title: {
+            text: gon.incident_description_title
+        },
+        xAxis: {
+            categories: gon.incident_description_headers,
+            title: {
+                text: null
+            },
+            lineColor: '#c9c9c9',
+            tickColor: '#c9c9c9',
+            labels: {
+              style: {
+                  width: axis_label_width_wider
+              }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: null
+            },
+            labels: {
+                enabled: false
+            },
+            gridLineWidth: 0
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            },
+            series: {
+	            pointWidth: bar_height,
+              color: bar_color
+  	        }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+          enabled: false
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: gon.incident_description_title,
+            data: gon.incident_description_values
+        }],
+        lang: {
+          downloadPNG: gon.highcharts_downloadPNG,
+          downloadJPEG: gon.highcharts_downloadJPEG,
+          downloadPDF: gon.highcharts_downloadPDF,
+          downloadSVG: gon.highcharts_downloadSVG,
+          printChart: gon.highcharts_printChart
+        }
+    });
+  }
 
   ////////////////////////////////////////
   if (gon.incidents_num > 0){

@@ -72,6 +72,14 @@ protected
       gon.served_with_values = x["values"]
     end
 
+    # incident description
+    gon.incident_description_title = I18n.t('summary.titles.incident_description')
+    x = Soldier.summary_incident_description
+    if x.present?
+      gon.incident_description_headers = x["headers"]
+      gon.incident_description_values = x["values"]
+    end
+=begin
     # incidents
     x = Soldier.summary_incidents_grouped
     if x.present?
@@ -86,6 +94,6 @@ protected
         h[:values] = x[i]["items"]["values"]
       end
     end
-
+=end
   end
 end

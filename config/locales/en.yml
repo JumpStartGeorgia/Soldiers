@@ -51,8 +51,9 @@ en:
       country: Theater
       date_died: When They Died
       rank: Rank
-      served_with: Served With
+      served_with: Battalion Served With
       incidents: Incidents
+      incident_description: Cause of Death
   helpers:
     actions: Actions
     links:

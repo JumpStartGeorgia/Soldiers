@@ -51,8 +51,9 @@ ka:
       country: გარდაცვალების ადგილი
       date_died: დაღუპვის თარიღი
       rank: რანგი
-      served_with: მსახურობდა 
+      served_with: მსახურობდა ბატალიონი
       incidents: ინციდენტები
+      incident_description: სიკვდილის მიზეზი
   helpers:
     actions: აირჩიეთ
     links:

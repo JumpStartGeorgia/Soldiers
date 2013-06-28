@@ -108,11 +108,17 @@
   <div id="chart_gender"></div>
   <div id="chart_age"></div>
   <div id="chart_country"></div>
-  <% if @num_incidents > 0 %>
+  <div id="chart_incident_description"></div>
+
+  <%
+=begin
+   if @num_incidents > 0 %>
     <% for i in 0..@num_incidents-1 %>
       <div id="chart_incident_type_<%= i %>"></div>
     <% end %>
   <% end %>
+<%
+=end %>
   <div id="chart_rank"></div>
   <div id="chart_served_with"></div>
   <div id="chart_date_died"></div>
