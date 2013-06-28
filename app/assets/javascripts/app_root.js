@@ -108,7 +108,17 @@ $(document).ready(function() {
     }
 
     var active = $('#soldier_profiles .soldier_profile.active');
-    var y = active.offset().top + active.outerHeight() - $(window).height();
+    if (active.height() > 10)
+    {
+      var y = active.offset().top + active.outerHeight() - $(window).height();
+    }
+    else
+    {
+      var clone = active.clone();
+      clone.removeAttr('style').addClass('actualheight').appendTo(active.parent());
+      var y = active.offset().top + clone.outerHeight() - $(window).height();
+      clone.remove();
+    }
     if (active.length && $(window).scrollTop() < y)
     {
       $('html, body').animate({ scrollTop: y }, 'fast');

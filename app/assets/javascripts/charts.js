@@ -57,7 +57,12 @@ $(document).ready(function() {
             },
             series: {
 	            pointWidth: bar_height,
-              color: bar_color
+              color: bar_color,
+              events: {
+                mouseOver: function (e){
+                  //console.log(this, e);
+                }
+              }
   	        }
         },
         legend: {
