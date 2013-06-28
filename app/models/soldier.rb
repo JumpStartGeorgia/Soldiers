@@ -1,4 +1,7 @@
 class Soldier < ActiveRecord::Base
+	require 'json'
+  require 'json_cache'
+
 	translates :permalink, :first_name, :last_name, :place_from, :rank, :served_with, :country_died, :place_died, :incident_type, :incident_description
 
 	has_attached_file :img, :url => "/system/photo/:id/:permalink.:extension",
@@ -27,15 +30,33 @@ class Soldier < ActiveRecord::Base
 
   validates :died_at, :presence => true
 
+  CACHE_KEY_GENDER = "[locale]/gender"
+  CACHE_KEY_AGE = "[locale]/age"
+  CACHE_KEY_COUNTRY_DIED = "[locale]/country_died"
+  CACHE_KEY_PLACE_DIED = "[locale]/place_died"
+  CACHE_KEY_RANK = "[locale]/rank"
+  CACHE_KEY_SERVED_WITH = "[locale]/served_with"
+  CACHE_KEY_INCIDENT_TYPE = "[locale]/incident_type"
+  CACHE_KEY_INCIDENT_DESCRIPTION = "[locale]/incident_description"
+  CACHE_KEY_INCIDENTS = "[locale]/incidents"
+  CACHE_KEY_DATE_DIED = "[locale]/date_died"
+  CACHE_KEY_PLACE_FROM = "[locale]/place_from"
+  CACHE_KEY_LAST_UPDATED = "[locale]/last_updated"
+
   def self.sorted
     with_translations(I18n.locale).order("soldiers.died_at DESC, soldier_translations.last_name ASC")
   end
 
   def self.last_update
-    x = select('created_at').order('created_at desc').limit(1)
-    if x.present?
-      I18n.l(x.first.created_at, :format => :no_time)
-    end
+		h = JsonCache.fetch(CACHE_KEY_LAST_UPDATED.gsub("[locale]", I18n.locale.to_s)) {
+      z = []
+      x = select('created_at').order('created_at desc').limit(1)
+      if x.present?
+        z << I18n.l(x.first.created_at, :format => :no_time)
+      end
+      z.to_json
+    }
+    return JSON.parse(h).first
   end
 
   def full_name
@@ -56,173 +77,192 @@ class Soldier < ActiveRecord::Base
     self.soldier_translations.select{|x| x.locale == "ka"}.first.permalink
   end
 
-  # total dead
-  def self.total_dead
-    h = []
-    x = Soldier.count()
-
-    y = Hash.new
-    h << y
-    h[:headers] << I18n.t('summary.total')
-    h[:values] << x
-
-    return h
-  end
-
   ######################
   ## summary queries
   ## all formats are { headers => [], values => []}
   ######################
   # gender
   def self.summary_gender
-    h = Hash.new
-    h[:headers] = []
-    h[:values] = []
-    x = Soldier.count(:group => :is_male)
+		h = JsonCache.fetch(CACHE_KEY_GENDER.gsub("[locale]", I18n.locale.to_s)) {
+      h = Hash.new
+      h[:headers] = []
+      h[:values] = []
+      x = Soldier.count(:group => :is_male)
 
-    h[:headers] << I18n.t('summary.male')
-    h[:values] << (x.has_key?(true).present? ? x[true] : 0)
+      h[:headers] << I18n.t('summary.male')
+      h[:values] << (x.has_key?(true).present? ? x[true] : 0)
 
-    h[:headers] << I18n.t('summary.female')
-    h[:values] << (x.has_key?(false).present? ? x[false] : 0)
-
-    return h
+      h[:headers] << I18n.t('summary.female')
+      h[:values] << (x.has_key?(false).present? ? x[false] : 0)
+      h.to_json
+    }
+    return JSON.parse(h)
   end
 
   # age 
   # groups: 20-24, 25-29, 30-34, 35-39, 40-49
   AGE_CATEGORIES = ["20-24", "25-29", "30-34", "35-39", "40-49"]
   def self.summary_age
-    h = Hash.new
-    h[:headers] = []
-    h[:values] = []
-    h[:min] = []
-    h[:max] = []
-    x = Soldier.select('age')
+		h = JsonCache.fetch(CACHE_KEY_AGE.gsub("[locale]", I18n.locale.to_s)) {
+      h = Hash.new
+      h[:headers] = []
+      h[:values] = []
+      h[:min] = []
+      h[:max] = []
+      x = Soldier.select('age')
 
-    h[:headers] << AGE_CATEGORIES[0]
-    ary = x.select{|x| x.age <= 24 && x.age >= 20}
-    h[:values] << (ary.present? ? ary.length : 0)
-    h[:min] << 20
-    h[:max] << 24
+      h[:headers] << AGE_CATEGORIES[0]
+      ary = x.select{|x| x.age <= 24 && x.age >= 20}
+      h[:values] << (ary.present? ? ary.length : 0)
+      h[:min] << 20
+      h[:max] << 24
 
-    h[:headers] << AGE_CATEGORIES[1]
-    ary = x.select{|x| x.age <= 29 && x.age >= 25}
-    h[:values] << (ary.present? ? ary.length : 0)
-    h[:min] << 25
-    h[:max] << 29
+      h[:headers] << AGE_CATEGORIES[1]
+      ary = x.select{|x| x.age <= 29 && x.age >= 25}
+      h[:values] << (ary.present? ? ary.length : 0)
+      h[:min] << 25
+      h[:max] << 29
 
-    h[:headers] << AGE_CATEGORIES[2]
-    ary = x.select{|x| x.age <= 34 && x.age >= 30}
-    h[:values] << (ary.present? ? ary.length : 0)
-    h[:min] << 30
-    h[:max] << 34
+      h[:headers] << AGE_CATEGORIES[2]
+      ary = x.select{|x| x.age <= 34 && x.age >= 30}
+      h[:values] << (ary.present? ? ary.length : 0)
+      h[:min] << 30
+      h[:max] << 34
 
-    h[:headers] << AGE_CATEGORIES[3]
-    ary = x.select{|x| x.age <= 39 && x.age >= 35}
-    h[:values] << (ary.present? ? ary.length : 0)
-    h[:min] << 35
-    h[:max] << 39
+      h[:headers] << AGE_CATEGORIES[3]
+      ary = x.select{|x| x.age <= 39 && x.age >= 35}
+      h[:values] << (ary.present? ? ary.length : 0)
+      h[:min] << 35
+      h[:max] << 39
 
-    h[:headers] << AGE_CATEGORIES[4]
-    ary = x.select{|x| x.age <= 49 && x.age >= 40}
-    h[:values] << (ary.present? ? ary.length : 0)
-    h[:min] << 40
-    h[:max] << 49
+      h[:headers] << AGE_CATEGORIES[4]
+      ary = x.select{|x| x.age <= 49 && x.age >= 40}
+      h[:values] << (ary.present? ? ary.length : 0)
+      h[:min] << 40
+      h[:max] << 49
 
-    return h
+      h.to_json
+    }
+    return JSON.parse(h)
   end
 
   # date died
   def self.summary_date_died
-    h = Hash.new
-    h[:headers] = []
-    h[:values] = []
-    x = Soldier.select("died_at").group_by{|x| x.died_at.beginning_of_month}
-    start_year = 2007
-    end_year = Time.now.year
+		h = JsonCache.fetch(CACHE_KEY_DATE_DIED.gsub("[locale]", I18n.locale.to_s)) {
+      h = Hash.new
+      h[:headers] = []
+      h[:values] = []
+      x = Soldier.select("died_at").group_by{|x| x.died_at.beginning_of_month}
+      start_year = 2004
+      end_year = Time.now.year
 
-    if x.present?
-      dates = []
-      x.keys.each do |key|
-        dates << {:month => key.month, :year => key.year, :count => x[key].count}
-      end
-  
-      for i in start_year..end_year
-        for j in 1..12
-          h[:headers] << "#{i} #{Date::MONTHNAMES[j]}"
-          date = dates.select{|x| x[:month] == j && x[:year] == i}
-          h[:values] << (date.present? ? date.first[:count] : nil)
+      if x.present?
+        dates = []
+        x.keys.each do |key|
+          dates << {:month => key.month, :year => key.year, :count => x[key].count}
+        end
+    
+        for i in start_year..end_year
+          for j in 1..12
+            h[:headers] << "#{i} #{Date::MONTHNAMES[j]}"
+            date = dates.select{|x| x[:month] == j && x[:year] == i}
+            h[:values] << (date.present? ? date.first[:count] : nil)
 
-          # if this is the current month/year, stop
-          break if i==end_year && j==Time.now.month
+            # if this is the current month/year, stop
+            break if i==end_year && j==Time.now.month
+          end
         end
       end
-    end
+      h.to_json
+    }
 
-    return h
+    return JSON.parse(h)
   end
 
   # place from
   def self.summary_place_from
-    x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :place_from)
-    return create_summary_array(x)
+		h = JsonCache.fetch(CACHE_KEY_PLACE_FROM.gsub("[locale]", I18n.locale.to_s)) {
+      x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :place_from)
+      create_summary_array(x).to_json
+    }
+    return JSON.parse(h)
   end
 
   # rank
   def self.summary_rank
-    x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :rank)
-    return create_summary_array(x)
+		h = JsonCache.fetch(CACHE_KEY_RANK.gsub("[locale]", I18n.locale.to_s)) {
+      x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :rank)
+      create_summary_array(x).to_json
+    }
+    return JSON.parse(h)
   end
 
   # served with
   def self.summary_served_with
-    x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :served_with)
-    return create_summary_array(x)
+		h = JsonCache.fetch(CACHE_KEY_SERVED_WITH.gsub("[locale]", I18n.locale.to_s)) {
+      x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :served_with)
+      create_summary_array(x).to_json
+    }
+    return JSON.parse(h)
   end
 
   # country died
   def self.summary_country_died
-    x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :country_died)
-    return create_summary_array(x)
+		h = JsonCache.fetch(CACHE_KEY_COUNTRY_DIED.gsub("[locale]", I18n.locale.to_s)) {
+      x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :country_died)
+      create_summary_array(x).to_json
+    }
+    return JSON.parse(h)
   end
 
   # place died
   def self.summary_place_died
-    x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :place_died)
-    return create_summary_array(x)
+		h = JsonCache.fetch(CACHE_KEY_PLACE_DIED.gsub("[locale]", I18n.locale.to_s)) {
+      x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :place_died)
+      create_summary_array(x).to_json
+    }
+    return JSON.parse(h)
   end
 
   # incident type
   def self.summary_incident_type
-    x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :incident_type)
-    return create_summary_array(x)
+		h = JsonCache.fetch(CACHE_KEY_INCIDENT_TYPE.gsub("[locale]", I18n.locale.to_s)) {
+      x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :incident_type)
+      create_summary_array(x).to_json
+    }
+    return JSON.parse(h)
   end
 
   # incident desc
   def self.summary_incident_description
-    x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :incident_description)
-    return create_summary_array(x)
+		h = JsonCache.fetch(CACHE_KEY_INCIDENT_DESCRIPTION.gsub("[locale]", I18n.locale.to_s)) {
+      x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :incident_description)
+      create_summary_array(x).to_json
+    }
+    return JSON.parse(h)
   end
 
   # for each incident type, get summary of incident descriptions
   # format: [{header value items => {headers values}}, {header value items => {headers values}}, etc]
   def self.summary_incidents_grouped
-    h = []
-    x = summary_incident_type
+		h = JsonCache.fetch(CACHE_KEY_INCIDENTS.gsub("[locale]", I18n.locale.to_s)) {
+      h = []
+      x = summary_incident_type
 
-    if x.present?
-      for i in 0..x[:headers].length-1
-        z = Hash.new
-        h << z
-        z[:header] = x[:headers][i]
-        z[:value] = x[:values][i]
-        a = SoldierTranslation.where(:locale => I18n.locale, :incident_type => z[:header]).count(:group => :incident_description)
-        z[:items] = create_summary_array(a)
+      if x.present?
+        for i in 0..x["headers"].length-1
+          z = Hash.new
+          h << z
+          z[:header] = x["headers"][i]
+          z[:value] = x["values"][i]
+          a = SoldierTranslation.where(:locale => I18n.locale, :incident_type => z[:header]).count(:group => :incident_description)
+          z[:items] = create_summary_array(a)
+        end
       end
-    end
+      h.to_json
+    }
 
-    return h
+    return JSON.parse(h)
   end
 
   ######################

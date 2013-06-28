@@ -89,7 +89,7 @@ ka:
       confirm: დარწმუნებული ხართ?
       new: ახალი
     common:
-      app_name: ქართველი ჯარისკაცები
+      app_name: ნაცნობი ჯარისკაცი
       added_on: "დამატებულია: %{date}" 
     msgs:
       does_not_exist: თქვენ ცდილობთ იხილოთ გვერდი, რომელიც არ არსებობს.
@@ -109,10 +109,10 @@ ka:
       js_link_text: აგებულია
       download: მონაცემების ჩამოტვირთვა
       last_updated: განახლებულია %{date}
-      header2: საერთაშორისო მისიაში დაღუპული ქართველი ჯარისკაცბეი
-      header3: ამჯამად ავღანეთში იმყოფება 1570 კარისკაცი 
+      header2: ქართველი ჯარისკაცი დაიღუპა ერაყისა და ავღანეთის საერთაშორისო სამშვიდობო მისიებში 2004 წლიდან დღემდე
       about_header: შესახებ
-      about_text: Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+      about_text1: ქართველი ჯარისკაცები ერაყის საერთაშორისო სამშვიდობო მისიაში 2003 წლიდან 2008 წლის აგვისტომდე მონაწილეობდნენ. ამ ხნის განმავლობაში ერაყში სულ რამდენიმე ათასმა სამხედრომ იმსახურა.
+      about_text2: ავღანეთში NATO-ს ეგიდით მიმდინარე ISAF-ის სამშვიდობო მისიას კი ქართველი ჯარისკაცები 2004 წელს შეუერთდნენ. დღეს ავღანეთში 1500-ზე მეტი ჯარისკაცი იმყოფება.
     unsupported_browser:
       title: არასათანადო ბრაუზერი
       p1: სამწუხაროდ თქვენი ინტერნეტ ბრაუზერის მოხმარების ვადა გასულია და ვერ მოხდება ვებ-გვერდთან სრულად დაკავშირება.

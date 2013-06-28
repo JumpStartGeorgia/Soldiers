@@ -4,6 +4,24 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <%
+      desc = t('.about_text1')
+      desc << " "
+      desc << t('.about_text2')
+    %>
+
+    <meta name="description" content="<%= desc %>">
+
+	  <meta property="og:title" content="<%= content_for?(:title) ? "#{yield(:title)} | #{t('app.common.app_name')}" :
+			  t('app.common.app_name') %>" />
+		<meta property="og:description" content="<%= desc %>" />
+	  <meta property="og:type" content="non_profit" />
+	  <meta property="og:url" content="<%= current_url %>" />
+	  <meta property="og:image" content="<%= full_url(image_path('logo.png')) %>" />
+	  <meta property="og:site_name" content="<%= t('app.common.app_name') %>" />
+	  <meta property="fb:app_id" content="<%= ENV['SOLDIERS_FACEBOOK_APP_ID'] %>" />
+
     <title><%= content_for?(:title) ? "#{yield(:title)} | #{t('app.common.app_name')}" :
 				t('app.common.app_name') %></title>
     <%= csrf_meta_tags %>
@@ -89,7 +107,6 @@
           <div class="span4">
             <h1><%= @total_dead %></h1>
             <h3><%= t('.header2') %></h3>
-            <h5><%= t('.header3') %></h5>
           </div>
         </div>
       </div>
@@ -99,8 +116,9 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div id="about_container" class="span10">
-          <h1><%= t('.about_header') %></h1>
-          <h3><%= t('.about_text') %></h3>
+          <!--h1><%= t('.about_header') %></h1-->
+          <div><%= t('.about_text1') %></div>
+          <div><%= t('.about_text2') %></div>
         </div>
       </div>
     </div>
