@@ -59,7 +59,11 @@
 
             <div class="row-fluid">
               <div class="span4 offset4" id="center_header">
-                <%= link_to(t('app.common.app_name'), root_path(:locale => I18n.locale))%>
+                <% title_parts = t('app.common.app_name').reverse.split(' ', 2).map{ |x| x.reverse; }.reverse; %>
+                <a href="<%= root_path(:locale => I18n.locale) %>">
+                  <span><%= title_parts[0] %></span>
+                  <span><%= title_parts[1] %></span>
+                </a>
               </div>
               <div class="span4">
 	              <ul class="nav pull-right">
@@ -146,7 +150,17 @@
 			</div>
     </footer>
 
-
+    <div id="socialside">
+      <div class="fb">
+        <img src="/assets/soc_fb.jpg" />
+      </div>
+      <div class="twitter">
+        <img src="/assets/soc_tw.jpg" />
+      </div>
+      <div class="other">
+        <img src="/assets/soc_other.jpg" />
+      </div>
+    </div>
 
 
 

@@ -20,7 +20,7 @@
 
 body.app_root {
   background: #fdfcfa;
-  padding-top: 60px;
+  padding-top: 59px;
 
   .navbar {
     .navbar-inner {
@@ -29,8 +29,38 @@ body.app_root {
 
       #center_header {
         text-align: center;
-        
+        height: 59px;
+        overflow: visible;
+
         a {
+          display: block;
+          width: 460px;
+          min-height: 77px;
+          .box-sizing(border-box);
+          margin: 0px auto;
+          background: url(logo.png) center center no-repeat;
+          text-decoration: none;
+          color: #8f9744;
+          padding-top: 25px;
+          text-transform: uppercase;
+          font-family: gotham_thin;
+          font-size: 14px;
+          font-weight: bold;
+
+          span {
+            display: block;
+            width: 185px;
+            
+            &:first-child {
+              float: left;
+              text-align: right;
+            }
+            
+            &:last-child {
+              float: right;
+              text-align: left;
+            }
+          }
         }
       }
 
@@ -121,5 +151,34 @@ body.app_root {
     margin-top: 0px;
     background: none !important;
   }
+
+
+
+
+
+
+  #socialside {
+    position: fixed;
+    left: 0px;
+    top: 40%;
+    z-index: 2000;
+
+    & > div {
+      cursor: pointer;
+      .opacity(75);
+      .transition(opacity .3s);
+
+      &:hover {
+        .opacity(100);
+      }
+
+      & > img {
+        display: block;
+      }
+    }
+  }
+
+
+
 }
 
