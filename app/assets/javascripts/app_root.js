@@ -150,7 +150,7 @@ $(document).ready(function() {
     }
     if (active.length && $(window).scrollTop() < y)
     {
-      $('html, body').animate({ scrollTop: y }, 'fast');
+      $('html, body').delay(10).animate({ scrollTop: y }, 'fast');
     }
 
     $('#thumbs li > a.active').removeClass('active');
