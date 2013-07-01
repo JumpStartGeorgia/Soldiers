@@ -80,10 +80,14 @@ function load_soldier_profile (id)
   highlight_chart_data(id, '#chart_served_with', 'served-with');
 
   // incidents
+  highlight_chart_data(id, '#chart_incident_description', 'incident-description');
+/*
   for (var i=0; i<gon.incidents_num; i++)
   {
     highlight_chart_data(id, '#chart_incident_type_'+i.toString(), 'incident-description');
   }
+*/
+
   return true;
 }
 
