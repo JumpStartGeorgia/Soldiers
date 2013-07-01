@@ -1,14 +1,67 @@
 class RootController < ApplicationController
+  require 'utf8_converter'
+
+  BOM = "\uFEFF" #Byte Order Mark
 
   def index
     @soldiers = Soldier.sorted
-    @total_dead = @soldiers.length
-
-    @last_update = Soldier.last_update
     
-    load_chart_gon
 
-    render :layout => 'application_root'
+    respond_to do |format|
+      format.html { 
+        @total_dead = @soldiers.length
+        @last_update = Soldier.last_update
+        load_chart_gon
+        render :layout => 'application_root' 
+      }
+      format.json { render json: @soldiers }
+      format.csv { 
+
+        data = CSV.generate() do |csv|
+          # column headers
+          model_class = Soldier
+          model_class_tr = SoldierTranslation
+          row = []      
+          row << I18n.t('activerecord.attributes.soldier_translation.first_name')
+          row << I18n.t('activerecord.attributes.soldier_translation.last_name')
+          row << I18n.t('activerecord.attributes.soldier.gender')
+          row << I18n.t('activerecord.attributes.soldier.born_at')
+          row << I18n.t('activerecord.attributes.soldier_translation.from')
+          row << I18n.t('activerecord.attributes.soldier_translation.rank')
+          row << I18n.t('activerecord.attributes.soldier_translation.served_with')
+          row << I18n.t('activerecord.attributes.soldier_translation.country_died')
+          row << I18n.t('activerecord.attributes.soldier_translation.place_died')
+          row << I18n.t('activerecord.attributes.soldier_translation.incident_type')
+          row << I18n.t('activerecord.attributes.soldier_translation.incident_description')
+          row << I18n.t('activerecord.attributes.soldier.died_at')
+          row << I18n.t('activerecord.attributes.soldier.age')
+          csv << row
+
+          @soldiers.each do |soldier|
+            row = []
+            row << soldier.first_name
+            row << soldier.last_name
+            row <<  soldier.gender
+            row << soldier.born_at
+            row << soldier.place_from
+            row << soldier.rank
+            row << soldier.served_with
+            row << soldier.country_died
+            row << soldier.place_died
+            row << soldier.incident_type
+            row << soldier.incident_description
+            row << soldier.died_at
+            row << soldier.age
+            csv << row
+          end
+        end
+
+        filename = Utf8Converter.generate_permalink(I18n.t('app.common.app_name') + "_" + Time.now.strftime('%F_%R'))
+        send_data BOM + data,
+         :type => 'text/csv; charset=iso-8859-1; header=present',
+         :disposition => "attachment; filename=#{filename}.csv" 
+      }
+    end
 
   end
 

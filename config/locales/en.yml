@@ -24,12 +24,12 @@ en:
         first_name: First Name
         last_name: Last Name
         from: Place From
-        rank: Military Rank
-        served_with: Served With
-        country_died: Country Where Died
+        rank: Rank
+        served_with: Battalion Served With
+        country_died: Theater
         place_died: Place Where Died
         incident_type: Incident Type
-        incident_description: Incident Description
+        incident_description: Cause of Death
     errors:
       messages:
         required_field: "is a required field."

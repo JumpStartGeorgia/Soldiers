@@ -23,13 +23,13 @@ ka:
         name: სახელი
         first_name: სახელი
         last_name: გვარი
-        from: წარმოშობა
-        rank: წოდება
-        served_with: მსახურობდა
-        country_died: ქვეყანა
+        from: საცხოვრებელი ადგილი 
+        rank: რანგი
+        served_with: მსახურობდა ბატალიონი
+        country_died: გარდაცვალების ადგილი
         place_died: გარდაცვალების ადგილი
         incident_type: შემთხვევის ტიპი
-        incident_description: შემთხვევის აღწერა
+        incident_description: სიკვდილის მიზეზი
     errors:
       messages:
         required_field: "სავალდებულოა"
