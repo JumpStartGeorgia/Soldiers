@@ -43,8 +43,7 @@
   <body class="app_root">
 
 
-
-
+    <div id="fb-root"></div>
 
 
     <div class="navbar navbar-fixed-top">
@@ -151,14 +150,28 @@
     </footer>
 
     <div id="socialside">
-      <div class="fb">
+      <div id="fb">
         <img src="/assets/soc_fb.jpg" />
+        <div class="social_hover">
+          <div class="fb-like" data-href="<%= current_url %>" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-action="recommend"></div>
+        </div>
       </div>
-      <div class="twitter">
+      <div id="twitter">
         <img src="/assets/soc_tw.jpg" />
+        <div class="social_hover">
+          <div id="twitter-button">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-via="jsgeorgia" data-text="<%= t('app.common.app_name')%>">Tweet</a>
+            </div>
+          <a id="twitter-template" href="https://twitter.com/share" data-via="jsgeorgia" data-text="<%= t('app.common.app_name')%>" style="display: none;">Tweet</a>
+        </div>
       </div>
-      <div class="other">
+      <div id="other">
         <img src="/assets/soc_other.jpg" />
+        <div class="social_hover">
+          <div class="addthis_toolbox addthis_default_style ">
+            <a class="addthis_counter addthis_pill_style"></a>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -176,6 +189,17 @@
 			I18n.defaultLocale = "<%= I18n.default_locale %>";
 			I18n.locale = "<%= I18n.locale %>";
 		</script>
+
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=494884390560290";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51d1537d4a09d85f"></script>
 
 		<% if Rails.env.production? %>
 			<!-- insert google analytics for production site here -->

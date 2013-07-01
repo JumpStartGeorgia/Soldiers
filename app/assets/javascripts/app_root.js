@@ -1,3 +1,19 @@
+function update_social_links(id, new_url, new_text){
+
+  // twitter
+  $('#socialside #twitter #twitter-button').empty();
+  var clone = $('#socialside #twitter #twitter-template').clone();
+  clone.removeAttr("style"); // unhide the clone
+  clone.attr("data-text", new_text); 
+  clone.attr("data-url", new_url); 
+  clone.attr("data-counturl", new_url);
+  clone.attr("class", "twitter-share-button"); 
+  $('#socialside #twitter #twitter-button').append(clone);
+  twttr.widgets.load();
+
+
+}
+
 function highlight_chart_data_age(id, chart_id, data_name){
   var items = $(chart_id + ' .highcharts-axis-labels text');
   for (var j=0; j<items.length; j++){
@@ -88,6 +104,11 @@ function load_soldier_profile (id)
   }
 */
 
+  ////////////////////////
+  // update social links
+  var soldier = $('#thumbs li a[data-id="' + id + '"]');
+  update_social_links(id, gon.root_url + "#" + $(soldier).data('permalink'), $(soldier).data('name') + " @ " + gon.app_name);
+
   return true;
 }
 
@@ -141,6 +162,11 @@ $(document).ready(function() {
       $('#soldier_profiles .soldier_profile.active').removeClass('active');
     });
     location.hash = "_";
+
+  ////////////////////////
+  // update social links
+  update_social_links(null, gon.root_url, gon.app_name);
+
   });
   
   // load the next one

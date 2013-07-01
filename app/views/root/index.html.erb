@@ -5,7 +5,7 @@
   <ul>
     <% @soldiers.each do |soldier| %>
       <li>
-        <a href="javascript:;" data-id="<%= soldier.id %>"
+        <a href="javascript:;" data-id="<%= soldier.id %>" data-name="<%= soldier.full_name %>"
       data-age="<%= soldier.age%>" data-gender="<%= soldier.gender %>" data-rank="<%= soldier.rank %>" 
       data-incident-type="<%= soldier.incident_type %>" data-incident-description="<%= soldier.incident_description %>"
       data-country="<%= soldier.country_died %>" data-date-died="<%= soldier.died_at.beginning_of_month %>" 

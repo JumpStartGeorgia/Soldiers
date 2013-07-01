@@ -12,6 +12,9 @@ class RootController < ApplicationController
         @total_dead = @soldiers.length
         @last_update = Soldier.last_update
         load_chart_gon
+        gon.app_name = I18n.t('app.common.app_name')
+        gon.root_url = root_url
+
         render :layout => 'application_root' 
       }
       format.json { render json: @soldiers }

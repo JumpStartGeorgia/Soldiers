@@ -164,16 +164,23 @@ body.app_root {
     z-index: 2000;
 
     & > div {
-      cursor: pointer;
       .opacity(25);
       .transition(opacity .3s);
 
+      .social_hover {
+        cursor: pointer;
+        display: none;
+        transition: display 0.5s ease;
+      }
       &:hover {
         .opacity(100);
+        .social_hover{
+          display: inline-block;
+        }
       }
 
       & > img {
-        display: block;
+        display: inline-block;
       }
     }
   }
