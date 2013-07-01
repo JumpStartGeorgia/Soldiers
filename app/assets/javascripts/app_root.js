@@ -11,7 +11,11 @@ function update_social_links(id, new_url, new_text){
   $('#socialside #twitter #twitter-button').append(clone);
   twttr.widgets.load();
 
+  // facebook
+  $('#socialside .fb-like').attr('data-href', new_url);
+  FB.XFBML.parse();
 
+  // seems like addthis automatically reloads its links
 }
 
 function highlight_chart_data_age(id, chart_id, data_name){
