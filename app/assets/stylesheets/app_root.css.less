@@ -34,7 +34,7 @@ body.app_root {
 
         a {
           display: block;
-          width: 460px;
+          width: 80%;
           min-height: 77px;
           .box-sizing(border-box);
           margin: 0px auto;
@@ -49,7 +49,7 @@ body.app_root {
 
           span {
             display: block;
-            width: 185px;
+            width: 40%;
             
             &:first-child {
               float: left;
@@ -186,6 +186,38 @@ body.app_root {
   }
 
 
-
 }
+
+
+
+@media (max-width: 1550px) {
+  body.app_root #center_header a {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 1400px) {
+  body.app_root .navbar .navbar-inner #center_header a span {
+    width: 36%;
+  }
+}
+
+@media (max-width: 1000px) {
+  body.app_root .navbar .navbar-inner #center_header a span {
+    width: 30%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
