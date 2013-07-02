@@ -182,7 +182,7 @@ class Soldier < ActiveRecord::Base
   # place from
   def self.summary_place_from
 		h = JsonCache.fetch(CACHE_KEY_PLACE_FROM.gsub("[locale]", I18n.locale.to_s)) {
-      x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :place_from)
+      x = Hash[SoldierTranslation.where(:locale => I18n.locale).count(:group => :place_from).sort_by{|k,v| -v}]
       create_summary_array(x).to_json
     }
     return JSON.parse(h)
@@ -191,7 +191,7 @@ class Soldier < ActiveRecord::Base
   # rank
   def self.summary_rank
 		h = JsonCache.fetch(CACHE_KEY_RANK.gsub("[locale]", I18n.locale.to_s)) {
-      x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :rank)
+      x = Hash[SoldierTranslation.where(:locale => I18n.locale).count(:group => :rank).sort_by{|k,v| -v}]
       create_summary_array(x).to_json
     }
     return JSON.parse(h)
@@ -200,7 +200,7 @@ class Soldier < ActiveRecord::Base
   # served with
   def self.summary_served_with
 		h = JsonCache.fetch(CACHE_KEY_SERVED_WITH.gsub("[locale]", I18n.locale.to_s)) {
-      x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :served_with)
+      x = Hash[SoldierTranslation.where(:locale => I18n.locale).count(:group => :served_with).sort_by{|k,v| -v}]
       create_summary_array(x).to_json
     }
     return JSON.parse(h)
@@ -209,7 +209,7 @@ class Soldier < ActiveRecord::Base
   # country died
   def self.summary_country_died
 		h = JsonCache.fetch(CACHE_KEY_COUNTRY_DIED.gsub("[locale]", I18n.locale.to_s)) {
-      x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :country_died)
+      x = Hash[SoldierTranslation.where(:locale => I18n.locale).count(:group => :country_died).sort_by{|k,v| -v}]
       create_summary_array(x).to_json
     }
     return JSON.parse(h)
@@ -218,7 +218,7 @@ class Soldier < ActiveRecord::Base
   # place died
   def self.summary_place_died
 		h = JsonCache.fetch(CACHE_KEY_PLACE_DIED.gsub("[locale]", I18n.locale.to_s)) {
-      x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :place_died)
+      x = Hash[SoldierTranslation.where(:locale => I18n.locale).count(:group => :place_died).sort_by{|k,v| -v}]
       create_summary_array(x).to_json
     }
     return JSON.parse(h)
@@ -227,7 +227,7 @@ class Soldier < ActiveRecord::Base
   # incident type
   def self.summary_incident_type
 		h = JsonCache.fetch(CACHE_KEY_INCIDENT_TYPE.gsub("[locale]", I18n.locale.to_s)) {
-      x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :incident_type)
+      x = Hash[SoldierTranslation.where(:locale => I18n.locale).count(:group => :incident_type).sort_by{|k,v| -v}]
       create_summary_array(x).to_json
     }
     return JSON.parse(h)
@@ -236,7 +236,7 @@ class Soldier < ActiveRecord::Base
   # incident desc
   def self.summary_incident_description
 		h = JsonCache.fetch(CACHE_KEY_INCIDENT_DESCRIPTION.gsub("[locale]", I18n.locale.to_s)) {
-      x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :incident_description)
+      x = Hash[SoldierTranslation.where(:locale => I18n.locale).count(:group => :incident_description).sort_by{|k,v| -v}]
       create_summary_array(x).to_json
     }
     return JSON.parse(h)
@@ -255,7 +255,7 @@ class Soldier < ActiveRecord::Base
           h << z
           z[:header] = x["headers"][i]
           z[:value] = x["values"][i]
-          a = SoldierTranslation.where(:locale => I18n.locale, :incident_type => z[:header]).count(:group => :incident_description)
+          a = Hash[SoldierTranslation.where(:locale => I18n.locale, :incident_type => z[:header]).count(:group => :incident_description).sort_by{|k,v| -v}]
           z[:items] = create_summary_array(a)
         end
       end
@@ -357,7 +357,6 @@ protected
         h[:headers] << (key.nil? ? I18n.t('summary.unknown') : key)
         h[:values] << data[key]
       end
-#      h.sort_by{|y| y[:key]}
     end
 
     return h
