@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Soldier < ActiveRecord::Base
 	require 'json'
   require 'json_cache'
@@ -164,7 +165,7 @@ class Soldier < ActiveRecord::Base
     
         for i in start_year..end_year
           for j in 1..12
-            h[:headers] << "#{i} #{Date::MONTHNAMES[j]}"
+            h[:headers] << "#{i} #{I18n.t("date.abbr_month_names")[j]}"
             date = dates.select{|x| x[:month] == j && x[:year] == i}
             h[:values] << (date.present? ? date.first[:count] : nil)
 
@@ -189,10 +190,21 @@ class Soldier < ActiveRecord::Base
   end
 
   # rank
+  RANK_ORDER_EN = ['Colonel', 'Lieutenant', 'Sergeant', 'Junior Sergeant', 'Corporal', 'Private 1st Class', 'Private']
+  RANK_ORDER_KA = ['პოლკოვნიკი', 'ლეიტენანტი', 'სერჟანტი', 'უმცროსი სერჟანტი', 'კაპრალი', 'პირველი კლასის რიგითი', 'რიგითი']
   def self.summary_rank
 		h = JsonCache.fetch(CACHE_KEY_RANK.gsub("[locale]", I18n.locale.to_s)) {
-      x = Hash[SoldierTranslation.where(:locale => I18n.locale).count(:group => :rank).sort_by{|k,v| -v}]
-      create_summary_array(x).to_json
+      x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :rank)
+      # build a new hash in the correct rank order
+      r = Hash.new
+      ary = I18n.locale == :en ? RANK_ORDER_EN : RANK_ORDER_KA
+      ary.each do |a|
+        count = x.select{|k,v| k == a}.map{|k,v| v}
+
+        r[a] = count.present? ? count.first : 0
+      end
+
+      create_summary_array(r).to_json
     }
     return JSON.parse(h)
   end

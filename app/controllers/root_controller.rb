@@ -110,7 +110,6 @@ protected
     if x.present?
       gon.date_died_headers = x["headers"]
       gon.date_died_values = x["values"]
-      gon.month_names = I18n.t('date.abbr_month_names')
     end
 
     # rank
