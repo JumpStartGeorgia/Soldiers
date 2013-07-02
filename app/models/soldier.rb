@@ -164,7 +164,7 @@ class Soldier < ActiveRecord::Base
     
         for i in start_year..end_year
           for j in 1..12
-            h[:headers] << "#{i} #{Date::MONTHNAMES[j]}"
+            h[:headers] << "#{i} #{I18n.t("date.abbr_month_names")[j]}"
             date = dates.select{|x| x[:month] == j && x[:year] == i}
             h[:values] << (date.present? ? date.first[:count] : nil)
 

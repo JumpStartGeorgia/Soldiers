@@ -8,7 +8,6 @@ $(document).ready(function() {
 
   Highcharts.setOptions({
     lang: {
-      months: gon.month_names,
       downloadPNG: gon.highcharts_downloadPNG,
       downloadJPEG: gon.highcharts_downloadJPEG,
       downloadPDF: gon.highcharts_downloadPDF,
@@ -77,7 +76,15 @@ $(document).ready(function() {
         series: [{
             name: gon.gender_title,
             data: gon.gender_values
-        }]
+        }],
+    lang: {
+      downloadPNG: gon.highcharts_downloadPNG,
+      downloadJPEG: gon.highcharts_downloadJPEG,
+      downloadPDF: gon.highcharts_downloadPDF,
+      downloadSVG: gon.highcharts_downloadSVG,
+      printChart: gon.highcharts_printChart
+    } 
+
     });
   }
 
@@ -317,7 +324,15 @@ $(document).ready(function() {
         series: [{
             name: gon.served_with_title,
             data: gon.served_with_values
-        }]
+        }],
+    lang: {
+      downloadPNG: gon.highcharts_downloadPNG,
+      downloadJPEG: gon.highcharts_downloadJPEG,
+      downloadPDF: gon.highcharts_downloadPDF,
+      downloadSVG: gon.highcharts_downloadSVG,
+      printChart: gon.highcharts_printChart
+    } 
+
     });
   }
 
