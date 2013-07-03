@@ -59,7 +59,37 @@ $(document).ready(function() {
               color: bar_color,
               events: {
                 mouseOver: function (e){
-                  //console.log(this, e);
+
+
+			            function search_recursive (object, value, maxlevel, strict, curlevel, keychain)
+			            {
+			              typeof curlevel == 'undefined' && (curlevel = 1);
+			              typeof maxlevel == 'undefined' && (maxlevel = 1000);
+			              typeof keychain == 'undefined' && (keychain = '');
+			              for (var i in object)
+			              {
+			                if (!Object.prototype.hasOwnProperty.call(object, i))
+			                {
+			                  continue;
+			                }
+			                if (strict && object[i] === value || !strict && object[i] == value)
+			                {
+			                  return keychain + '.' + i;
+			                }
+			                else if (typeof object[i] == 'object' && curlevel < maxlevel)
+			                {
+			                  var result = search_recursive(object[i], value, maxlevel, strict, curlevel + 1, keychain + '.' + i);
+			                  if (result !== false)
+			                  {
+			                    return result;
+			                  }
+			                }
+			              }
+			              return false;
+			            }
+
+                  console.log(search_recursive(this, 'Male', 6));
+                  console.log(this);
                 }
               }
   	        }
