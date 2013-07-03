@@ -114,10 +114,10 @@ en:
       js_link_text: Built by
       download: Download Data
       last_updated: Updated %{date}
-      header2: Georgian Soldiers have died in International Peacekeeping Missions in Iraq and Afganistan since 2004
+      header2: Georgian Soldiers have died in International Peacekeeping Missions 
       about_header: About
-      about_text1: Georgian soldiers joined international peacekeeping mission in Iraq in 2003. Thousands of Georgians served there until August 2008, when Georgian personnel returned home. 
-      about_text2: Georgians have been participating in the NATO-led ISAF mission in Afghanistan since 2004. Currently, there are more than 1500 Georgian soldiers serving in Afghanistan.
+      about_text1: Georgian soldiers have been serving in Iraq peacekeeping mission from 2003 to August 2008. 
+      about_text2: Georgians joined NATO-led ISAF mission in 2004. Currently there are more than 1500 Georgian soldiers serving in Afghanistan.
     unsupported_browser:
       title: Unsupported Browser
       p1: We are sorry to report that your browser is out of date and will not properly render the content from this website.
