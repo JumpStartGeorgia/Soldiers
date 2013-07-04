@@ -58,38 +58,9 @@ $(document).ready(function() {
 	            pointWidth: bar_height,
               color: bar_color,
               events: {
-                mouseOver: function (e){
-
-
-			            function search_recursive (object, value, maxlevel, strict, curlevel, keychain)
-			            {
-			              typeof curlevel == 'undefined' && (curlevel = 1);
-			              typeof maxlevel == 'undefined' && (maxlevel = 1000);
-			              typeof keychain == 'undefined' && (keychain = '');
-			              for (var i in object)
-			              {
-			                if (!Object.prototype.hasOwnProperty.call(object, i))
-			                {
-			                  continue;
-			                }
-			                if (strict && object[i] === value || !strict && object[i] == value)
-			                {
-			                  return keychain + '.' + i;
-			                }
-			                else if (typeof object[i] == 'object' && curlevel < maxlevel)
-			                {
-			                  var result = search_recursive(object[i], value, maxlevel, strict, curlevel + 1, keychain + '.' + i);
-			                  if (result !== false)
-			                  {
-			                    return result;
-			                  }
-			                }
-			              }
-			              return false;
-			            }
-
-                  console.log(search_recursive(this, 'Male', 6));
-                  console.log(this);
+                mouseOver: function (e)
+                {
+                  //console.log(this);
                 }
               }
   	        }
@@ -551,6 +522,75 @@ $(document).ready(function() {
         }]
     });
   }
+
+
+
+  function search_recursive (object, value, maxlevel, strict, curlevel, keychain)
+  {
+    typeof curlevel == 'undefined' && (curlevel = 1);
+    typeof maxlevel == 'undefined' && (maxlevel = 1000);
+    typeof keychain == 'undefined' && (keychain = '');
+    for (var i in object)
+    {
+      if (!Object.prototype.hasOwnProperty.call(object, i))
+      {
+        continue;
+      }
+      if (strict && object[i] === value || !strict && object[i] == value)
+      {
+        return keychain + '.' + i;
+      }
+      else if (typeof object[i] == 'object' && curlevel < maxlevel)
+      {
+        var result = search_recursive(object[i], value, maxlevel, strict, curlevel + 1, keychain + '.' + i);
+        if (result !== false)
+        {
+          return result;
+        }
+      }
+    }
+    return false;
+  }
+
+
+
+ $('.highcharts-series.highcharts-tracker rect').hover(function ()
+ {
+   var svg = $(this).closest('svg'),
+   value = svg.find('.highcharts-axis-labels text').eq($(this).index()).text(),
+   title = svg.find('.highcharts-title').text();
+   var result = search_recursive(gon, title, 1);
+   if (result == false)
+   {
+     return false;
+   }
+   dataname = result.slice(1).replace(/_title$/, '').replace('_', '-');
+
+   var list = $('#thumbs > ul > li > a');
+
+   $('#thumbs').data('activeindex', list.filter('.active').parent().index());
+   list.removeClass('active').filter('[data-' + dataname + '="' + value + '"]').addClass('active');
+
+   // camel_case to camelCase
+   // .replace(/_[a-z]/, function (s){ return s.slice(1).toUpperCase(); })
+
+ }, function ()
+ {
+   $('#thumbs > ul > li > a').removeClass('active').eq($('#thumbs').data('activeindex')).addClass('active');
+ });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 });
