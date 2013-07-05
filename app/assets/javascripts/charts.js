@@ -569,7 +569,28 @@ $(document).ready(function() {
    var list = $('#thumbs > ul > li > a');
 
    $('#thumbs').data('activeindex', list.filter('.active').parent().index());
-   list.removeClass('active').filter('[data-' + dataname + '="' + value + '"]').addClass('active');
+
+   if (dataname == 'age')
+   {
+     var range = value.split('-');
+     list.each(function ()
+     {
+       if ($(this).data('age') >= range[0] && $(this).data('age') <= range[1])
+       {
+         $(this).addClass('active');
+       }
+     });
+   }
+   else
+   {
+     if (dataname == 'date-died')
+     {
+       value = gon.date_died_filtered[$(this).index()];
+     }
+
+     list.removeClass('active').filter('[data-' + dataname + '="' + value + '"]').addClass('active');
+   }
+
 
    // camel_case to camelCase
    // .replace(/_[a-z]/, function (s){ return s.slice(1).toUpperCase(); })
