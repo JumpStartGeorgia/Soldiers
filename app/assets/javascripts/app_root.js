@@ -35,7 +35,9 @@ function highlight_chart_data_age(id, chart_id, data_name){
 
     if (nums[0] <= $('#thumbs li a[data-id="' + id + '"]').data(data_name) && nums[1] >= $('#thumbs li a[data-id="' + id + '"]').data(data_name)){
       // found match, now highlight the correct bar
-      $($(chart_id + ' .highcharts-series-group .highcharts-series rect')[j]).attr('fill', bar_color_highlight);
+      window.charts[chart_id.replace('#chart_', '')].series[0].data[j].update({
+        color: bar_color_highlight
+      })
       break;
     }
   }
@@ -55,10 +57,33 @@ function highlight_chart_data(id, chart_id, data_name){
 
     if (t == $('#thumbs li a[data-id="' + id + '"]').data(data_name)){
       // found match, now highlight the correct bar
-      $($(chart_id + ' .highcharts-series-group .highcharts-series rect')[j]).attr('fill', bar_color_highlight);
+      //$(chart_id + ' .highcharts-series-group .highcharts-series rect').eq(j).attr('fill', bar_color_highlight);
+      window.charts[chart_id.replace('#chart_', '')].series[0].data[j].update({
+        color: bar_color_highlight
+      })
       break;
     }
   }
+}
+
+function highlight_chart_data_date_died (id)
+{
+  //var j = gon.date_died_filtered.indexOf($('#thumbs li a[data-id="' + id + '"]').data('date-died'));
+  //$('#chart_date_died .highcharts-series-group .highcharts-series rect').eq(j).attr('fill', bar_color_highlight);
+  var date = new Date($('#thumbs li a[data-id="' + id + '"]').data('date-died'));
+  var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var value = date.getFullYear() + ' ' + months[date.getMonth()];
+  for (var i in window.charts.date_died.series[0].data)
+  {
+    var d = window.charts.date_died.series[0].data[i];
+    if (d.category == value)
+    {
+      break;
+    }
+  }
+  window.charts.date_died.series[0].data[i].update({
+    color: bar_color_highlight
+  })
 }
 
 function load_soldier_profile (id)
@@ -101,6 +126,9 @@ function load_soldier_profile (id)
 
   // incidents
   highlight_chart_data(id, '#chart_incident_description', 'incident-description');
+
+  // date died
+  highlight_chart_data_date_died(id);
 /*
   for (var i=0; i<gon.incidents_num; i++)
   {

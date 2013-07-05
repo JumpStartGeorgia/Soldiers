@@ -6,6 +6,8 @@ var axis_label_width_wider = '250px';
 
 $(document).ready(function() {
 
+  window.charts = {};
+
   Highcharts.setOptions({
     lang: {
       downloadPNG: gon.highcharts_downloadPNG,
@@ -17,7 +19,7 @@ $(document).ready(function() {
   });
 
   if (gon.gender_values){
-    $('#chart_gender').highcharts({
+    window.charts.gender = $('#chart_gender').highcharts({
         chart: {
             type: 'bar',
             height: 50 + (bar_height+5)*gon.gender_headers.length
@@ -86,12 +88,12 @@ $(document).ready(function() {
       printChart: gon.highcharts_printChart
     } 
 
-    });
+    }).highcharts();
   }
 
   ////////////////////////////////////////
   if (gon.age_values){
-    $('#chart_age').highcharts({
+    window.charts.age = $('#chart_age').highcharts({
         chart: {
             type: 'bar',
             height: 50 + (bar_height+5)*gon.age_headers.length
@@ -146,12 +148,12 @@ $(document).ready(function() {
             name: gon.age_title,
             data: gon.age_values
         }]
-    });
+    }).highcharts();
   }
 
   ////////////////////////////////////////
   if (gon.country_values){
-    $('#chart_country').highcharts({
+    window.charts.country = $('#chart_country').highcharts({
         chart: {
             type: 'bar',
             height: 50 + (bar_height+5)*gon.country_headers.length
@@ -206,12 +208,12 @@ $(document).ready(function() {
             name: gon.country_title,
             data: gon.country_values
         }]
-    });
+    }).highcharts();
   }
 
   ////////////////////////////////////////
   if (gon.rank_values){
-    $('#chart_rank').highcharts({
+    window.charts.rank = $('#chart_rank').highcharts({
         chart: {
             type: 'bar',
             height: 50 + (bar_height+5)*gon.rank_headers.length
@@ -266,12 +268,12 @@ $(document).ready(function() {
             name: gon.rank_title,
             data: gon.rank_values
         }]
-    });
+    }).highcharts();
   }
 
   ////////////////////////////////////////
   if (gon.served_with_values){
-    $('#chart_served_with').highcharts({
+    window.charts.served_with = $('#chart_served_with').highcharts({
         chart: {
             type: 'bar',
             height: 50 + (bar_height+5)*gon.served_with_headers.length
@@ -334,12 +336,12 @@ $(document).ready(function() {
       printChart: gon.highcharts_printChart
     } 
 
-    });
+    }).highcharts();
   }
 
   ////////////////////////////////////////
   if (gon.incident_description_values){
-    $('#chart_incident_description').highcharts({
+    window.charts.incident_description = $('#chart_incident_description').highcharts({
         chart: {
             type: 'bar',
             height: 50 + (bar_height+5)*gon.incident_description_headers.length
@@ -394,13 +396,13 @@ $(document).ready(function() {
             name: gon.incident_description_title,
             data: gon.incident_description_values
         }]
-    });
+    }).highcharts();
   }
 
   ////////////////////////////////////////
   if (gon.incidents_num > 0){
     for(var i=0;i<gon.incidents_num;i++){
-      $('#chart_incident_type_' + i).highcharts({
+      window.charts['chart_incident_type_' + i] = $('#chart_incident_type_' + i).highcharts({
         chart: {
             type: 'bar',
             height: 50 + (bar_height+5)*gon.incident_types[i].headers.length
@@ -455,14 +457,14 @@ $(document).ready(function() {
             name: gon.incident_types[i].title,
             data: gon.incident_types[i].values
         }]
-      });
+      }).highcharts();
     }
   }
 
 
   ////////////////////////////////////////
   if (gon.date_died_values){
-    $('#chart_date_died').highcharts({
+    window.charts.date_died = $('#chart_date_died').highcharts({
         chart: {
             type: 'column',
             marginLeft: 40,
@@ -520,7 +522,7 @@ $(document).ready(function() {
             name: gon.date_died_title,
             data: gon.date_died_values
         }]
-    });
+    }).highcharts();
   }
 
 
