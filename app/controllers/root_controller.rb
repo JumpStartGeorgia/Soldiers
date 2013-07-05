@@ -112,6 +112,12 @@ protected
       gon.date_died_values = x["values"]
     end
 
+    # date died filtered
+    x = Soldier.summary_date_died_filtered
+    if x.present?
+      gon.date_died_filtered = x
+    end
+
     # rank
     gon.rank_title = I18n.t('summary.titles.rank')
     x = Soldier.summary_rank

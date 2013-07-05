@@ -41,6 +41,7 @@ class Soldier < ActiveRecord::Base
   CACHE_KEY_INCIDENT_DESCRIPTION = "[locale]/incident_description"
   CACHE_KEY_INCIDENTS = "[locale]/incidents"
   CACHE_KEY_DATE_DIED = "[locale]/date_died"
+  CACHE_KEY_DATE_DIED_FILTERED = "[locale]/date_died_filtered"
   CACHE_KEY_PLACE_FROM = "[locale]/place_from"
   CACHE_KEY_LAST_UPDATED = "[locale]/last_updated"
 
@@ -177,6 +178,15 @@ class Soldier < ActiveRecord::Base
       h.to_json
     }
 
+    return JSON.parse(h)
+  end
+
+  # date died filtered
+  # just get unique dates that have deaths
+  def self.summary_date_died_filtered
+		h = JsonCache.fetch(CACHE_KEY_DATE_DIED_FILTERED.gsub("[locale]", I18n.locale.to_s)) {
+      Soldier.select("died_at").order("died_at").group_by{|x| x.died_at.beginning_of_month}.map{|x| x[0]}.to_json
+    }
     return JSON.parse(h)
   end
 
