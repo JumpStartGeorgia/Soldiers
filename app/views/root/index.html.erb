@@ -27,7 +27,17 @@
       <%= image_tag soldier.img.url, :alt => soldier.full_name %>
     </div>
     <div class="soldier_bio span6">
-      <h2><%= soldier.full_name %></h2>
+      <h2>
+        <%= soldier.full_name %>
+        <div class="social_profile">
+          <img src="/assets/share_shr.png" />
+          <div class="social_profile_hover">
+            <div class="addthis_toolbox addthis_default_style ">
+              <a class="addthis_counter addthis_pill_style" addthis:title='<%= "#{soldier.full_name} | #{I18n.t("app.common.app_name")}" %>'></a>
+            </div>
+          </div>
+        </div>
+      </h2>
       <div class="row-fluid">
         <div class="span6">
           <ul>

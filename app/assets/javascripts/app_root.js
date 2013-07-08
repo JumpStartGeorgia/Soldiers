@@ -1,5 +1,5 @@
 function update_social_links(id, new_url, new_text){
-
+/*
   // twitter
   $('#socialside #twitter #twitter-button').empty();
   var clone = $('#socialside #twitter #twitter-template').clone();
@@ -14,7 +14,7 @@ function update_social_links(id, new_url, new_text){
   // facebook
   $('#socialside .fb-like').attr('data-href', new_url);
   FB.XFBML.parse();
-
+*/
   // seems like addthis automatically reloads its links
 }
 

@@ -54,7 +54,29 @@ body.app_root {
         a {
           text-transform: uppercase;
           color: #c18086;
+          padding-top: 15px;
           
+        }
+      }
+      
+      #social_fb, #social_twitter, #social_share{
+        .opacity(50);
+        .transition(opacity .3s);
+        a{
+          padding-left: 5px;
+          padding-right: 0;
+          display: inline-block;
+        }
+        .social_hover {
+          cursor: pointer;
+          display: none;
+          transition: display 0.5s ease;
+        }
+        &:hover {
+          .opacity(100);
+          .social_hover{
+            display: inline-block;
+          }
         }
       }
     }

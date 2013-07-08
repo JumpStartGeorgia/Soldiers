@@ -67,6 +67,28 @@
 
     }
     .soldier_bio{
+      h2 .social_profile {
+        display: inline-block;
+        cursor: pointer;
+        .opacity(50);
+        .transition(opacity .3s);
+
+        .social_profile_hover {
+          cursor: pointer;
+          display: none;
+          transition: display 0.5s ease;
+        }
+        &:hover {
+          .opacity(100);
+          .social_profile_hover{
+            display: inline-block;
+          }
+        }
+        & > img {
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
 
     }
     .soldier_incident{
