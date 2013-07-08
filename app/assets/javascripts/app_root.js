@@ -197,9 +197,12 @@ $(document).ready(function() {
     });
     location.hash = "_";
 
-  ////////////////////////
-  // update social links
-  update_social_links(null, gon.root_url, gon.app_name);
+    // first reset all bar colors
+    $('.highcharts-series-group .highcharts-series rect').attr('fill', bar_color);
+
+    ////////////////////////
+    // update social links
+    update_social_links(null, gon.root_url, gon.app_name);
 
   });
   
