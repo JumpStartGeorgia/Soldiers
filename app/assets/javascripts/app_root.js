@@ -71,8 +71,10 @@ function highlight_chart_data_date_died (id)
   //var j = gon.date_died_filtered.indexOf($('#thumbs li a[data-id="' + id + '"]').data('date-died'));
   //$('#chart_date_died .highcharts-series-group .highcharts-series rect').eq(j).attr('fill', bar_color_highlight);
   var date = new Date($('#thumbs li a[data-id="' + id + '"]').data('date-died'));
-  var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  var value = date.getFullYear() + ' ' + months[date.getMonth()];
+  var value = date.getFullYear() + ' ' + gon.abbrv_month_names[date.getMonth()+1];
+
+//  var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+//  var value = date.getFullYear() + ' ' + months[date.getMonth()];
   for (var i in window.charts.date_died.series[0].data)
   {
     var d = window.charts.date_died.series[0].data[i];

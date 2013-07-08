@@ -14,6 +14,7 @@ class RootController < ApplicationController
         load_chart_gon
         gon.app_name = I18n.t('app.common.app_name')
         gon.root_url = root_url
+        gon.abbrv_month_names = I18n.t("date.abbr_month_names")
 
         render :layout => 'application_root' 
       }
@@ -44,7 +45,7 @@ class RootController < ApplicationController
             row = []
             row << soldier.first_name
             row << soldier.last_name
-            row <<  soldier.gender
+            row << soldier.gender
             row << soldier.born_at
             row << soldier.place_from
             row << soldier.rank
