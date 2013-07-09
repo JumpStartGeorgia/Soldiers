@@ -22,7 +22,9 @@ $(document).ready(function() {
         .attr("class",function(d){
           return d["properties"]["classname"]
         }).attr("region_name",function(d){
-          return d["properties"]["common_name"]
+          return d["properties"]["REGION"]
+        }).attr("count",function(d){
+          return d["properties"]["count"]
         });
 
   }
@@ -51,7 +53,9 @@ $(document).ready(function() {
         .attr("class",function(d){
           return d["properties"]["classname"]
         }).attr("region_name",function(d){
-          return d["properties"]["common_name"]
+          return d["properties"]["NAME_1"]
+        }).attr("count",function(d){
+          return d["properties"]["count"]
         });
 
   }
@@ -79,7 +83,9 @@ $(document).ready(function() {
         .attr("class",function(d){
           return d["properties"]["classname"]
         }).attr("region_name",function(d){
-          return d["properties"]["common_name"]
+          return d["properties"]["NAME_1"]
+        }).attr("count",function(d){
+          return d["properties"]["count"]
         });
 
   }

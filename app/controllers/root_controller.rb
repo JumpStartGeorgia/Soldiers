@@ -74,22 +74,6 @@ class RootController < ApplicationController
 
 protected
 
-  def load_map_gon
-    # georgia
-#    json = JSON.parse(File.open("#{Rails.root}/public/georgia_regions_#{I18n.locale}.json", "r") {|f| f.read()})
-    json = JSON.parse(File.open("#{Rails.root}/public/georgia.json", "r") {|f| f.read()})
-    gon.map_georgia = json
-
-    # afghan
-    json = JSON.parse(File.open("#{Rails.root}/public/afghan.json", "r") {|f| f.read()})
-    gon.map_afghan = json
-
-    # iraq
-    json = JSON.parse(File.open("#{Rails.root}/public/iraq.json", "r") {|f| f.read()})
-    gon.map_iraq = json
-  
-  end
-
   def load_chart_gon
     # text for print and export buttons in highcharts
     gon.highcharts_downloadPNG = t('highcharts.downloadPNG')
@@ -175,5 +159,58 @@ protected
       end
     end
 =end
+
+    # place from
+    @place_from = Soldier.summary_place_from
+    if @place_from.present?
+      gon.place_from_headers = @place_from["headers"]
+      gon.place_from_values = @place_from["values"]
+      gon.place_from_classes = @place_from["css_classes"]
+    end
+
+    # place died
+    @place_died = Soldier.summary_place_died
+    if @place_died.present?
+      gon.place_died_headers = @place_died["headers"]
+      gon.place_died_values = @place_died["values"]
+      gon.place_died_classes = @place_died["css_classes"]
+    end
   end
+
+  def load_map_gon
+    # georgia
+#    json = JSON.parse(File.open("#{Rails.root}/public/georgia_regions_#{I18n.locale}.json", "r") {|f| f.read()})
+    json = JSON.parse(File.open("#{Rails.root}/public/georgia.json", "r") {|f| f.read()})
+#    add_data_to_json(json, @place_from)
+    gon.map_georgia = json
+
+    # afghan
+    json = JSON.parse(File.open("#{Rails.root}/public/afghan.json", "r") {|f| f.read()})
+    add_data_to_json(json, @place_died)
+    gon.map_afghan = json
+
+    # iraq
+    json = JSON.parse(File.open("#{Rails.root}/public/iraq.json", "r") {|f| f.read()})
+    add_data_to_json(json, @place_died)
+    gon.map_iraq = json
+  
+  end
+
+  def add_data_to_json(json, data)
+    if json && data && !data.empty?
+      json['features'].each do |value|
+        index = data["headers"].index{|x| x == value['properties']['NAME_1']}
+        if index.present?
+Rails.logger.debug "found match for #{value['properties']['NAME_1']}"
+          value['properties']['count'] = data["values"][index]
+          value['properties']['classname'] = data["css_classes"][index]
+        else
+          value['properties']['count'] = 0
+          value['properties']['classname'] = nil
+        end
+      end
+    end
+  end
+
 end
+

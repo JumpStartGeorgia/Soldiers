@@ -194,7 +194,7 @@ class Soldier < ActiveRecord::Base
   def self.summary_place_from
 		h = JsonCache.fetch(CACHE_KEY_PLACE_FROM.gsub("[locale]", I18n.locale.to_s)) {
       x = Hash[SoldierTranslation.where(:locale => I18n.locale).count(:group => :place_from).sort_by{|k,v| -v}]
-      create_summary_array(x).to_json
+      create_summary_array_with_classes(x).to_json
     }
     return JSON.parse(h)
   end
@@ -241,7 +241,7 @@ class Soldier < ActiveRecord::Base
   def self.summary_place_died
 		h = JsonCache.fetch(CACHE_KEY_PLACE_DIED.gsub("[locale]", I18n.locale.to_s)) {
       x = Hash[SoldierTranslation.where(:locale => I18n.locale).count(:group => :place_died).sort_by{|k,v| -v}]
-      create_summary_array(x).to_json
+      create_summary_array_with_classes(x).to_json
     }
     return JSON.parse(h)
   end
@@ -378,6 +378,40 @@ protected
       data.keys.each do |key|
         h[:headers] << (key.nil? ? I18n.t('summary.unknown') : key)
         h[:values] << data[key]
+      end
+    end
+
+    return h
+  end
+
+  def self.create_summary_array_with_classes(data)
+    h = Hash.new
+    h[:headers] = []
+    h[:values] = []
+    h[:css_classes] = []
+
+    if data.present?
+      data.keys.each do |key|
+        h[:headers] << (key.nil? ? I18n.t('summary.unknown') : key)
+        h[:values] << data[key]
+        h[:css_classes] << case data[key]
+          when 0
+            "map_color0"
+          when 1
+            "map_color1"
+          when 2
+            "map_color2"
+          when 3
+            "map_color3"
+          when 4
+            "map_color4"
+          when 5
+            "map_color5"
+          when 6..10
+            "map_color6"
+          else
+            "map_color7"
+        end
       end
     end
 
