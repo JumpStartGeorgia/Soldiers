@@ -3,7 +3,7 @@ $(document).ready(function(){
   if (gon.edit_soldier){
 
 		$('#soldier_born_at').datepicker({
-				dateFormat: 'yy-dd-mm'
+				dateFormat: 'yy-mm-dd'
 		});
 
 		if (gon.born_at !== undefined &&
@@ -13,7 +13,7 @@ $(document).ready(function(){
 		}
 
 		$('#soldier_died_at').datepicker({
-				dateFormat: 'yy-dd-mm'
+				dateFormat: 'yy-mm-dd'
 		});
 
 		if (gon.died_at !== undefined &&

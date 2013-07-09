@@ -18,6 +18,21 @@ function update_social_links(id, new_url, new_text){
   // seems like addthis automatically reloads its links
 }
 
+function reset_profiles(){
+  $('#soldier_profiles .soldier_profile.active').slideUp(function(){
+    $('#thumbs li > a.active').removeClass('active');
+    $('#soldier_profiles .soldier_profile.active').removeClass('active');
+  });
+  location.hash = "_";
+
+  // first reset all bar colors
+  $('.highcharts-series-group .highcharts-series rect').attr('fill', bar_color);
+
+  ////////////////////////
+  // update social links
+  update_social_links(null, gon.root_url, gon.app_name);
+}
+
 function highlight_chart_data_age(id, chart_id, data_name){
   var items = $(chart_id + ' .highcharts-axis-labels text');
   for (var j=0; j<items.length; j++){
@@ -161,6 +176,12 @@ $(document).ready(function() {
     });
 
   $('#thumbs li > a').click(function () {
+    // if this photo is already active, hide everything
+    if ($(this).hasClass('active')){
+      reset_profiles();
+      return;
+    }
+
     if (load_soldier_profile($(this).data('id')) === false)
     {
       return;
@@ -191,19 +212,7 @@ $(document).ready(function() {
 
   // hide the profile section
   $('#soldier_profiles .soldier_profile .soldier_nav li.soldier_nav_close > a').click(function (){
-    $('#soldier_profiles .soldier_profile.active').slideUp(function(){
-      $('#thumbs li > a.active').removeClass('active');
-      $('#soldier_profiles .soldier_profile.active').removeClass('active');
-    });
-    location.hash = "_";
-
-    // first reset all bar colors
-    $('.highcharts-series-group .highcharts-series rect').attr('fill', bar_color);
-
-    ////////////////////////
-    // update social links
-    update_social_links(null, gon.root_url, gon.app_name);
-
+    reset_profiles()
   });
   
   // load the next one

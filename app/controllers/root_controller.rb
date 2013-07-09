@@ -12,6 +12,7 @@ class RootController < ApplicationController
         @total_dead = @soldiers.length
         @last_update = Soldier.last_update
         load_chart_gon
+        load_map_gon
         gon.app_name = I18n.t('app.common.app_name')
         gon.root_url = root_url
         gon.abbrv_month_names = I18n.t("date.abbr_month_names")
@@ -72,6 +73,22 @@ class RootController < ApplicationController
 
 
 protected
+
+  def load_map_gon
+    # georgia
+#    json = JSON.parse(File.open("#{Rails.root}/public/georgia_regions_#{I18n.locale}.json", "r") {|f| f.read()})
+    json = JSON.parse(File.open("#{Rails.root}/public/georgia.json", "r") {|f| f.read()})
+    gon.map_georgia = json
+
+    # afghan
+    json = JSON.parse(File.open("#{Rails.root}/public/afghan.json", "r") {|f| f.read()})
+    gon.map_afghan = json
+
+    # iraq
+    json = JSON.parse(File.open("#{Rails.root}/public/iraq.json", "r") {|f| f.read()})
+    gon.map_iraq = json
+  
+  end
 
   def load_chart_gon
     # text for print and export buttons in highcharts
