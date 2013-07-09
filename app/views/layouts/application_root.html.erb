@@ -149,9 +149,13 @@
 
     <footer class="clear">
 			<div id="left">
-        <%= link_to t('.download'), root_path(:format => 'csv') %>
+        <div id="fb_likebox">
+          <iframe id="fb_iframe" src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fferadi.info&amp;width=220&amp;height=70&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;show_border=false&amp;header=false&amp;" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:220px; height:70px;" allowTransparency="true"></iframe>
+        </div>
       </div>
 		  <div id="middle">
+        <%= link_to t('.download'), root_path(:format => 'csv') %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<%= t('.last_updated', :date => @last_update) %>
 			</div>
 			<div id="right" class="clear">
