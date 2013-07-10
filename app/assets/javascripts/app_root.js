@@ -1,3 +1,4 @@
+
 function update_social_links(id, new_url, new_text){
 /*
   // twitter
@@ -25,8 +26,13 @@ function reset_profiles(){
   });
   location.hash = "_";
 
-  // first reset all bar colors
+  // reset all bar colors
   $('.highcharts-series-group .highcharts-series rect').attr('fill', bar_color);
+
+  // reset map colors
+  clear_highlight_map('#map_georgia');
+  clear_highlight_map('#map_afghan');
+  clear_highlight_map('#map_iraq');
 
   ////////////////////////
   // update social links
@@ -103,6 +109,26 @@ function highlight_chart_data_date_died (id)
   })
 }
 
+function clear_highlight_map(map_id){
+  var items = $(map_id + ' svg g path');
+  for (var j=0; j<items.length; j++){
+    $(items[j]).attr('class', $(items[j]).attr('class_orig'));
+  }  
+}
+
+function highlight_map_shape(id, map_id, data_name){
+  clear_highlight_map(map_id);
+  var items = $(map_id + ' svg g path');
+  for (var j=0; j<items.length; j++){
+    var name = $(items[j]).attr('shape_name');
+    if (name == $('#thumbs li a[data-id="' + id + '"]').data(data_name)){
+      $(items[j]).attr('class', 'map_color_highlight');
+      break;
+    }
+  }  
+}
+
+
 function load_soldier_profile (id)
 {
   var profiles = $('#soldier_profiles .soldier_profile');
@@ -152,6 +178,13 @@ function load_soldier_profile (id)
     highlight_chart_data(id, '#chart_incident_type_'+i.toString(), 'incident-description');
   }
 */
+
+  // place from
+  highlight_map_shape(id, "#map_georgia", "region-from");
+  
+  // place died
+  highlight_map_shape(id, "#map_iraq", "place-died");
+  highlight_map_shape(id, "#map_afghan", "place-died");
 
   ////////////////////////
   // update social links

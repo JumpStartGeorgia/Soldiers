@@ -3,7 +3,7 @@ class Soldier < ActiveRecord::Base
 	require 'json'
   require 'json_cache'
 
-	translates :permalink, :first_name, :last_name, :place_from, :rank, :served_with, :country_died, :place_died, :incident_type, :incident_description
+	translates :permalink, :first_name, :last_name, :place_from, :region_from, :rank, :served_with, :country_died, :place_died, :incident_type, :incident_description, :region_from
 
 	has_attached_file :img, :url => "/system/photo/:id/:permalink.:extension",
                   :default_url => "/assets/missing.jpg"

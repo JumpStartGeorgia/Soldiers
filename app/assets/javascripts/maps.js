@@ -12,6 +12,9 @@ $(document).ready(function() {
       .attr("width", w + 40)
       .attr("height", h + 20);
 
+    var tooltip_georgia = d3.select("#maps #map_georgia").append("div")
+      .attr("class", "tooltip hidden");
+    
     var regions = map.append("g")
       .attr("id", "region");
 
@@ -21,10 +24,25 @@ $(document).ready(function() {
         .attr("d", path)
         .attr("class",function(d){
           return d["properties"]["classname"]
-        }).attr("region_name",function(d){
-          return d["properties"]["REGION"]
-        }).attr("count",function(d){
+        })
+        .attr("class_orig",function(d){
+          return d["properties"]["classname"]
+        })
+        .attr("shape_name",function(d){
+          return d["properties"]["Shape_Name"]
+        })
+        .attr("count",function(d){
           return d["properties"]["count"]
+        })
+        .on("mousemove", function(d,i) {
+          var mouse = d3.mouse(this);
+          tooltip_georgia
+            .classed("hidden", false)
+            .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
+            .html(d["properties"]["Shape_Name"] + "<br />" + d["properties"]["count"])
+        })
+        .on("mouseout",  function(d,i) {
+          tooltip_georgia.classed("hidden", true)
         });
 
   }
@@ -43,6 +61,9 @@ $(document).ready(function() {
       .attr("width", w + 40)
       .attr("height", h + 20);
 
+    var tooltip_afghan = d3.select("#maps #map_afghan").append("div")
+      .attr("class", "tooltip hidden");
+    
     var regions = map.append("g")
       .attr("id", "region");
 
@@ -52,10 +73,25 @@ $(document).ready(function() {
         .attr("d", path)
         .attr("class",function(d){
           return d["properties"]["classname"]
-        }).attr("region_name",function(d){
-          return d["properties"]["NAME_1"]
-        }).attr("count",function(d){
+        })
+        .attr("class_orig",function(d){
+          return d["properties"]["classname"]
+        })
+        .attr("shape_name",function(d){
+          return d["properties"]["Shape_Name"]
+        })
+        .attr("count",function(d){
           return d["properties"]["count"]
+        })
+        .on("mousemove", function(d,i) {
+          var mouse = d3.mouse(this);
+          tooltip_afghan
+            .classed("hidden", false)
+            .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
+            .html(d["properties"]["Shape_Name"] + "<br />" + d["properties"]["count"])
+        })
+        .on("mouseout",  function(d,i) {
+          tooltip_afghan.classed("hidden", true)
         });
 
   }
@@ -73,6 +109,10 @@ $(document).ready(function() {
       .attr("width", w + 40)
       .attr("height", h + 20);
 
+    var tooltip_iraq = d3.select("#maps #map_iraq").append("div")
+      .attr("class", "tooltip hidden");
+   
+
     var regions = map.append("g")
       .attr("id", "region");
 
@@ -82,10 +122,25 @@ $(document).ready(function() {
         .attr("d", path)
         .attr("class",function(d){
           return d["properties"]["classname"]
-        }).attr("region_name",function(d){
-          return d["properties"]["NAME_1"]
-        }).attr("count",function(d){
+        })
+        .attr("class_orig",function(d){
+          return d["properties"]["classname"]
+        })
+        .attr("shape_name",function(d){
+          return d["properties"]["Shape_Name"]
+        })
+        .attr("count",function(d){
           return d["properties"]["count"]
+        })
+        .on("mousemove", function(d,i) {
+          var mouse = d3.mouse(this);
+          tooltip_iraq
+            .classed("hidden", false)
+            .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
+            .html(d["properties"]["Shape_Name"] + "<br />" + d["properties"]["count"])
+        })
+        .on("mouseout",  function(d,i) {
+          tooltip_iraq.classed("hidden", true)
         });
 
   }

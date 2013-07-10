@@ -175,15 +175,35 @@
     & > div{
       display: inline-block;
       width: 350px;
+      position: relative;
       h3 {
         color: #fff;  
         text-align: center;
         font-size: 14px;
       }
 
+      .tooltip{
+        text-align: center;
+        color: #000; 
+        background: #fff; 
+        padding: .5em; 
+        text-shadow: #f5f5f5 0 1px 0;
+        border-radius: 2px; 
+        box-shadow: 0px 0px 2px 0px #a6a6a6; 
+        opacity: 0.9; 
+        position: absolute;
+        &.hidden{
+          display: none;
+        }
+      }
+
       svg g path{
         fill: #fff;
         stroke: #000;
+
+        &.map_color_highlight{
+          fill: #ab9b4d;
+        }
 
         &.map_color0{
           fill: #fff;
