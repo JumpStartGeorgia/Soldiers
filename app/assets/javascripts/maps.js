@@ -50,7 +50,7 @@ $(document).ready(function() {
           tooltip_georgia
             .classed("hidden", false)
             .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-            .html("<strong>" + d["properties"]["Shape_Name"] + "</strong><br />" + d["properties"]["count"]);
+            .html(d["properties"]["Shape_Name"] + "<br />" + d["properties"]["count"]);
           highlight_map_photos(this, 'region-from');
         })
         .on("mouseout",  function(d,i) {
@@ -101,7 +101,7 @@ $(document).ready(function() {
           tooltip_afghan
             .classed("hidden", false)
             .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-            .html("<strong>" + d["properties"]["Shape_Name"] + "</strong><br />" + gon.label_death + ": " + d["properties"]["count"]);
+            .html(d["properties"]["Shape_Name"] + "<br />" + d["properties"]["count"]);
           highlight_map_photos(this, 'place-died');
         })
         .on("mouseout",  function(d,i) {
@@ -152,7 +152,7 @@ $(document).ready(function() {
           tooltip_iraq
             .classed("hidden", false)
             .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-            .html("<strong>" + d["properties"]["Shape_Name"] + "</strong><br />" + gon.label_death + ": " + d["properties"]["count"]);
+            .html(d["properties"]["Shape_Name"] + "<br />" + d["properties"]["count"]);
           highlight_map_photos(this, 'place-died');
         })
         .on("mouseout",  function(d,i) {
