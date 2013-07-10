@@ -14,7 +14,8 @@ class SoldierTranslation < ActiveRecord::Base
     :place_died,
     :incident_type,
     :incident_description,
-    :permalink
+    :permalink,
+    :region_from
 
 
   validates :first_name, :last_name, :permalink, :presence => true

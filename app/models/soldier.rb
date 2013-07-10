@@ -43,6 +43,7 @@ class Soldier < ActiveRecord::Base
   CACHE_KEY_DATE_DIED = "[locale]/date_died"
   CACHE_KEY_DATE_DIED_FILTERED = "[locale]/date_died_filtered"
   CACHE_KEY_PLACE_FROM = "[locale]/place_from"
+  CACHE_KEY_REGION_FROM = "[locale]/region_from"
   CACHE_KEY_LAST_UPDATED = "[locale]/last_updated"
 
   def self.sorted
@@ -194,6 +195,15 @@ class Soldier < ActiveRecord::Base
   def self.summary_place_from
 		h = JsonCache.fetch(CACHE_KEY_PLACE_FROM.gsub("[locale]", I18n.locale.to_s)) {
       x = Hash[SoldierTranslation.where(:locale => I18n.locale).count(:group => :place_from).sort_by{|k,v| -v}]
+      create_summary_array_with_classes(x).to_json
+    }
+    return JSON.parse(h)
+  end
+
+  # region from
+  def self.summary_region_from
+		h = JsonCache.fetch(CACHE_KEY_REGION_FROM.gsub("[locale]", I18n.locale.to_s)) {
+      x = Hash[SoldierTranslation.where(:locale => I18n.locale).count(:group => :region_from).sort_by{|k,v| -v}]
       create_summary_array_with_classes(x).to_json
     }
     return JSON.parse(h)
@@ -401,16 +411,36 @@ protected
             "map_color1"
           when 2
             "map_color2"
+          when 3..6
+            "map_color3"
+          when 7..10
+            "map_color4"
+          else
+            "map_color5"
+=begin
+          when 0
+            "map_color0"
+          when 1
+            "map_color1"
+          when 2
+            "map_color2"
           when 3
             "map_color3"
           when 4
             "map_color4"
           when 5
             "map_color5"
-          when 6..10
+          when 6
             "map_color6"
-          else
+          when 7
             "map_color7"
+          when 8
+            "map_color8"
+          when 9
+            "map_color9"
+          else
+            "map_color10"
+=end        
         end
       end
     end

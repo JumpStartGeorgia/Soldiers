@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130626090631) do
+ActiveRecord::Schema.define(:version => 20130710075155) do
 
   create_table "soldier_translations", :force => true do |t|
     t.integer  "soldier_id"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20130626090631) do
     t.string   "permalink"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "region_from"
   end
 
   add_index "soldier_translations", ["country_died"], :name => "index_soldier_translations_on_country_died"
@@ -37,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20130626090631) do
   add_index "soldier_translations", ["place_died"], :name => "index_soldier_translations_on_place_died"
   add_index "soldier_translations", ["place_from"], :name => "index_soldier_translations_on_place_from"
   add_index "soldier_translations", ["rank"], :name => "index_soldier_translations_on_rank"
+  add_index "soldier_translations", ["region_from"], :name => "index_soldier_translations_on_region_from"
   add_index "soldier_translations", ["served_with"], :name => "index_soldier_translations_on_served_with"
   add_index "soldier_translations", ["soldier_id"], :name => "index_soldier_translations_on_soldier_id"
 

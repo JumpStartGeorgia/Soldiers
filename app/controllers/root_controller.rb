@@ -159,39 +159,26 @@ protected
       end
     end
 =end
-
-    # place from
-    @place_from = Soldier.summary_place_from
-    if @place_from.present?
-      gon.place_from_headers = @place_from["headers"]
-      gon.place_from_values = @place_from["values"]
-      gon.place_from_classes = @place_from["css_classes"]
-    end
-
-    # place died
-    @place_died = Soldier.summary_place_died
-    if @place_died.present?
-      gon.place_died_headers = @place_died["headers"]
-      gon.place_died_values = @place_died["values"]
-      gon.place_died_classes = @place_died["css_classes"]
-    end
   end
 
   def load_map_gon
+    region_from = Soldier.summary_region_from
+    place_died = Soldier.summary_place_died
+
     # georgia
 #    json = JSON.parse(File.open("#{Rails.root}/public/georgia_regions_#{I18n.locale}.json", "r") {|f| f.read()})
     json = JSON.parse(File.open("#{Rails.root}/public/georgia.json", "r") {|f| f.read()})
-#    add_data_to_json(json, @place_from)
+    add_data_to_json(json, region_from)
     gon.map_georgia = json
 
     # afghan
     json = JSON.parse(File.open("#{Rails.root}/public/afghan.json", "r") {|f| f.read()})
-    add_data_to_json(json, @place_died)
+    add_data_to_json(json, place_died)
     gon.map_afghan = json
 
     # iraq
     json = JSON.parse(File.open("#{Rails.root}/public/iraq.json", "r") {|f| f.read()})
-    add_data_to_json(json, @place_died)
+    add_data_to_json(json, place_died)
     gon.map_iraq = json
   
   end
@@ -199,9 +186,9 @@ protected
   def add_data_to_json(json, data)
     if json && data && !data.empty?
       json['features'].each do |value|
-        index = data["headers"].index{|x| x == value['properties']['NAME_1']}
+        index = data["headers"].index{|x| x == value['properties']['Shape_Name']}
         if index.present?
-Rails.logger.debug "found match for #{value['properties']['NAME_1']}"
+Rails.logger.debug "******************** found match for #{value['properties']['NAME_1']}"
           value['properties']['count'] = data["values"][index]
           value['properties']['classname'] = data["css_classes"][index]
         else
