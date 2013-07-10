@@ -1,3 +1,15 @@
+function highlight_map_photos(ths, dataname){
+  var shape_name = $(ths).attr('shape_name');
+  var list = $('#thumbs > ul > li > a');
+  $('#thumbs').data('activeindex', list.filter('.active').parent().index());
+  list.removeClass('active').filter('[data-' + dataname + '="' + shape_name + '"]').addClass('active');
+ }
+
+function reset_highlight_map_photos(){
+ $('#thumbs > ul > li > a').removeClass('active').eq($('#thumbs').data('activeindex')).addClass('active');
+}
+
+
 $(document).ready(function() {
   if (gon.map_georgia) {
 //    var proj = d3.geo.mercator().scale(12000).translate([-1200,1650])
@@ -39,10 +51,12 @@ $(document).ready(function() {
           tooltip_georgia
             .classed("hidden", false)
             .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-            .html(d["properties"]["Shape_Name"] + "<br />" + d["properties"]["count"])
+            .html(d["properties"]["Shape_Name"] + "<br />" + d["properties"]["count"]);
+          highlight_map_photos(this, 'region-from');
         })
         .on("mouseout",  function(d,i) {
-          tooltip_georgia.classed("hidden", true)
+          tooltip_georgia.classed("hidden", true);
+          reset_highlight_map_photos();
         });
 
   }
@@ -88,10 +102,12 @@ $(document).ready(function() {
           tooltip_afghan
             .classed("hidden", false)
             .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-            .html(d["properties"]["Shape_Name"] + "<br />" + d["properties"]["count"])
+            .html(d["properties"]["Shape_Name"] + "<br />" + d["properties"]["count"]);
+          highlight_map_photos(this, 'place-died');
         })
         .on("mouseout",  function(d,i) {
-          tooltip_afghan.classed("hidden", true)
+          tooltip_afghan.classed("hidden", true);
+          reset_highlight_map_photos();
         });
 
   }
@@ -137,10 +153,12 @@ $(document).ready(function() {
           tooltip_iraq
             .classed("hidden", false)
             .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-            .html(d["properties"]["Shape_Name"] + "<br />" + d["properties"]["count"])
+            .html(d["properties"]["Shape_Name"] + "<br />" + d["properties"]["count"]);
+          highlight_map_photos(this, 'place-died');
         })
         .on("mouseout",  function(d,i) {
-          tooltip_iraq.classed("hidden", true)
+          tooltip_iraq.classed("hidden", true);
+          reset_highlight_map_photos();
         });
 
   }
