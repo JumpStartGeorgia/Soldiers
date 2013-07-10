@@ -16,6 +16,7 @@ class RootController < ApplicationController
         gon.app_name = I18n.t('app.common.app_name')
         gon.root_url = root_url
         gon.abbrv_month_names = I18n.t("date.abbr_month_names")
+        gon.label_death = I18n.t('summary.deaths')
 
         render :layout => 'application_root' 
       }
