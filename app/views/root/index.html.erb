@@ -52,7 +52,7 @@
             </li>
             <li>
               <strong><%= t('.hometown') %>:</strong>
-              <%= soldier.place_from %>
+              <%= soldier.place_from.present? ? "#{soldier.place_from}, #{soldier.region_from}" : nil %>
             </li>
             <li>
               <strong><%= model_class_tr.human_attribute_name(:rank) %>:</strong>

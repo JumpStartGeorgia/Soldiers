@@ -1,8 +1,10 @@
 var bar_color = '#f1dce1';
-var bar_color_highlight = '#a31e33';
+//var bar_color_highlight = '#a31e33';
+var bar_color_highlight = '#ab9b4d';
 var bar_height = 10;
 var axis_label_width = '150px';
 var axis_label_width_wider = '250px';
+var chart_line_color = '#c9c9c9';
 
 $(document).ready(function() {
 
@@ -32,8 +34,8 @@ $(document).ready(function() {
             title: {
                 text: null
             },
-            lineColor: '#c9c9c9',
-            tickColor: '#c9c9c9',
+            lineColor: chart_line_color,
+            tickColor: chart_line_color,
             labels: {
               style: {
                   width: axis_label_width
@@ -58,13 +60,7 @@ $(document).ready(function() {
             },
             series: {
 	            pointWidth: bar_height,
-              color: bar_color,
-              events: {
-                mouseOver: function (e)
-                {
-                  //console.log(this);
-                }
-              }
+              color: bar_color
   	        }
         },
         legend: {
@@ -106,8 +102,8 @@ $(document).ready(function() {
             title: {
                 text: null
             },
-            lineColor: '#c9c9c9',
-            tickColor: '#c9c9c9',
+            lineColor: chart_line_color,
+            tickColor: chart_line_color,
             labels: {
               style: {
                   width: axis_label_width
@@ -166,8 +162,8 @@ $(document).ready(function() {
             title: {
                 text: null
             },
-            lineColor: '#c9c9c9',
-            tickColor: '#c9c9c9',
+            lineColor: chart_line_color,
+            tickColor: chart_line_color,
             labels: {
               style: {
                   width: axis_label_width
@@ -226,8 +222,8 @@ $(document).ready(function() {
             title: {
                 text: null
             },
-            lineColor: '#c9c9c9',
-            tickColor: '#c9c9c9',
+            lineColor: chart_line_color,
+            tickColor: chart_line_color,
             labels: {
               style: {
                   width: axis_label_width_wider
@@ -286,8 +282,8 @@ $(document).ready(function() {
             title: {
                 text: null
             },
-            lineColor: '#c9c9c9',
-            tickColor: '#c9c9c9',
+            lineColor: chart_line_color,
+            tickColor: chart_line_color,
             labels: {
               style: {
                   width: axis_label_width_wider
@@ -354,8 +350,8 @@ $(document).ready(function() {
             title: {
                 text: null
             },
-            lineColor: '#c9c9c9',
-            tickColor: '#c9c9c9',
+            lineColor: chart_line_color,
+            tickColor: chart_line_color,
             labels: {
               style: {
                   width: axis_label_width_wider
@@ -415,8 +411,8 @@ $(document).ready(function() {
             title: {
                 text: null
             },
-            lineColor: '#c9c9c9',
-            tickColor: '#c9c9c9',
+            lineColor: chart_line_color,
+            tickColor: chart_line_color,
             labels: {
               style: {
                   width: axis_label_width
@@ -483,8 +479,8 @@ $(document).ready(function() {
                 month: '%d %b'
             },
             tickInterval: 10,
-            lineColor: '#c9c9c9',
-            tickColor: '#c9c9c9'
+            lineColor: chart_line_color,
+            tickColor: chart_line_color
         },
         yAxis: {
             min: 0,
@@ -570,7 +566,7 @@ $(document).ready(function() {
 
    var list = $('#thumbs > ul > li > a');
 
-   $('#thumbs').data('activeindex', list.filter('.active').parent().index());
+//   $('#thumbs').data('activeindex', list.filter('.active').parent().index());
 
    if (dataname == 'age')
    {

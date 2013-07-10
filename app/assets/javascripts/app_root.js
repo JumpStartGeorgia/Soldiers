@@ -34,6 +34,9 @@ function reset_profiles(){
   clear_highlight_map('#map_afghan');
   clear_highlight_map('#map_iraq');
 
+  // clear which thumb is active
+  $('#thumbs').data('activeindex', -1);
+
   ////////////////////////
   // update social links
   update_social_links(null, gon.root_url, gon.app_name);
@@ -149,9 +152,13 @@ function load_soldier_profile (id)
     target.addClass('active').slideDown();
   }
 
+  // remember which thumb is active
+  $('#thumbs').data('activeindex', $('#thumbs li a[data-id="' + id + '"]').parent().index());
+
   // highlight the matching chart bars
   // - first reset all bar colors
   $('.highcharts-series-group .highcharts-series rect').attr('fill', bar_color);
+  
   // gender
   highlight_chart_data(id, '#chart_gender', 'gender');
 

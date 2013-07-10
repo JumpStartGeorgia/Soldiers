@@ -1,12 +1,11 @@
 function highlight_map_photos(ths, dataname){
   var shape_name = $(ths).attr('shape_name');
   var list = $('#thumbs > ul > li > a');
-  $('#thumbs').data('activeindex', list.filter('.active').parent().index());
   list.removeClass('active').filter('[data-' + dataname + '="' + shape_name + '"]').addClass('active');
  }
 
 function reset_highlight_map_photos(){
- $('#thumbs > ul > li > a').removeClass('active').eq($('#thumbs').data('activeindex')).addClass('active');
+  $('#thumbs > ul > li > a').removeClass('active').eq($('#thumbs').data('activeindex')).addClass('active');
 }
 
 
