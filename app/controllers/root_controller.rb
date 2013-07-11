@@ -16,7 +16,6 @@ class RootController < ApplicationController
         gon.app_name = I18n.t('app.common.app_name')
         gon.root_url = root_url
         gon.abbrv_month_names = I18n.t("date.abbr_month_names")
-        gon.label_death = I18n.t('summary.deaths')
 
         render :layout => 'application_root' 
       }
@@ -170,17 +169,23 @@ protected
 #    json = JSON.parse(File.open("#{Rails.root}/public/georgia_regions_#{I18n.locale}.json", "r") {|f| f.read()})
     json = JSON.parse(File.open("#{Rails.root}/public/georgia.json", "r") {|f| f.read()})
     add_data_to_json(json, region_from)
-    gon.map_georgia = json
+#    gon.map_georgia = json
+    gon.map_georgia = true
+    File.open("#{Rails.root}/public/georgia_with_data.json", 'w') {|f| f.write(json.to_json) }
 
     # afghan
     json = JSON.parse(File.open("#{Rails.root}/public/afghan.json", "r") {|f| f.read()})
     add_data_to_json(json, place_died)
-    gon.map_afghan = json
+#    gon.map_afghan = json
+    gon.map_afghan = true
+    File.open("#{Rails.root}/public/afghan_with_data.json", 'w') {|f| f.write(json.to_json) }
 
     # iraq
     json = JSON.parse(File.open("#{Rails.root}/public/iraq.json", "r") {|f| f.read()})
     add_data_to_json(json, place_died)
-    gon.map_iraq = json
+#    gon.map_iraq = json
+    gon.map_iraq = true
+    File.open("#{Rails.root}/public/iraq_with_data.json", 'w') {|f| f.write(json.to_json) }
   
   end
 
@@ -189,7 +194,6 @@ protected
       json['features'].each do |value|
         index = data["headers"].index{|x| x == value['properties']['Shape_Name_' + I18n.locale.to_s]}
         if index.present?
-Rails.logger.debug "******************** found match for #{value['properties']['NAME_1']}"
           value['properties']['count'] = data["values"][index]
           value['properties']['classname'] = data["css_classes"][index]
         else
