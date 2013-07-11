@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class AddRegionColData < ActiveRecord::Migration
+  require 'json_cache'
   def up
-    require 'json_cache'
   
     SoldierTranslation.where(:place_from => 'Akhalgori').update_all(:region_from => 'Mtskheta-Mtianeti')
     SoldierTranslation.where(:place_from => 'ახალგორი').update_all(:region_from => 'მცხეთა-მთიანეთი')
