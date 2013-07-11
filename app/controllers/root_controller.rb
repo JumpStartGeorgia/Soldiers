@@ -32,6 +32,7 @@ class RootController < ApplicationController
           row << I18n.t('activerecord.attributes.soldier.gender')
           row << I18n.t('activerecord.attributes.soldier.born_at')
           row << I18n.t('activerecord.attributes.soldier_translation.from')
+          row << I18n.t('activerecord.attributes.soldier_translation.region_from')
           row << I18n.t('activerecord.attributes.soldier_translation.rank')
           row << I18n.t('activerecord.attributes.soldier_translation.served_with')
           row << I18n.t('activerecord.attributes.soldier_translation.country_died')
@@ -49,6 +50,7 @@ class RootController < ApplicationController
             row << soldier.gender
             row << soldier.born_at
             row << soldier.place_from
+            row << soldier.region_from
             row << soldier.rank
             row << soldier.served_with
             row << soldier.country_died

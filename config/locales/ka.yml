@@ -24,6 +24,7 @@ ka:
         first_name: სახელი
         last_name: გვარი
         from: საცხოვრებელი ადგილი 
+        region_from: რეგიონიდან
         rank: რანგი
         served_with: მსახურობდა ბატალიონი
         country_died: გარდაცვალების ადგილი

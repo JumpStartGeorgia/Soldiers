@@ -24,6 +24,7 @@ en:
         first_name: First Name
         last_name: Last Name
         from: Place From
+        region_from: Region From
         rank: Rank
         served_with: Battalion Served With
         country_died: Theater
