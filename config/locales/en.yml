@@ -41,7 +41,6 @@ en:
     downloadSVG: "Download SVG vector image"
     printChart: "Print chart"
   summary:
-    deaths: Deaths
     male: Male
     female: Female
     unknown: Unknown

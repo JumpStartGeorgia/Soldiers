@@ -41,7 +41,6 @@ ka:
     downloadSVG: "ჩამოტვირთე SVG ვექტორული გამოსახულება"
     printChart: "ამობეჭდე გრაფიკი"
   summary:
-    deaths: Deaths
     male: მამრობითი
     female: მდედრობითი
     unknown: უცნობი

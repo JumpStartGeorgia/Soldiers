@@ -1,3 +1,4 @@
+var locale = 'ka';
 
 function update_social_links(id, new_url, new_text){
 /*
@@ -202,7 +203,8 @@ function load_soldier_profile (id)
 }
 
 $(document).ready(function() {
-
+    locale = I18n.locale;
+    
     $(window).load(function(){
       // if name exists in hash, then show that profile
       if (location.hash != undefined && location.hash.length > 1 && location.hash != "#_"){

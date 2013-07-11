@@ -40,7 +40,7 @@ $(document).ready(function() {
           return d["properties"]["classname"]
         })
         .attr("shape_name",function(d){
-          return d["properties"]["Shape_Name"]
+          return d["properties"]["Shape_Name_" + locale]
         })
         .attr("count",function(d){
           return d["properties"]["count"]
@@ -50,7 +50,7 @@ $(document).ready(function() {
           tooltip_georgia
             .classed("hidden", false)
             .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-            .html(d["properties"]["Shape_Name"] + "<br />" + d["properties"]["count"]);
+            .html(d["properties"]["Shape_Name_" + locale] + "<br />" + d["properties"]["count"]);
           highlight_map_photos(this, 'region-from');
         })
         .on("mouseout",  function(d,i) {
@@ -91,7 +91,7 @@ $(document).ready(function() {
           return d["properties"]["classname"]
         })
         .attr("shape_name",function(d){
-          return d["properties"]["Shape_Name"]
+          return d["properties"]["Shape_Name_" + locale]
         })
         .attr("count",function(d){
           return d["properties"]["count"]
@@ -101,7 +101,7 @@ $(document).ready(function() {
           tooltip_afghan
             .classed("hidden", false)
             .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-            .html(d["properties"]["Shape_Name"] + "<br />" + d["properties"]["count"]);
+            .html(d["properties"]["Shape_Name_" + locale] + "<br />" + d["properties"]["count"]);
           highlight_map_photos(this, 'place-died');
         })
         .on("mouseout",  function(d,i) {
@@ -142,7 +142,7 @@ $(document).ready(function() {
           return d["properties"]["classname"]
         })
         .attr("shape_name",function(d){
-          return d["properties"]["Shape_Name"]
+          return d["properties"]["Shape_Name_" + locale]
         })
         .attr("count",function(d){
           return d["properties"]["count"]
@@ -152,7 +152,7 @@ $(document).ready(function() {
           tooltip_iraq
             .classed("hidden", false)
             .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
-            .html(d["properties"]["Shape_Name"] + "<br />" + d["properties"]["count"]);
+            .html(d["properties"]["Shape_Name_" + locale] + "<br />" + d["properties"]["count"]);
           highlight_map_photos(this, 'place-died');
         })
         .on("mouseout",  function(d,i) {

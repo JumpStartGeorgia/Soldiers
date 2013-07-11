@@ -187,7 +187,7 @@ protected
   def add_data_to_json(json, data)
     if json && data && !data.empty?
       json['features'].each do |value|
-        index = data["headers"].index{|x| x == value['properties']['Shape_Name']}
+        index = data["headers"].index{|x| x == value['properties']['Shape_Name_' + I18n.locale.to_s]}
         if index.present?
 Rails.logger.debug "******************** found match for #{value['properties']['NAME_1']}"
           value['properties']['count'] = data["values"][index]
