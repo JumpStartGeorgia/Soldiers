@@ -9,6 +9,7 @@
     a {
       display: block;
       position: relative;
+      background-color: #fff;
       &:hover img:last-child, img:first-child, &.active img:last-child {
         .opacity(100);
       }
@@ -127,8 +128,10 @@
 
 #charts{
   background-color: #fff;
+  text-align: center;
   & > div{
-    float: left;
+    vertical-align: top;
+    display: inline-block;
     width: 200px;
     height: 125px;
     margin: 15px;
@@ -137,8 +140,7 @@
       min-height: 155px;
     }
     &#chart_date_died{
-      float: none;
-      clear: both;
+      display: block;
       width: 95%;
       min-height: 250px;
       margin: 15px auto;
@@ -158,6 +160,10 @@
 
   .highcharts-contextmenu{
     top: 8px;
+  }
+  
+  .highcharts-series rect:hover{
+    cursor: pointer;
   }
 }
 
@@ -200,6 +206,10 @@
       svg g path{
         fill: #fff;
         stroke: #000;
+
+        &:hover{
+          cursor: pointer;
+        }
 
         &.map_color_highlight{
           fill: #ab9b4d;

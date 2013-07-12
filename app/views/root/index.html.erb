@@ -98,15 +98,15 @@
           </a>
         </li>
         <li class="soldier_nav_next">
-          <a href="javascript:;">
-            <%= image_tag ">.jpg", :alt => 'next', :title => 'next' %>
-            <%= image_tag ">_hover.jpg", :alt => 'next', :title => 'next' %>
+          <a href="javascript:;" data-id="<%= soldier.id %>">
+            <%= image_tag ">.jpg", :alt => t('helpers.links.next'), :title => t('helpers.links.next') %>
+            <%= image_tag ">_hover.jpg", :alt => t('helpers.links.next'), :title => t('helpers.links.next') %>
           </a>
         </li>
         <li class="soldier_nav_previous">
-          <a href="javascript:;">
-            <%= image_tag "<.jpg", :alt => 'previous', :title => 'previous' %>
-            <%= image_tag "<_hover.jpg", :alt => 'previous', :title => 'previous' %>
+          <a href="javascript:;" data-id="<%= soldier.id %>">
+            <%= image_tag "<.jpg", :alt => t('helpers.links.previous'), :title => t('helpers.links.previous') %>
+            <%= image_tag "<_hover.jpg", :alt => t('helpers.links.previous'), :title => t('helpers.links.previous') %>
           </a>
         </li>
       </ul>

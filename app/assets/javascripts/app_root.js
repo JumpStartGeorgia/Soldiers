@@ -239,8 +239,9 @@ $(document).ready(function() {
     });
 
   $('#thumbs li > a').click(function () {
-    // if this photo is already active, hide everything
-    if ($(this).hasClass('active')){
+    // if this photo is for the profile that is open, hide everything
+    var was_active = $('#soldier_profiles .soldier_profile.active');
+    if (was_active.length == 1 && $(this).data('id') == $(was_active).data('id')){
       reset_profiles();
       return;
     }
@@ -280,9 +281,11 @@ $(document).ready(function() {
   
   // load the next one
   $('#soldier_profiles .soldier_profile .soldier_nav li.soldier_nav_next > a').click(function (){
-    var new_item = $('#thumbs li > a.active').parent().next().children();
+    var id = $(this).data('id');
+    var parent = $('#thumbs li > a[data-id="' + id + '"]').parent();
+    var new_item = $(parent).next().children();
     // if this is the last item in the list, go back to the first one
-    if ($('#thumbs li > a.active').parent().is('li:last-child')){
+    if ($(parent).is('li:last-child')){
       new_item = $('#thumbs li:first-child').children();
     }
 
@@ -291,6 +294,7 @@ $(document).ready(function() {
     {
       return;
     }
+    
     $('#thumbs li > a.active').removeClass('active');
     $(new_item).addClass('active');
     location.hash = $(new_item).data('permalink');
@@ -298,12 +302,13 @@ $(document).ready(function() {
   
   // load the previous one
   $('#soldier_profiles .soldier_profile .soldier_nav li.soldier_nav_previous > a').click(function (){
-    var new_item = $('#thumbs li > a.active').parent().prev().children();
+    var id = $(this).data('id');
+    var parent = $('#thumbs li > a[data-id="' + id + '"]').parent();
+    var new_item = $(parent).prev().children();
     // if this is the first item in the list, go back to the last one
-    if ($('#thumbs li > a.active').parent().is('li:first-child')){
+    if ($(parent).is('li:first-child')){
       new_item = $('#thumbs li:last-child').children();
     }
-
 
     if (load_soldier_profile($(new_item).data('id')) === false)
     {

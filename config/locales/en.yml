@@ -68,6 +68,8 @@ en:
       cancel: Cancel
       reset: Reset
       view: View
+      next: Next
+      previous: Previous
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
