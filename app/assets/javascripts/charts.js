@@ -1,7 +1,8 @@
 var bar_color = '#f1dce1';
 //var bar_color_highlight = '#a31e33';
 var bar_color_highlight = '#ab9b4d';
-var bar_height = 10;
+var bar_height = 13;
+var date_died_bar_height = 9;
 var axis_label_width = '150px';
 var axis_label_width_wider = '250px';
 var chart_line_color = '#c9c9c9';
@@ -499,7 +500,7 @@ $(document).ready(function() {
                 }
             },
             series: {
-	            pointWidth: bar_height,
+	            pointWidth: date_died_bar_height,
               color: bar_color
   	        }
         },
