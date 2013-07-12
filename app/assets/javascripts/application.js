@@ -32,6 +32,8 @@ $(document).ready(function(){
 });
 
 
+
+
 var $window = $(window);
 $window.load(function ()
 {
@@ -40,13 +42,11 @@ $window.load(function ()
   var starting_top = thumbs.offset().top,
   height = thumbs.outerHeight(true);
   thumbs.css({top: starting_top, position: 'absolute', left: 0, right: 0, zIndex: 1020});
-  thumbs.before('<div id="thumbs-placeholder" style="width: 100%; height: ' + height + 'px;"></div>');
+  var placeholder = thumbs.before('<div id="thumbs-placeholder" style="width: 100%; height: ' + height + 'px;"></div>').prev();
 
-  $window.scroll(function ()
+  $window.scroll(function (e)
   {
     var header_height = $('.navbar-fixed-top').outerHeight(true);//$('#center_header > a').outerHeight(true);
-    var thumbs = $('#thumbs'),
-    placeholder = $('#thumbs-placeholder');
     if (placeholder.offset().top - header_height <= $window.scrollTop())
     {
       if (thumbs.css('position') != 'fixed')
@@ -58,6 +58,11 @@ $window.load(function ()
     {
       thumbs.css({position: 'absolute', top: starting_top});
     }
+  });
+
+  $window.resize(function ()
+  {
+    
   });
 
 
