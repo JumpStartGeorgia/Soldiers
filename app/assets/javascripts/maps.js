@@ -52,11 +52,14 @@ $(document).ready(function() {
               .classed("hidden", false)
               .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
               .html(d["properties"]["Shape_Name_" + locale] + "<br />" + d["properties"]["count"]);
-            highlight_map_photos(this, 'region-from');
           })
           .on("mouseout",  function(d,i) {
             tooltip_georgia.classed("hidden", true);
-            reset_highlight_map_photos();
+          //reset_highlight_map_photos();
+          })
+          .on('click', function (d, i)
+          {
+            highlight_map_photos(this, 'region-from');
           });
     });
 
@@ -104,11 +107,14 @@ $(document).ready(function() {
               .classed("hidden", false)
               .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
               .html(d["properties"]["Shape_Name_" + locale] + "<br />" + d["properties"]["count"]);
-            highlight_map_photos(this, 'place-died');
           })
           .on("mouseout",  function(d,i) {
             tooltip_afghan.classed("hidden", true);
-            reset_highlight_map_photos();
+          //reset_highlight_map_photos();
+          })
+          .on('click', function (d, i)
+          {
+            highlight_map_photos(this, 'place-died');
           });
     });
   }
@@ -154,11 +160,14 @@ $(document).ready(function() {
               .classed("hidden", false)
               .attr("style", "left:"+(mouse[0]+25)+"px;top:"+mouse[1]+"px")
               .html(d["properties"]["Shape_Name_" + locale] + "<br />" + d["properties"]["count"]);
-            highlight_map_photos(this, 'place-died');
           })
           .on("mouseout",  function(d,i) {
             tooltip_iraq.classed("hidden", true);
-            reset_highlight_map_photos();
+          //reset_highlight_map_photos();
+          })
+          .on('click', function (d, i)
+          {
+            highlight_map_photos(this, 'place-died');
           });
     });
   }

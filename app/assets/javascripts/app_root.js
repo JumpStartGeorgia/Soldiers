@@ -19,6 +19,22 @@ function update_social_links(id, new_url, new_text){
   // seems like addthis automatically reloads its links
 }
 
+function reset_bar_colors ()
+{
+  for (var i in window.charts)
+  {
+    var c = window.charts[i];
+    if (typeof c.last_updated_index != 'undefined')
+    {
+      c.series[0].data[c.last_updated_index].update({color: bar_color});
+    }
+    else
+    {
+      //console.log('no last index for ', c);
+    }
+  }
+}
+
 function reset_profiles(){
   $('#soldier_profiles .soldier_profile.active').slideUp(function(){
     $('#thumbs li > a.active').removeClass('active');
@@ -27,7 +43,8 @@ function reset_profiles(){
   location.hash = "_";
 
   // reset all bar colors
-  $('.highcharts-series-group .highcharts-series rect').attr('fill', bar_color);
+//$('.highcharts-series-group .highcharts-series rect').attr('fill', bar_color);
+  reset_bar_colors();
 
   // reset map colors
   clear_highlight_map('#map_georgia');
@@ -59,9 +76,11 @@ function highlight_chart_data_age(id, chart_id, data_name){
 
     if (nums[0] <= $('#thumbs li a[data-id="' + id + '"]').data(data_name) && nums[1] >= $('#thumbs li a[data-id="' + id + '"]').data(data_name)){
       // found match, now highlight the correct bar
-      window.charts[chart_id.replace('#chart_', '')].series[0].data[j].update({
+      var chartname = chart_id.replace('#chart_', '');
+      window.charts[chartname].series[0].data[j].update({
         color: bar_color_highlight
-      })
+      });
+      window.charts[chartname].last_updated_index = j;
       break;
     }
   }
@@ -82,9 +101,11 @@ function highlight_chart_data(id, chart_id, data_name){
     if (t == $('#thumbs li a[data-id="' + id + '"]').data(data_name)){
       // found match, now highlight the correct bar
       //$(chart_id + ' .highcharts-series-group .highcharts-series rect').eq(j).attr('fill', bar_color_highlight);
-      window.charts[chart_id.replace('#chart_', '')].series[0].data[j].update({
+      var chartname = chart_id.replace('#chart_', '');
+      window.charts[chartname].series[0].data[j].update({
         color: bar_color_highlight
-      })
+      });
+      window.charts[chartname].last_updated_index = j;
       break;
     }
   }
@@ -109,7 +130,8 @@ function highlight_chart_data_date_died (id)
   }
   window.charts.date_died.series[0].data[i].update({
     color: bar_color_highlight
-  })
+  });
+  window.charts.date_died.last_updated_index = i;
 }
 
 function clear_highlight_map(map_id){
@@ -157,7 +179,8 @@ function load_soldier_profile (id)
 
   // highlight the matching chart bars
   // - first reset all bar colors
-  $('.highcharts-series-group .highcharts-series rect').attr('fill', bar_color);
+//$('.highcharts-series-group .highcharts-series rect').attr('fill', bar_color);
+  reset_bar_colors();
   
   // gender
   highlight_chart_data(id, '#chart_gender', 'gender');

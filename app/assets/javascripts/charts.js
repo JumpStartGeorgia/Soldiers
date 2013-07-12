@@ -552,10 +552,27 @@ $(document).ready(function() {
 
 
 
- $('.highcharts-series.highcharts-tracker rect').hover(function ()
+ $('.highcharts-series.highcharts-tracker rect').click(function ()
  {
-   var svg = $(this).closest('svg'),
-   value = svg.find('.highcharts-axis-labels text').eq($(this).index()).text(),
+   var self = $(this),
+   svg = self.closest('svg');
+
+ /*
+   var clickindex = svg.data('clickindex');
+
+   if (clickindex != self.index())
+   {
+     svg.data('clickindex', self.index());
+   }
+   else
+   {
+     svg.data('clickindex', null);
+     $('#thumbs > ul > li > a').removeClass('active').eq($('#thumbs').data('activeindex')).addClass('active');
+     return;
+   }
+ */
+
+   var value = svg.find('.highcharts-axis-labels text').eq(self.index()).text(),
    title = svg.find('.highcharts-title').text();
    var result = search_recursive(gon, title, 1);
    if (result == false)
@@ -571,11 +588,12 @@ $(document).ready(function() {
    if (dataname == 'age')
    {
      var range = value.split('-');
-     list.each(function ()
+     list.removeClass('active').each(function ()
      {
-       if ($(this).data('age') >= range[0] && $(this).data('age') <= range[1])
+       var _self = $(this);
+       if (_self.data('age') >= range[0] && _self.data('age') <= range[1])
        {
-         $(this).addClass('active');
+         _self.addClass('active');
        }
      });
    }
@@ -583,7 +601,7 @@ $(document).ready(function() {
    {
      if (dataname == 'date-died')
      {
-       value = gon.date_died_filtered[$(this).index()];
+       value = gon.date_died_filtered[self.index()];
      }
 
      list.removeClass('active').filter('[data-' + dataname + '="' + value + '"]').addClass('active');
@@ -593,9 +611,6 @@ $(document).ready(function() {
    // camel_case to camelCase
    // .replace(/_[a-z]/, function (s){ return s.slice(1).toUpperCase(); })
 
- }, function ()
- {
-   $('#thumbs > ul > li > a').removeClass('active').eq($('#thumbs').data('activeindex')).addClass('active');
  });
 
 
