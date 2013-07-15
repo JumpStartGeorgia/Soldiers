@@ -23,11 +23,11 @@
 <div id="soldier_profiles">
 <% @soldiers.each do |soldier| %>
   <div id="soldier_profile_<%=soldier.id%>" class="soldier_profile row-fluid" data-id="<%= soldier.id %>">
-    <div class="soldier_photo span1"></div>
-    <div class="soldier_photo span2">
+    <!--<div class="soldier_photo span1"></div>-->
+    <div class="soldier_photo span3">
       <%= image_tag soldier.img.url, :alt => soldier.full_name %>
     </div>
-    <div class="soldier_bio span6">
+    <div class="soldier_bio span8">
       <h2>
         <%= soldier.full_name %>
         <div class="social_profile">
@@ -89,7 +89,7 @@
         </div>
       </div>
     </div>
-    <div class="soldier_nav span2">
+    <div class="soldier_nav span1">
       <ul>
         <li class="soldier_nav_close">
           <a href="javascript:;">

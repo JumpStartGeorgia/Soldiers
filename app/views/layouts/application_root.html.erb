@@ -57,14 +57,14 @@
           <div class="container-fluid nav-collapse">
 
             <div class="row-fluid">
-              <div class="span4 offset4" id="center_header">
+              <div class="span6 offset3" id="center_header">
                 <% title_parts = t('app.common.app_name').reverse.split(' ', 2).map{ |x| x.reverse; }.reverse; %>
                 <a href="<%= root_path(:locale => I18n.locale) %>">
                   <span><%= title_parts[0] %></span>
                   <span><%= title_parts[1] %></span>
                 </a>
               </div>
-              <div class="span4">
+              <div class="span3">
 	              <ul class="nav pull-right">
 		              <% if user_signed_in? %>
 				            <li class="dropdown">

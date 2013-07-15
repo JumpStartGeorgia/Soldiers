@@ -10,6 +10,14 @@ body.app_root {
       background: #fbf8f3;
       .box-shadow(none);
 
+      & > .container-fluid {
+        width: 1000px;
+        margin: 0px auto;
+        &, .container-fluid {
+          padding: 0px;
+        }
+      }
+
       #center_header {
         text-align: center;
         height: 59px;
@@ -17,7 +25,7 @@ body.app_root {
 
         a {
           display: block;
-          width: 80%;
+          width: 100%;
           min-height: 77px;
           .box-sizing(border-box);
           margin: 0px auto;
@@ -45,9 +53,11 @@ body.app_root {
       }
 
       ul.nav.pull-right {
+      /*
         display: table;
         margin: 0 auto;
         float: none;
+      */
       }
 
       .locale_switcher {
@@ -175,7 +185,8 @@ body.app_root {
   }
 
   footer {
-    margin-top: 0px;
+    width: 1000px;
+    margin: 0px auto;
     background: none !important;
 	  min-height: 78px !important;
 	  padding: 0 20px;
@@ -221,6 +232,33 @@ body.app_root {
 @media (max-width: 979px) {
   body.app_root {
     padding-top: 0px;
+  }
+}
+
+@media (max-width: 1000px) {
+  body.app_root {
+    .navbar-fixed-top .navbar-inner > .container-fluid {
+      width: auto;
+      &, .container-fluid {
+        padding: 0px 20px;
+      }
+    }
+
+    #about_container {
+      width: auto;
+    }
+
+    footer {
+      width: auto;    
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  body.app_root .navbar-fixed-top .navbar-inner > .container-fluid {
+    &, .container-fluid {
+      padding: 0px;
+    }
   }
 }
 

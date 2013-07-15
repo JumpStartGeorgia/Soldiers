@@ -53,6 +53,8 @@
 }
 
 #soldier_profiles {
+  margin: 0px auto;
+  width: 1000px;
   position: relative;
   .soldier_profile{
     padding: 20px;
@@ -169,6 +171,11 @@
   
   .highcharts-series rect:hover{
     cursor: pointer;
+  }
+}
+@media (max-width: 1000px) {
+  #charts, #soldier_profiles {
+    width: auto;
   }
 }
 
