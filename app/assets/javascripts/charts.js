@@ -555,6 +555,9 @@ $(document).ready(function() {
 
  $('.highcharts-series.highcharts-tracker rect').click(function ()
  {
+  // clear all profiles and map/chart highlights
+  reset_profiles();
+    
    var self = $(this),
    svg = self.closest('svg');
 
@@ -572,7 +575,6 @@ $(document).ready(function() {
      return;
    }
  */
-
    var value = svg.find('.highcharts-axis-labels text').eq(self.index()).text(),
    title = svg.find('.highcharts-title').text();
    var result = search_recursive(gon, title, 1);
@@ -612,20 +614,14 @@ $(document).ready(function() {
    // camel_case to camelCase
    // .replace(/_[a-z]/, function (s){ return s.slice(1).toUpperCase(); })
 
+
+    // highlight this bar
+    var chartname = $(svg).parent().parent().attr('id').replace('chart_', '');
+    window.charts[chartname].series[0].data[self.index()].update({
+      color: bar_color_highlight
+    });
+    window.charts[chartname].last_updated_index = self.index();
+    
  });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 });

@@ -200,7 +200,7 @@ protected
           value['properties']['classname'] = data["css_classes"][index]
         else
           value['properties']['count'] = 0
-          value['properties']['classname'] = nil
+          value['properties']['classname'] = "map_color0"
         end
       end
     end

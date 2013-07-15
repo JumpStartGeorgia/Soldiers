@@ -35,11 +35,23 @@ function reset_bar_colors ()
   }
 }
 
+function clear_highlight_map(map_id){
+  var items = $(map_id + ' svg g path');
+  for (var j=0; j<items.length; j++){
+    $(items[j]).attr('class', $(items[j]).attr('class_orig'));
+  }  
+}
+
+function reset_map_colors (){
+  clear_highlight_map('#map_georgia');
+  clear_highlight_map('#map_afghan');
+  clear_highlight_map('#map_iraq');
+}
+
 function reset_profiles(){
-  $('#soldier_profiles .soldier_profile.active').slideUp(function(){
-    $('#thumbs li > a.active').removeClass('active');
-    $('#soldier_profiles .soldier_profile.active').removeClass('active');
-  });
+  $('#soldier_profiles .soldier_profile.active').slideUp();
+  $('#thumbs > ul > li > a').removeClass('active');
+  $('#soldier_profiles .soldier_profile.active').removeClass('active');
   location.hash = "_";
 
   // reset all bar colors
@@ -47,10 +59,8 @@ function reset_profiles(){
   reset_bar_colors();
 
   // reset map colors
-  clear_highlight_map('#map_georgia');
-  clear_highlight_map('#map_afghan');
-  clear_highlight_map('#map_iraq');
-
+  reset_map_colors();
+  
   // clear which thumb is active
   $('#thumbs').data('activeindex', -1);
 
@@ -132,13 +142,6 @@ function highlight_chart_data_date_died (id)
     color: bar_color_highlight
   });
   window.charts.date_died.last_updated_index = i;
-}
-
-function clear_highlight_map(map_id){
-  var items = $(map_id + ' svg g path');
-  for (var j=0; j<items.length; j++){
-    $(items[j]).attr('class', $(items[j]).attr('class_orig'));
-  }  
 }
 
 function highlight_map_shape(id, map_id, data_name){
