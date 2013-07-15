@@ -35,37 +35,41 @@ $(document).ready(function(){
 
 
 var $window = $(window);
+var ws = {};
+
 $window.load(function ()
 {
-
-  var thumbs = $('#thumbs');
-  var starting_top = thumbs.offset().top,
-  height = thumbs.outerHeight(true);
-  thumbs.css({top: starting_top, position: 'absolute', left: 0, right: 0, zIndex: 1020});
-  var placeholder = thumbs.before('<div id="thumbs-placeholder" style="width: 100%; height: ' + height + 'px;"></div>').prev();
+  ws.header = $('.navbar-fixed-top .container-fluid > .container-fluid');
+  ws.thumbs = $('#thumbs');
+  ws.thumbs.css({position: 'absolute', left: 0, right: 0, zIndex: 1020});
+  ws.placeholder = ws.thumbs.before('<div id="thumbs-placeholder" style="width: 100%;"></div>').prev();
 
   $window.scroll(function (e)
   {
-    var header_height = $('.navbar-fixed-top').outerHeight(true);//$('#center_header > a').outerHeight(true);
-    if (placeholder.offset().top - header_height <= $window.scrollTop())
+    if (ws.placeholder_offset_top - ws.header_height <= $window.scrollTop())
     {
-      if (thumbs.css('position') != 'fixed')
+      if (ws.thumbs.css('position') != 'fixed')
       {
-        thumbs.css({position: 'fixed', top: header_height});
+        ws.thumbs.css({position: 'fixed', top: ws.header_height});
       }
     }
-    else if (thumbs.css('position') == 'fixed')
+    else if (ws.thumbs.css('position') == 'fixed')
     {
-      thumbs.css({position: 'absolute', top: starting_top});
+      ws.thumbs.css({position: 'absolute', top: ws.placeholder_offset_top});
     }
   });
 
-  $window.resize(function ()
-  {
-    
-  });
+}).bind('load resize', function ()
+{
+  ws.placeholder.height(ws.thumbs.outerHeight(true));
 
+  ws.placeholder_offset_top = ws.placeholder.offset().top;
+  ws.header_height = ws.header.outerHeight(true);
 
+  ws.thumbs.css({top: (ws.thumbs.css('position') == 'fixed') ? ws.header_height : ws.placeholder_offset_top});
+
+  //($window.width() > fix_to_static) ? $('.navbar-fixed-top').outerHeight(true) : 0;
+  //$('#center_header > a').outerHeight(true);
 });
 
 
