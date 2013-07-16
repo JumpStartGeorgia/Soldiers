@@ -7,7 +7,7 @@ class AddRegionColData < ActiveRecord::Migration
     SoldierTranslation.where(:place_from => 'ახალგორი').update_all(:region_from => 'მცხეთა-მთიანეთი')
 
     SoldierTranslation.where(:place_from => 'Abasha').update_all(:region_from => 'Samegrelo-Zemo Svaneti')
-    SoldierTranslation.where(:place_from => 'აბაშა').update_all(:region_from => 'სამეგრელი-ზემო სვანეთი')
+    SoldierTranslation.where(:place_from => 'აბაშა').update_all(:region_from => 'სამეგრელო-ზემო სვანეთი')
 
     SoldierTranslation.where(:place_from => 'Adigeni').update_all(:region_from => 'Samtskhe-Javakheti')
     SoldierTranslation.where(:place_from => 'ადიგენი').update_all(:region_from => 'სამცხე-ჯავახეთი')
@@ -40,10 +40,10 @@ class AddRegionColData < ActiveRecord::Migration
     SoldierTranslation.where(:place_from => 'ყვარელი').update_all(:region_from => 'კახეთი')
 
     SoldierTranslation.where(:place_from => 'Martvili').update_all(:region_from => 'Samegrelo-Zemo Svaneti')
-    SoldierTranslation.where(:place_from => 'მარტვილი').update_all(:region_from => 'სამეგრელი-ზემო სვანეთი')
+    SoldierTranslation.where(:place_from => 'მარტვილი').update_all(:region_from => 'სამეგრელო-ზემო სვანეთი')
 
     SoldierTranslation.where(:place_from => 'Mestia').update_all(:region_from => 'Samegrelo-Zemo Svaneti')
-    SoldierTranslation.where(:place_from => 'მესტია').update_all(:region_from => 'სამეგრელი-ზემო სვანეთი')
+    SoldierTranslation.where(:place_from => 'მესტია').update_all(:region_from => 'სამეგრელო-ზემო სვანეთი')
 
     SoldierTranslation.where(:place_from => 'Mtskheta').update_all(:region_from => 'Mtskheta-Mtianeti')
     SoldierTranslation.where(:place_from => 'მცხეთა').update_all(:region_from => 'მცხეთა-მთიანეთი')
@@ -61,22 +61,22 @@ class AddRegionColData < ActiveRecord::Migration
     SoldierTranslation.where(:place_from => 'სამტრედია').update_all(:region_from => 'იმერეთი')
 
     SoldierTranslation.where(:place_from => 'Senaki').update_all(:region_from => 'Samegrelo-Zemo Svaneti')
-    SoldierTranslation.where(:place_from => 'სენაკი').update_all(:region_from => 'სამეგრელი-ზემო სვანეთი')
+    SoldierTranslation.where(:place_from => 'სენაკი').update_all(:region_from => 'სამეგრელო-ზემო სვანეთი')
 
     SoldierTranslation.where(:place_from => 'Svaneti').update_all(:region_from => 'Samegrelo-Zemo Svaneti')
-    SoldierTranslation.where(:place_from => 'სვანეთი').update_all(:region_from => 'სამეგრელი-ზემო სვანეთი')
+    SoldierTranslation.where(:place_from => 'სვანეთი').update_all(:region_from => 'სამეგრელო-ზემო სვანეთი')
 
     SoldierTranslation.where(:place_from => 'Tbilisi').update_all(:region_from => 'Tbilisi')
     SoldierTranslation.where(:place_from => 'თბილისი').update_all(:region_from => 'თბილისი')
 
     SoldierTranslation.where(:place_from => 'Tsalenjikha').update_all(:region_from => 'Samegrelo-Zemo Svaneti')
-    SoldierTranslation.where(:place_from => 'წალენჯიხა').update_all(:region_from => 'სამეგრელი-ზემო სვანეთი')
+    SoldierTranslation.where(:place_from => 'წალენჯიხა').update_all(:region_from => 'სამეგრელო-ზემო სვანეთი')
 
     SoldierTranslation.where(:place_from => 'Vani').update_all(:region_from => 'Imereti')
     SoldierTranslation.where(:place_from => 'ვანი').update_all(:region_from => 'იმერეთი')
 
     SoldierTranslation.where(:place_from => 'Zugdidi').update_all(:region_from => 'Samegrelo-Zemo Svaneti')
-    SoldierTranslation.where(:place_from => 'ზუგდიდი').update_all(:region_from => 'სამეგრელი-ზემო სვანეთი')
+    SoldierTranslation.where(:place_from => 'ზუგდიდი').update_all(:region_from => 'სამეგრელო-ზემო სვანეთი')
     
     # clear the cache files so the new data is avaialble
     JsonCache.clear

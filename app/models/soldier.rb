@@ -210,8 +210,8 @@ class Soldier < ActiveRecord::Base
   end
 
   # rank
-  RANK_ORDER_EN = ['Colonel', 'Lieutenant', 'Sergeant', 'Junior Sergeant', 'Corporal', 'Private 1st Class', 'Private']
-  RANK_ORDER_KA = ['პოლკოვნიკი', 'ლეიტენანტი', 'სერჟანტი', 'უმცროსი სერჟანტი', 'კაპრალი', 'პირველი კლასის რიგითი', 'რიგითი']
+  RANK_ORDER_EN = ['Colonel', 'Chief Lieutenant ', 'Lieutenant', 'Sergeant', 'Junior Sergeant', 'Corporal', 'Private 1st Class', 'Private']
+  RANK_ORDER_KA = ['პოლკოვნიკი', 'უფროსი ლეიტენანტი', 'ლეიტენანტი', 'სერჟანტი', 'უმცროსი სერჟანტი', 'კაპრალი', 'პირველი კლასის რიგითი', 'რიგითი']
   def self.summary_rank
 		h = JsonCache.fetch(CACHE_KEY_RANK.gsub("[locale]", I18n.locale.to_s)) {
       x = SoldierTranslation.where(:locale => I18n.locale).count(:group => :rank)
