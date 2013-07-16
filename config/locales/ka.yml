@@ -26,7 +26,7 @@ ka:
         from: საცხოვრებელი ადგილი 
         region_from: რეგიონიდან
         rank: რანგი
-        served_with: მსახურობდა ბატალიონი
+        served_with: მსახურობდა ბატალიონში
         country_died: გარდაცვალების ადგილი
         place_died: გარდაცვალების ადგილი
         incident_type: შემთხვევის ტიპი
@@ -52,7 +52,7 @@ ka:
       country: გარდაცვალების ადგილი
       date_died: დაღუპვის თარიღი
       rank: რანგი
-      served_with: მსახურობდა ბატალიონი
+      served_with: მსახურობდა ბატალიონში
       incidents: ინციდენტები
       incident_description: სიკვდილის მიზეზი
   helpers:
