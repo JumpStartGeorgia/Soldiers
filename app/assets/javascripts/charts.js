@@ -18,7 +18,7 @@ $(document).ready(function() {
       downloadPDF: gon.highcharts_downloadPDF,
       downloadSVG: gon.highcharts_downloadSVG,
       printChart: gon.highcharts_printChart
-    } 
+    }
   });
 
   if (gon.gender_values){
@@ -76,15 +76,7 @@ $(document).ready(function() {
         series: [{
             name: gon.gender_title,
             data: gon.gender_values
-        }],
-    lang: {
-      downloadPNG: gon.highcharts_downloadPNG,
-      downloadJPEG: gon.highcharts_downloadJPEG,
-      downloadPDF: gon.highcharts_downloadPDF,
-      downloadSVG: gon.highcharts_downloadSVG,
-      printChart: gon.highcharts_printChart
-    } 
-
+        }]
     }).highcharts();
   }
 
@@ -324,15 +316,7 @@ $(document).ready(function() {
         series: [{
             name: gon.served_with_title,
             data: gon.served_with_values
-        }],
-    lang: {
-      downloadPNG: gon.highcharts_downloadPNG,
-      downloadJPEG: gon.highcharts_downloadJPEG,
-      downloadPDF: gon.highcharts_downloadPDF,
-      downloadSVG: gon.highcharts_downloadSVG,
-      printChart: gon.highcharts_printChart
-    } 
-
+        }]
     }).highcharts();
   }
 
