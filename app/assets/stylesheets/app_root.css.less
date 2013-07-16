@@ -208,6 +208,19 @@ body.app_root {
 
 }
 
+@media (max-width: 600px) {
+  body.app_root footer {
+    padding-bottom: 5px;
+    & > div {
+      display: block;
+      float: none !important;
+      clear: both !important;
+      width: 100% !important;
+      text-align: center !important;
+    }
+  }
+}
+
 
 
 @media (max-width: 1550px) {
@@ -229,9 +242,13 @@ body.app_root {
 
 
 /* remove padding when navbar gets hidden */
-@media (max-width: 979px) {
+@media (max-width: 920px) {
   body.app_root {
     padding-top: 0px;
+    .span3 .nav .locale_switcher{
+      float: none;
+      clear: both;
+    }
   }
 }
 
@@ -258,6 +275,11 @@ body.app_root {
   body.app_root .navbar-fixed-top .navbar-inner > .container-fluid {
     &, .container-fluid {
       padding: 0px;
+      .row-fluid {
+        .offset3:first-child{
+          margin-left: 0;
+        }
+      }
     }
   }
 }

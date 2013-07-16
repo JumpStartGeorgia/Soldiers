@@ -39,7 +39,7 @@ var ws = {};
 
 $window.load(function ()
 {
-  ws.header = $('.navbar-fixed-top .container-fluid > .container-fluid');
+  ws.header = $('.navbar-fixed-top .container-fluid > .container-fluid > .row-fluid > .span3 > .nav');
   ws.thumbs = $('#thumbs');
   ws.thumbs.css({position: 'absolute', left: 0, right: 0, zIndex: 1020});
   ws.placeholder = ws.thumbs.before('<div id="thumbs-placeholder" style="width: 100%;"></div>').prev();
@@ -65,6 +65,8 @@ $window.load(function ()
 
   ws.placeholder_offset_top = ws.placeholder.offset().top;
   ws.header_height = ws.header.outerHeight(true);
+  if (ws.header_height > 0)
+    ws.header_height += 9;
 
   ws.thumbs.css({top: (ws.thumbs.css('position') == 'fixed') ? ws.header_height : ws.placeholder_offset_top});
 
