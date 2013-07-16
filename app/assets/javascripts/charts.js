@@ -1,4 +1,4 @@
-var bar_color = '#f1dce1';
+var bar_color = '#e09ea7';
 //var bar_color_highlight = '#a31e33';
 var bar_color_highlight = '#ab9b4d';
 var bar_height = 13;
