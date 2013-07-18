@@ -203,7 +203,7 @@ $(document).ready(function() {
         tooltip: {
           useHTML: true,
           formatter: function() { 
-              return '(click to view soldiers <br />in this group)';
+              return '<span class="click_text">(click to view soldiers <br />in this group)</span>';
           }
         },
         credits: {
@@ -266,7 +266,7 @@ $(document).ready(function() {
         tooltip: {
           useHTML: true,
           formatter: function() { 
-              return '(click to view soldiers <br />in this group)';
+              return '<span class="click_text">(click to view soldiers <br />in this group)</span>';
           }
         },
         credits: {
@@ -329,7 +329,7 @@ $(document).ready(function() {
         tooltip: {
           useHTML: true,
           formatter: function() { 
-              return '(click to view soldiers <br />in this group)';
+              return '<span class="click_text">(click to view soldiers <br />in this group)</span>';
           }
         },
         credits: {
@@ -392,7 +392,7 @@ $(document).ready(function() {
         tooltip: {
           useHTML: true,
           formatter: function() { 
-              return '(click to view soldiers <br />in this group)';
+              return '<span class="click_text">(click to view soldiers <br />in this group)</span>';
           }
         },
         credits: {
@@ -455,7 +455,7 @@ $(document).ready(function() {
         tooltip: {
           useHTML: true,
           formatter: function() { 
-              return '(click to view soldiers <br />in this group)';
+              return '<span class="click_text">(click to view soldiers <br />in this group)</span>';
           }
         },
         credits: {
@@ -518,7 +518,7 @@ $(document).ready(function() {
         tooltip: {
           useHTML: true,
           formatter: function() { 
-              return '(click to view soldiers <br />in this group)';
+              return '<span class="click_text">(click to view soldiers <br />in this group)</span>';
           }
         },
         credits: {
@@ -582,7 +582,7 @@ $(document).ready(function() {
         tooltip: {
           useHTML: true,
           formatter: function() { 
-              return '(click to view soldiers <br />in this group)';
+              return '<span class="click_text">(click to view soldiers <br />in this group)</span>';
           }
         },
         credits: {
@@ -646,8 +646,9 @@ $(document).ready(function() {
             enabled: false
         },
         tooltip: {
+            useHTML: true,
             formatter: function() {
-                return '<b>'+ this.x + ':</b> '+ this.y + '<br /><br />(click to view soldiers <br />in this group)';
+                return '<strong>'+ this.x + ':</strong> '+ this.y + '<br /><br /><span class="click_text">(click to view soldiers <br />in this group)</span>';
             }
         },
         credits: {
