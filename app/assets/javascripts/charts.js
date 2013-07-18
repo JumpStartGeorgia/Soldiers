@@ -201,7 +201,10 @@ $(document).ready(function() {
             enabled: false
         },
         tooltip: {
-          enabled: false
+          useHTML: true,
+          formatter: function() { 
+              return '(click to view soldiers <br />in this group)';
+          }
         },
         credits: {
             enabled: false
@@ -261,7 +264,10 @@ $(document).ready(function() {
             enabled: false
         },
         tooltip: {
-          enabled: false
+          useHTML: true,
+          formatter: function() { 
+              return '(click to view soldiers <br />in this group)';
+          }
         },
         credits: {
             enabled: false
@@ -321,7 +327,10 @@ $(document).ready(function() {
             enabled: false
         },
         tooltip: {
-          enabled: false
+          useHTML: true,
+          formatter: function() { 
+              return '(click to view soldiers <br />in this group)';
+          }
         },
         credits: {
             enabled: false
@@ -381,7 +390,10 @@ $(document).ready(function() {
             enabled: false
         },
         tooltip: {
-          enabled: false
+          useHTML: true,
+          formatter: function() { 
+              return '(click to view soldiers <br />in this group)';
+          }
         },
         credits: {
             enabled: false
@@ -441,7 +453,10 @@ $(document).ready(function() {
             enabled: false
         },
         tooltip: {
-          enabled: false
+          useHTML: true,
+          formatter: function() { 
+              return '(click to view soldiers <br />in this group)';
+          }
         },
         credits: {
             enabled: false
@@ -501,7 +516,10 @@ $(document).ready(function() {
             enabled: false
         },
         tooltip: {
-          enabled: false
+          useHTML: true,
+          formatter: function() { 
+              return '(click to view soldiers <br />in this group)';
+          }
         },
         credits: {
             enabled: false
@@ -562,7 +580,10 @@ $(document).ready(function() {
             enabled: false
         },
         tooltip: {
-          enabled: false
+          useHTML: true,
+          formatter: function() { 
+              return '(click to view soldiers <br />in this group)';
+          }
         },
         credits: {
             enabled: false
@@ -626,7 +647,7 @@ $(document).ready(function() {
         },
         tooltip: {
             formatter: function() {
-                return '<b>'+ this.x + ':</b> '+ this.y;
+                return '<b>'+ this.x + ':</b> '+ this.y + '<br /><br />(click to view soldiers <br />in this group)';
             }
         },
         credits: {

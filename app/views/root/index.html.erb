@@ -10,9 +10,10 @@
       data-incident-type="<%= soldier.incident_type %>" data-incident-description="<%= soldier.incident_description %>"
       data-country="<%= soldier.country_died %>" data-date-died="<%= soldier.died_at.beginning_of_month %>" 
       data-served-with="<%= soldier.served_with%>" data-permalink="<%=soldier.permalink%>"
-      data-region-from="<%= soldier.region_from%>" data-place-died="<%=soldier.place_died%>">
-          <%= image_tag soldier.img_bw.url, :alt => soldier.full_name, :title => soldier.full_name %>
-          <%= image_tag soldier.img.url, :alt => soldier.full_name, :title => soldier.full_name %>
+      data-region-from="<%= soldier.region_from%>" data-place-died="<%=soldier.place_died%>" 
+      title="<%= soldier.full_name %> (click to view more info)" >
+          <%= image_tag soldier.img_bw.url, :alt => soldier.full_name %>
+          <%= image_tag soldier.img.url, :alt => soldier.full_name %>
         </a>
       </li>
     <% end %>
