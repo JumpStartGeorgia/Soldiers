@@ -1,3 +1,4 @@
+var hash_separator = ':';
 
 function update_social_links(id, new_url, new_text){
 /*
@@ -230,13 +231,50 @@ function load_soldier_profile (id)
 $(document).ready(function() {
    
     $(window).load(function(){
-      // if name exists in hash, then show that profile
+      // if name exists in hash, then highlight appropriate data
+      // - if has : and starts with chart -> chart
+      // - if has : and starts with map -> map
+      // - else soldier name
       if (location.hash != undefined && location.hash.length > 1 && location.hash != "#_"){
         var name = location.hash.replace('#','');
-        var item = $('#thumbs li > a[data-permalink="' + name + '"]');
-        if (item.length == 1){
-          $(item).addClass('active');
-          load_soldier_profile($(item).data('id'));
+
+        if (name.indexOf(hash_separator) == -1){
+          // soldier name
+          var item = $('#thumbs li > a[data-permalink="' + name + '"]');
+          if (item.length == 1){
+            $(item).addClass('active');
+            load_soldier_profile($(item).data('id'));
+          }
+        } else if (name.indexOf('chart_') == 0){
+          // chart
+          // split hash into components
+          // [0] = div id
+          // [1] = bar text
+          var comps = name.split(hash_separator);
+          // if date died chart, must use gon variable to get index
+          if (comps[0].indexOf('date_died') == -1){
+            var texts = [];
+            $('#' + comps[0] + ' svg g.highcharts-axis-labels text tspan').each(function(){ texts.push($(this).text()) });
+            var index = texts.indexOf(comps[1]);
+          } else {
+            var index = gon.date_died_filtered.indexOf(comps[1]);
+          }
+          // find index of bar text
+          if (index != -1){
+            // use index to get reference to correct bar
+            highlight_bar_photos($('#' + comps[0] + ' svg g.highcharts-series-group g.highcharts-series rect')[index]);
+          }
+        } else if (name.indexOf('map_') == 0){
+          // map
+          // split hash into components
+          // [0] = div id
+          // [1] = shape name
+          var comps = name.split(hash_separator);
+          var dataname = 'place-died';
+          if (comps[0].indexOf('georgia') != -1){
+            dataname = 'region-from';
+          }
+          highlight_map_photos($('#' + comps[0] + ' svg g path[shape_name="' + comps[1] + '"]'), dataname);
         }
       }
     });

@@ -7,6 +7,139 @@ var axis_label_width = '150px';
 var axis_label_width_wider = '250px';
 var chart_line_color = '#c9c9c9';
 
+  function search_recursive (object, value, maxlevel, strict, curlevel, keychain)
+  {
+    typeof curlevel == 'undefined' && (curlevel = 1);
+    typeof maxlevel == 'undefined' && (maxlevel = 1000);
+    typeof keychain == 'undefined' && (keychain = '');
+    for (var i in object)
+    {
+      if (!Object.prototype.hasOwnProperty.call(object, i))
+      {
+        continue;
+      }
+      if (strict && object[i] === value || !strict && object[i] == value)
+      {
+        return keychain + '.' + i;
+      }
+      else if (typeof object[i] == 'object' && curlevel < maxlevel)
+      {
+        var result = search_recursive(object[i], value, maxlevel, strict, curlevel + 1, keychain + '.' + i);
+        if (result !== false)
+        {
+          return result;
+        }
+      }
+    }
+    return false;
+  }
+
+
+function highlight_bar_photos(ths){
+  // clear all profiles and map/chart highlights
+  reset_profiles();
+    
+   var self = $(ths),
+   svg = self.closest('svg');
+ /*
+   var clickindex = svg.data('clickindex');
+
+   if (clickindex != self.index())
+   {
+     svg.data('clickindex', self.index());
+   }
+   else
+   {
+     svg.data('clickindex', null);
+     $('#thumbs > ul > li > a').removeClass('active').eq($('#thumbs').data('activeindex')).addClass('active');
+     return;
+   }
+ */
+   var value = svg.find('.highcharts-axis-labels text').eq(self.index()).text(),
+   title = svg.find('.highcharts-title').text();
+   var result = search_recursive(gon, title, 1);
+   if (result == false)
+   {
+     return false;
+   }
+   dataname = result.slice(1).replace(/_title$/, '').replace('_', '-');
+
+   var list = $('#thumbs > ul > li > a');
+
+//   $('#thumbs').data('activeindex', list.filter('.active').parent().index());
+
+   if (dataname == 'age')
+   {
+     var range = value.split('-');
+     list.removeClass('active').each(function ()
+     {
+       var _self = $(this);
+       if (_self.data('age') >= range[0] && _self.data('age') <= range[1])
+       {
+         _self.addClass('active');
+       }
+     });
+
+      // highlight this bar
+      var chartname = $(svg).parent().parent().attr('id').replace('chart_', '');
+      window.charts[chartname].series[0].data[self.index()].update({
+        color: bar_color_highlight
+      });
+      window.charts[chartname].last_updated_index = self.index();
+
+   }
+   else
+   {
+     if (dataname == 'date-died')
+     {
+       value = gon.date_died_filtered[self.index()];
+
+        var chartname = $(svg).parent().parent().attr('id').replace('chart_', '');
+
+        // find the index of this bar in all of the data
+        var comps = value.split('-');
+        var label = comps[0]; // year
+        label += " " + gon.abbrv_month_names[Number(comps[1])];
+        
+        var i;
+        for (i=0; i<window.charts[chartname].series[0].data.length; i++)
+        {
+          if (window.charts[chartname].series[0].data[i].category == label) {
+            break;
+          }
+        }
+        if (i != undefined){
+          // highlight this bar
+          window.charts[chartname].series[0].data[i].update({
+            color: bar_color_highlight
+          });
+          window.charts[chartname].last_updated_index = i;
+        }
+     }else {
+      // highlight this bar
+      var chartname = $(svg).parent().parent().attr('id').replace('chart_', '');
+      window.charts[chartname].series[0].data[self.index()].update({
+        color: bar_color_highlight
+      });
+      window.charts[chartname].last_updated_index = self.index();
+     }
+
+     list.removeClass('active').filter('[data-' + dataname + '="' + value + '"]').addClass('active');
+
+   }
+
+
+   // camel_case to camelCase
+   // .replace(/_[a-z]/, function (s){ return s.slice(1).toUpperCase(); })
+
+
+    // create hash for this bar
+    var hash = $(svg).parent().parent().attr('id');
+    hash += hash_separator + value;
+    location.hash = hash;
+}
+
+
 $(document).ready(function() {
 
   window.charts = {};
@@ -508,57 +641,18 @@ $(document).ready(function() {
 
 
 
-  function search_recursive (object, value, maxlevel, strict, curlevel, keychain)
-  {
-    typeof curlevel == 'undefined' && (curlevel = 1);
-    typeof maxlevel == 'undefined' && (maxlevel = 1000);
-    typeof keychain == 'undefined' && (keychain = '');
-    for (var i in object)
-    {
-      if (!Object.prototype.hasOwnProperty.call(object, i))
-      {
-        continue;
-      }
-      if (strict && object[i] === value || !strict && object[i] == value)
-      {
-        return keychain + '.' + i;
-      }
-      else if (typeof object[i] == 'object' && curlevel < maxlevel)
-      {
-        var result = search_recursive(object[i], value, maxlevel, strict, curlevel + 1, keychain + '.' + i);
-        if (result !== false)
-        {
-          return result;
-        }
-      }
-    }
-    return false;
-  }
 
 
-
- $('.highcharts-series.highcharts-tracker rect').click(function ()
- {
+ $('.highcharts-series.highcharts-tracker rect').click(function () {
+ 
+    highlight_bar_photos(this);
+/* 
   // clear all profiles and map/chart highlights
   reset_profiles();
     
    var self = $(this),
    svg = self.closest('svg');
 
- /*
-   var clickindex = svg.data('clickindex');
-
-   if (clickindex != self.index())
-   {
-     svg.data('clickindex', self.index());
-   }
-   else
-   {
-     svg.data('clickindex', null);
-     $('#thumbs > ul > li > a').removeClass('active').eq($('#thumbs').data('activeindex')).addClass('active');
-     return;
-   }
- */
    var value = svg.find('.highcharts-axis-labels text').eq(self.index()).text(),
    title = svg.find('.highcharts-title').text();
    var result = search_recursive(gon, title, 1);
@@ -605,7 +699,12 @@ $(document).ready(function() {
       color: bar_color_highlight
     });
     window.charts[chartname].last_updated_index = self.index();
-    
+
+    // create hash for this bar
+    var hash = $(svg).parent().parent().attr('id');
+    hash += hash_separator + value + hash_separator + self.index().toString();
+    location.hash = hash;
+*/    
  });
 
 });

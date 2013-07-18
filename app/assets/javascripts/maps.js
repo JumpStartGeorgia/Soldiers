@@ -3,11 +3,17 @@ function highlight_map_photos(ths, dataname){
   reset_profiles();
 
   var shape_name = $(ths).attr('shape_name');
+  console.log('dataname = ' + dataname + '; shape name = ' + shape_name);
   var list = $('#thumbs > ul > li > a');
   list.removeClass('active').filter('[data-' + dataname + '="' + shape_name + '"]').addClass('active');
 
   // highlight this map area
   $(ths).attr('class', 'map_color_highlight');
+
+  // create hash for this shape
+  var hash = $(ths).closest('svg').parent().attr('id');
+  hash += hash_separator + shape_name;
+  location.hash = hash;
  }
 
 function reset_highlight_map_photos(){
