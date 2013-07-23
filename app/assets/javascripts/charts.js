@@ -203,7 +203,7 @@ $(document).ready(function() {
         tooltip: {
           useHTML: true,
           formatter: function() { 
-              return '<span class="click_text">(click to view soldiers <br />in this group)</span>';
+              return '<span class="click_text">' + gon.highcharts_popup_text + '</span>';
           }
         },
         credits: {
@@ -266,7 +266,7 @@ $(document).ready(function() {
         tooltip: {
           useHTML: true,
           formatter: function() { 
-              return '<span class="click_text">(click to view soldiers <br />in this group)</span>';
+              return '<span class="click_text">' + gon.highcharts_popup_text + '</span>';
           }
         },
         credits: {
@@ -329,7 +329,7 @@ $(document).ready(function() {
         tooltip: {
           useHTML: true,
           formatter: function() { 
-              return '<span class="click_text">(click to view soldiers <br />in this group)</span>';
+              return '<span class="click_text">' + gon.highcharts_popup_text + '</span>';
           }
         },
         credits: {
@@ -392,7 +392,7 @@ $(document).ready(function() {
         tooltip: {
           useHTML: true,
           formatter: function() { 
-              return '<span class="click_text">(click to view soldiers <br />in this group)</span>';
+              return '<span class="click_text">' + gon.highcharts_popup_text + '</span>';
           }
         },
         credits: {
@@ -455,7 +455,7 @@ $(document).ready(function() {
         tooltip: {
           useHTML: true,
           formatter: function() { 
-              return '<span class="click_text">(click to view soldiers <br />in this group)</span>';
+              return '<span class="click_text">' + gon.highcharts_popup_text + '</span>';
           }
         },
         credits: {
@@ -518,7 +518,7 @@ $(document).ready(function() {
         tooltip: {
           useHTML: true,
           formatter: function() { 
-              return '<span class="click_text">(click to view soldiers <br />in this group)</span>';
+              return '<span class="click_text">' + gon.highcharts_popup_text + '</span>';
           }
         },
         credits: {
@@ -582,7 +582,7 @@ $(document).ready(function() {
         tooltip: {
           useHTML: true,
           formatter: function() { 
-              return '<span class="click_text">(click to view soldiers <br />in this group)</span>';
+              return '<span class="click_text">' + gon.highcharts_popup_text + '</span>';
           }
         },
         credits: {
@@ -648,7 +648,7 @@ $(document).ready(function() {
         tooltip: {
             useHTML: true,
             formatter: function() {
-                return '<strong>'+ this.x + ':</strong> '+ this.y + '<br /><br /><span class="click_text">(click to view soldiers <br />in this group)</span>';
+                return '<strong>'+ this.x + ':</strong> '+ this.y + '<br /><br /><span class="click_text">' + gon.highcharts_popup_text + '</span>';
             }
         },
         credits: {

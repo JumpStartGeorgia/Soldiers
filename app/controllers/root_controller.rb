@@ -16,7 +16,9 @@ class RootController < ApplicationController
         gon.app_name = I18n.t('app.common.app_name')
         gon.root_url = root_url
         gon.abbrv_month_names = I18n.t("date.abbr_month_names")
-
+        gon.highcharts_popup_text = I18n.t('highcharts.popup_text')
+        gon.shape_text_from = I18n.t('highcharts.shape_text_from')
+        gon.shape_text_died = I18n.t('highcharts.shape_text_died')
         render :layout => 'application_root' 
       }
       format.json { render json: @soldiers }

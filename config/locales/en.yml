@@ -41,6 +41,9 @@ en:
     downloadPDF: "Download PDF document"
     downloadSVG: "Download SVG vector image"
     printChart: "Print chart"
+    popup_text: (click to view soldiers <br />in this group)
+    shape_text_from: (click to view soldiers from this area)
+    shape_text_died: (click to view soldiers that died in this area)
   summary:
     male: Male
     female: Female
@@ -156,3 +159,4 @@ en:
       map_georgia_header: Georgian Hometown
       map_afghan_header: Afghanistan Deaths
       map_iraq_header: Iraq Deaths
+      photo_text: (click to view more info)
