@@ -136,7 +136,7 @@ function highlight_bar_photos(ths){
     // create hash for this bar
     var hash = $(svg).parent().parent().attr('id');
     hash += hash_separator + value;
-    location.hash = hash;
+    location.hash = encodeURIComponent(hash);
 }
 
 

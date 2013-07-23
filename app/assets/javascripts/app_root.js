@@ -236,7 +236,7 @@ $(document).ready(function() {
       // - if has : and starts with map -> map
       // - else soldier name
       if (location.hash != undefined && location.hash.length > 1 && location.hash != "#_"){
-        var name = location.hash.replace('#','');
+        var name = decodeURIComponent(location.hash.replace('#',''));
 
         if (name.indexOf(hash_separator) == -1){
           // soldier name
@@ -311,7 +311,7 @@ $(document).ready(function() {
 
     $('#thumbs li > a.active').removeClass('active');
     $(this).addClass('active');
-    location.hash = $(this).data('permalink');
+    location.hash = encodeURIComponent($(this).data('permalink'));
   });
   
 
@@ -338,7 +338,7 @@ $(document).ready(function() {
     
     $('#thumbs li > a.active').removeClass('active');
     $(new_item).addClass('active');
-    location.hash = $(new_item).data('permalink');
+    location.hash = encodeURIComponent($(new_item).data('permalink'));
   });
   
   // load the previous one
@@ -357,7 +357,7 @@ $(document).ready(function() {
     }
     $('#thumbs li > a.active').removeClass('active');
     $(new_item).addClass('active');
-    location.hash = $(new_item).data('permalink');
+    location.hash = encodeURIComponent($(new_item).data('permalink'));
   });
   
 

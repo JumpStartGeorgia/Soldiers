@@ -13,7 +13,7 @@ function highlight_map_photos(ths, dataname){
   // create hash for this shape
   var hash = $(ths).closest('svg').parent().attr('id');
   hash += hash_separator + shape_name;
-  location.hash = hash;
+  location.hash = encodeURIComponent(hash);
  }
 
 function reset_highlight_map_photos(){
